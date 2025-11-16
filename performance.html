@@ -647,7 +647,9 @@ body.performance::before {
   <section id="performance" class="section">
   <h2>Performance</h2>
   <p class="subtitle">Découvre nos résultats hebdomadaires et suivez l’évolution du fonds en toute transparence</p>
+  <p class="update-note" id="kpi-updated">Données en cours de chargement…</p>
   <p class="update-note">Données mises à jour le 29/09/2025</p>
+
 </section>
 
 
@@ -655,19 +657,19 @@ body.performance::before {
   <section class="summary-cards">
     <div class="card">
       <h3>APY estimé</h3>
-      <p>24 – 30 %</p>
+      <p id="kpi-apy">—</p>
     </div>
     <div class="card">
       <h3>Rendement hebdo</h3>
-      <p>+1,18 %</p>
+      <p id="kpi-weekly">—</p>
     </div>
     <div class="card">
       <h3>TVL actuelle</h3>
-      <p>7 650 $</p>
+      <p id="kpi-tvl">—</p>
     </div>
     <div class="card">
       <h3>Investisseurs</h3>
-      <p>3</p>
+      <p id="kpi-investors">—</p>
     </div>
   </section>
 
@@ -764,6 +766,15 @@ body.performance::before {
   </div>
 </section>
 
+<!-- Bouton portail investisseur -->
+<div class="auth-btn-wrapper" style="margin-top:16px;">
+  <a href="/login.html" id="open-auth" class="g12-auth-btn"
+     style="display:inline-block;padding:10px 16px;border-radius:8px;border:1px solid #ccc;text-decoration:none;cursor:pointer;">
+    Créer un compte / Se connecter
+  </a>
+</div>
+
+
 
   <!-- FOOTER -->
   <footer id="footer">
@@ -850,490 +861,8 @@ body.performance::before {
       });
     })();
   </script>
-<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
-<script>
-  const chartDom = document.getElementById('tvlChart');
-  const tvlChart = echarts.init(chartDom);
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 
-  // ========= Données hebdo =========
-  const allWeeks = [
-    '01/04','08/04','15/04','22/04','29/04',   // Avril
-    '06/05','13/05','20/05','27/05',           // Mai
-    '03/06','10/06','17/06','24/06',           // Juin
-    '01/07','08/07','15/07','22/07','29/07',   // Juil
-    '05/08','12/08','19/08','26/08',           // Août (↓)
-    '02/09','09/09','16/09','23/09','29/09',    // Sept
-    '06/09','13/09','20/09','27/09',           // Oct
-  ];
-
-  const allData = [
-    510.42, 563.18, 591.77, 579.64, 683.22,      // Avril
-    2712.05, 2468.34, 2559.91, 3003.27,             // Mai
-    4612.49, 5247.83, 5462.15, 5889.42,          // Juin
-    6410.37, 6094.66, 6387.14, 6672.89, 6598.54, // Juil
-    7476.12, 6193.88, 6415.47, 6523.66,          // Août (≈ -1200)
-    7544.29, 7217.53, 7829.41, 7478.22, 7680.37,  // Sept
-    9838, // Oct
-  ];
-  // ✅ expose pour les autres graphiques
-window.allWeeks = allWeeks;
-window.allData  = allData;
-
-
-  // ========= Ranges =========
-  function getData(range){
-    if (range === '1M')  return { labels: allWeeks.slice(-4),  data: allData.slice(-4)  };
-    if (range === '3M')  return { labels: allWeeks.slice(-12), data: allData.slice(-12) };
-    if (range === '6M')  return { labels: allWeeks,            data: allData }; // ici on a 6 mois pile
-    if (range === 'YTD') return { labels: allWeeks,            data: allData };
-    return { labels: allWeeks, data: allData }; // ALL
-  }
-
-  function render(range){
-    const { labels, data } = getData(range);
-    const option = {
-      backgroundColor: 'transparent',
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: { type: 'cross' },
-        backgroundColor: 'rgba(0,0,0,0.75)',
-        borderColor: '#00B2FF',
-        textStyle: { color: '#E6EEF8' }
-      },
-      grid: { left: 40, right: 20, top: 20, bottom: 30, containLabel: true },
-      dataZoom: [{ type: 'inside', throttle: 30 }],
-      xAxis: {
-        type: 'category',
-        data: labels,
-        axisLine: { lineStyle: { color: '#E6EEF8' } },
-        axisLabel: { color: '#E6EEF8', interval: 'auto', hideOverlap: true }
-      },
-      yAxis: {
-        type: 'value',
-        axisLine: { lineStyle: { color: '#E6EEF8' } },
-        splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } },
-        axisLabel: { color: '#E6EEF8' }
-      },
-      series: [{
-        name: 'TVL ($)',
-        type: 'line',
-        data,
-        smooth: true,
-        showSymbol: true,
-        symbol: 'circle',
-        symbolSize: 6,
-        lineStyle: {
-          width: 3,
-          color: new echarts.graphic.LinearGradient(0,0,1,0,[
-            { offset: 0,   color: '#8A0AFF' },
-            { offset: 0.5, color: '#3A3FFF' },
-            { offset: 1,   color: '#00C9E8' }
-          ])
-        },
-        areaStyle: {
-          opacity: 0.15,
-          color: new echarts.graphic.LinearGradient(0,0,0,1,[
-            { offset: 0, color: '#00B2FF' },
-            { offset: 1, color: 'transparent' }
-          ])
-        },
-        itemStyle: { color: '#00B2FF', borderColor: '#fff', borderWidth: 1.2 }
-      }]
-    };
-    tvlChart.setOption(option, true);
-  }
-
-  // ===== Init par défaut en 6M =====
-  render('6M');
-  window.addEventListener('resize', () => tvlChart.resize());
-
-  // ===== Boutons (si tu les as dans ton HTML) =====
-  document.querySelectorAll('.chart-buttons button')?.forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.chart-buttons button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      render(btn.dataset.range);
-    });
-  });
-  const def = document.querySelector('.chart-buttons button[data-range="6M"]');
-  if (def) def.classList.add('active');
-
-</script>
-<script>
-// --- semaines TVL existantes (venant de ton graphe TVL) ---
-window.allWeeks = window.allWeeks || [
-  '01/04','08/04','15/04','22/04','29/04',
-  '06/05','13/05','20/05','27/05',
-  '03/06','10/06','17/06','24/06',
-  '01/07','08/07','15/07','22/07','29/07',
-  '05/08','12/08','19/08','26/08',
-  '02/09','09/09','16/09','23/09','29/09',
-  '06/09','13/09','20/09','27/09',           
-];
-window.allData = window.allData || []; // si dispo, sert à estimer le $ change
-
-// --- Rendement hebdo fixé (label -> pct) ---
-// (entre -2.48% et +3.89%, + de vert, août 3 semaines rouges)
-const weeklyPctByWeek = {
-  '08/04':  1.12,
-  '15/04':  0.85,
-  '22/04': -0.74,
-  '29/04':  1.96,
-
-  '06/05':  1.36,  // override demandé
-  '13/05':  0.92,
-  '20/05':  1.58,
-  '27/05':  0.44,
-
-  '03/06':  1.21,
-  '10/06':  2.10,
-  '17/06':  1.67,
-  '24/06':  0.93,
-
-  '01/07':  1.34,
-  '08/07':  1.89,
-  '15/07':  0.72,
-  '22/07':  1.15,
-  '29/07': -0.68,
-
-  '05/08': -1.04,
-  '12/08': -2.31,
-  '19/08': -0.88,
-  '26/08': -2.08,
-
-  '02/09':  3.12,
-  '09/09':  2.46,
-  '16/09':  1.73,
-  '23/09':  0.81,
-  '29/09':  1.22,
-
-  
-};
-
-// --- utilitaires ---
-function makeWeeklySeries(weeks, tvlValues){
-  const labels = [], pct = [], abs = [];
-  for (let i=1;i<weeks.length;i++){
-    const w = weeks[i];
-    const p = weeklyPctByWeek[w];
-    if (p == null) continue; // ignore si pas défini
-    labels.push(w);
-    pct.push(+p.toFixed(2));
-    // variation $ estimée si on a la TVL de la semaine précédente
-    if (tvlValues && tvlValues.length === weeks.length) {
-      const prev = tvlValues[i-1];
-      abs.push(+((prev * (p/100))).toFixed(2));
-    } else {
-      abs.push(null);
-    }
-  }
-  return { labels, pct, abs };
-}
-function sliceRange(arr, n){ return n==='ALL' ? arr.slice() : arr.slice(-n); }
-function weeksCountFor(range){
-  if (range==='3M')  return 12;  // ~12 semaines
-  if (range==='6M')  return 26;  // ~26 semaines
-  if (range==='YTD') return 'ALL';
-  return 'ALL';
-}
-
-// --- instance ECharts ---
-const wrDom = document.getElementById('weeklyChart');
-const weeklyChart = echarts.init(wrDom);
-
-// --- rendu ---
-function renderWeekly(range='3M'){
-  const isMobile = matchMedia('(max-width:768px)').matches;
-  const { labels, pct, abs } = makeWeeklySeries(allWeeks, allData);
-  const N = weeksCountFor(range);
-  const L = sliceRange(labels, N);
-  const P = sliceRange(pct, N);
-  const A = sliceRange(abs, N);
-
-// moyenne de la période affichée (en %)
-const avg = P.length ? +(P.reduce((s,v)=>s+v,0) / P.length).toFixed(2) : 0;
-
-// ===== Intensité dépendante de la période affichée =====
-const maxPos = Math.max(0, ...P.filter(v => v > 0));
-const maxNegAbs = Math.max(0, ...P.filter(v => v < 0).map(v => Math.abs(v)));
-
-// fabrique un dégradé vertical en HSL/HSLA, plus le t est grand, plus c'est intense (moins gris)
-function gradByHue(hue, t){
-  // clamp 0..1
-  const k = Math.max(0, Math.min(1, t || 0));
-  // L (lightness) plus faible = plus vif ; plus proche de 60% = plus grisâtres
-  const L = 58 - 18 * k;           // 58% (pâle) → 40% (vif)
-  const S = 85;                    // saturation bien vive
-  const top    = `hsla(${hue}, ${S}%, ${L}%, 1)`;     // haut du bâton
-  const bottom = `hsla(${hue}, ${S}%, ${L}%, 0.35)`;  // bas du bâton (un peu transparent)
-  return new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-    { offset: 0, color: top },
-    { offset: 1, color: bottom }
-  ]);
-}
-
-// map couleur par valeur (vert pour gains, rouge pour pertes), intensité relative à max local
-function colorFor(v){
-  if (v >= 0) {
-    const t = maxPos > 0 ? (v / maxPos) : 0;   // 0..1
-    return gradByHue(150, t);                  // 150° = vert
-  } else {
-    const t = maxNegAbs > 0 ? (Math.abs(v) / maxNegAbs) : 0; // 0..1
-    return gradByHue(0, t);                    // 0° = rouge
-  }
-}
-  // 4) rendu
-  weeklyChart.setOption({
-    backgroundColor: 'transparent',
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: { type: 'shadow' },
-      backgroundColor: 'rgba(0,0,0,0.75)',
-      borderColor: '#00B2FF',
-      textStyle: { color: '#E6EEF8' },
-      formatter: (params) => {
-        const p = params[0], i = p.dataIndex;
-        const sign = P[i] >= 0 ? '+' : '';
-        const line1 = `<strong>Semaine ${L[i]}</strong>`;
-        const line2 = `${sign}${P[i]} %`;
-        const line3 = (A[i] == null) ? `` : `${A[i] >= 0 ? '+' : ''}${A[i]} $`;
-        const lineAvg = `<span style="opacity:.85">Moy (période): ${avg}%</span>`;
-        return [line1, line2, line3, lineAvg].filter(Boolean).join('<br>');
-      }
-    },
-    grid: { left: isMobile ? 8 : 40, right: isMobile ? 8 : 16, top: 18, bottom: 28, containLabel: true },
-    xAxis: {
-      type: 'category',
-      data: L,
-      axisLine: { lineStyle: { color: '#E6EEF8' } },
-      axisLabel: { color: '#E6EEF8', interval: 'auto', hideOverlap: true }
-    },
-    yAxis: {
-      type: 'value',
-      axisLine: { lineStyle: { color: '#E6EEF8' } },
-      splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } },
-      axisLabel: { color: '#E6EEF8', formatter: v => v + ' %' }
-    },
-    series: [{
-      name: 'Rendement hebdo',
-      type: 'bar',
-      data: P.map(v => ({
-        value: v,
-        itemStyle: { color: colorFor(v) }   // ✅ intensité dynamique
-      })),
-      barWidth: '60%',
-      markLine: {
-        symbol: 'none',
-        lineStyle: { type: 'dashed', color: '#3A3FFF' },
-        label: { show: false },           // pas d’étiquette, valeur au tooltip
-        data: [{ yAxis: avg }]
-      }
-    }]
-  }, true);
-}
-
-
-// --- boutons 3M/6M/YTD/ALL ---
-document.querySelectorAll('#wr-buttons button').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('#wr-buttons button').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    renderWeekly(btn.dataset.range);
-  });
-});
-
-// init
-renderWeekly('3M');
-window.addEventListener('resize', ()=> weeklyChart.resize());
-
-// ====== Donut Allocation (placeholder, couleurs G12)
-const donut = echarts.init(document.getElementById('allocDonut'));
-donut.setOption({
-  backgroundColor:'transparent',
-  tooltip:{ trigger:'item', backgroundColor:'rgba(0,0,0,0.75)', borderColor:'#00B2FF', textStyle:{ color:'#E6EEF8' } },
-  series:[{
-    name:'Allocation',
-    type:'pie',
-    radius:['55%','80%'],
-    avoidLabelOverlap:true,
-    itemStyle:{ borderColor:'#050A14', borderWidth:2 },
-    label:{ color:'#E6EEF8', formatter: '{b}\n{d}%' },
-    data:[
-      { value:38, name:'bitcoin' },
-      { value:24, name:'trading' },
-      { value:18, name:'Arbitrage' },
-      { value:12, name:'Yield' },
-      { value:8,  name:'stable coin' }
-    ],
-    color:['#00C9E8','#3A3FFF','#8A0AFF','#19e68c','#8aa1b1']
-  }]
-});
-function resizeDonut(){
-  const isMobile = window.matchMedia('(max-width:768px)').matches;
-  donut.setOption({
-    series:[{
-      radius: isMobile ? ['45%','70%'] : ['55%','80%']
-    }]
-  });
-  donut.resize();
-}
-
-window.addEventListener('resize', resizeDonut);
-resizeDonut(); // init
-
-window.addEventListener('resize', ()=> donut.resize());
-</script>
-<script>
-// --- utilitaires réutilisés ---
-function weeksCountFor(range){
-  if (range === '3M') return 12;
-  if (range === '6M') return 26;
-  if (range === 'YTD') return 'ALL';
-  return 'ALL';
-}
-function sliceRange(arr, n){ return n === 'ALL' ? arr.slice() : arr.slice(-n); }
-
-// reprend les % hebdo (weeklyPctByWeek) dans l'ordre allWeeks
-function buildWeeklyPctSeries() {
-  const labels = [], pct = [];
-  for (let i=1;i<allWeeks.length;i++){
-    const w = allWeeks[i];
-    if (weeklyPctByWeek[w] == null) continue;
-    labels.push(w);
-    pct.push(+weeklyPctByWeek[w].toFixed(2));
-  }
-  return { labels, pct };
-}
-
-// calcule drawdown depuis un index base 100
-function computeDrawdown(){
-  const { labels, pct } = buildWeeklyPctSeries();
-  const equity = [100];
-  for (let i=0;i<pct.length;i++){
-    equity.push( equity[equity.length-1] * (1 + pct[i]/100) );
-  }
-  equity.shift(); // aligne sur labels
-
-  const dd = [];
-  let peak = -Infinity;
-  for (let i=0;i<equity.length;i++){
-    peak = Math.max(peak, equity[i]);
-    dd.push( ((equity[i]/peak)-1)*100 ); // <= 0
-  }
-  return { labels, dd };
-}
-
-// instance
-const ddEl = document.getElementById('ddChart');
-const ddChart = echarts.init(ddEl);
-
-function renderDrawdown(range='3M'){
-  const isMobile = matchMedia('(max-width:768px)').matches;
-  const { labels, dd } = computeDrawdown();
-  const N = weeksCountFor(range);
-  const L = sliceRange(labels, N);
-  const D = sliceRange(dd, N);
-
-  ddChart.setOption({
-    backgroundColor:'transparent',
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: { type: 'cross' },
-      backgroundColor:'rgba(0,0,0,0.75)',
-      borderColor:'#00B2FF',
-      textStyle:{ color:'#E6EEF8' },
-      formatter: (p) => {
-        const v = p[0].data;
-        return `<strong>Semaine ${p[0].axisValue}</strong><br>Drawdown: ${v.toFixed(2)} %`;
-      }
-    },
-    grid:{ left:isMobile?8:40, right:isMobile?8:16, top:18, bottom:28, containLabel:true },
-    xAxis:{ type:'category', data: L,
-      axisLine:{ lineStyle:{ color:'#E6EEF8' } },
-      axisLabel:{ color:'#E6EEF8', interval:'auto', hideOverlap:true }
-    },
-    yAxis:{ type:'value',
-      axisLine:{ lineStyle:{ color:'#E6EEF8' } },
-      splitLine:{ lineStyle:{ color:'rgba(255,255,255,0.05)' } },
-      axisLabel:{ color:'#E6EEF8', formatter:v=> v+' %' }
-    },
-    series:[{
-      name:'Drawdown',
-      type:'line',
-      data: D.map(v=> +v.toFixed(2)),
-      smooth: true,
-      areaStyle:{
-        color: new echarts.graphic.LinearGradient(0,0,0,1,[
-          {offset:0, color:'rgba(255,92,92,.55)'},
-          {offset:1, color:'rgba(255,92,92,0)'}
-        ])
-      },
-      lineStyle:{ width:2, color:'#ff5c5c' },
-      symbol:'none'
-    }]
-  }, true);
-}
-
-// boutons 3M/6M/YTD/ALL
-document.querySelectorAll('#dd-buttons button').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('#dd-buttons button').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    renderDrawdown(btn.dataset.range);
-  });
-});
-
-// init
-renderDrawdown('3M');
-window.addEventListener('resize', ()=> ddChart.resize());
-</script>
-<script>
-// ====== SIMULATEUR APY ======
-const simAmountEl = document.getElementById('simAmount');
-const simApyEl = document.getElementById('simApy');
-const simTableWrap = document.getElementById('simTableWrap');
-
-function getAPY() {
-  const v = parseFloat(simApyEl.value);
-  return isFinite(v) ? v/100 : 0;
-}
-function fmtUSD(n){ return Number(n).toLocaleString('en-US',{maximumFractionDigits:2}); }
-function project(principal, weeks, apy){
-  const weekly = Math.pow(1+apy, 1/52) - 1;
-  return principal * Math.pow(1 + weekly, weeks);
-}
-function renderSimTable(){
-  const P0  = Math.max(0, parseFloat(simAmountEl.value) || 0);
-  const apy = getAPY();
-  const rows = [
-    { label:'1 mois',  w: 4 },
-    { label:'3 mois',  w: 13 },
-    { label:'6 mois',  w: 26 },
-    { label:'12 mois', w: 52 }
-  ].map(r => {
-    const val = project(P0, r.w, apy);
-    const gain = val - P0;
-    return { ...r, value: val, gain };
-  });
-  simTableWrap.innerHTML = `
-    <table>
-      <thead>
-        <tr><th>Période</th><th>Capital final</th><th>Gain</th></tr>
-      </thead>
-      <tbody>
-        ${rows.map(r => `
-          <tr>
-            <td>${r.label}</td>
-            <td class="value">$ ${fmtUSD(r.value)}</td>
-            <td style="color:${r.gain>=0?'#19e68c':'#ff5c5c'}">$ ${fmtUSD(r.gain)}</td>
-          </tr>`).join('')}
-      </tbody>
-    </table>`;
-}
-simAmountEl.addEventListener('input', renderSimTable);
-simApyEl.addEventListener('input', renderSimTable);
-renderSimTable();
-</script>
 
 
 <script>
@@ -1372,6 +901,194 @@ renderSimTable();
 </script>
 
 
+
+<script>
+const SUPABASE_URL = "https://qdnejvjedtjmnijdbmaw.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFkbmVqdmplZHRqbW5pamRibWF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MzY1MzYsImV4cCI6MjA3NTUxMjUzNn0.xveNlH2LgbsJtp0Z8-Q8mGeF7bbI4MvtUb9wp2KBc2A";
+
+async function supa(path) {
+  const res = await fetch(`${SUPABASE_URL}${path}`, {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`
+    },
+    cache: "no-cache"
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
+// KPI
+async function loadKPI() {
+  const rows = await supa(`/rest/v1/kpi_summary?select=*&order=updated_at.desc&limit=1`);
+  if (!rows.length) return;
+  const k = rows[0];
+  document.getElementById("kpi-apy").textContent = `${Number(k.apy_min).toFixed(0)} – ${Number(k.apy_max).toFixed(0)} %`;
+  document.getElementById("kpi-weekly").textContent = `${Number(k.weekly_return).toFixed(2)} %`;
+  document.getElementById("kpi-tvl").textContent = `$${Number(k.tvl_usd).toLocaleString("en-US")}`;
+  document.getElementById("kpi-investors").textContent = `${k.investors ?? 0}`;
+}
+
+// TVL
+const tvlChart = echarts.init(document.getElementById('tvlChart'));
+function renderTVL(rows, range='6M') {
+  const labels = rows.map(r => r.date);
+  const data = rows.map(r => Number(r.tvl_usd));
+  function slice(range) {
+    if (range==='1M')  return { L: labels.slice(-4),  D: data.slice(-4) };
+    if (range==='3M')  return { L: labels.slice(-12), D: data.slice(-12) };
+    if (range==='6M')  return { L: labels.slice(-26), D: data.slice(-26) };
+    if (range==='YTD') return { L: labels.slice(-52), D: data.slice(-52) };
+    return { L: labels, D: data };
+  }
+  const { L, D } = slice(range);
+  tvlChart.setOption({
+    backgroundColor:'transparent',
+    tooltip:{ trigger:'axis', axisPointer:{type:'cross'},
+      backgroundColor:'rgba(0,0,0,0.75)', borderColor:'#00B2FF', textStyle:{ color:'#E6EEF8' } },
+    grid:{ left:40, right:20, top:20, bottom:30, containLabel:true },
+    dataZoom:[{ type:'inside', throttle:30 }],
+    xAxis:{ type:'category', data:L, axisLine:{ lineStyle:{ color:'#E6EEF8' } }, axisLabel:{ color:'#E6EEF8' } },
+    yAxis:{ type:'value', axisLine:{ lineStyle:{ color:'#E6EEF8' } }, splitLine:{ lineStyle:{ color:'rgba(255,255,255,.05)' } }, axisLabel:{ color:'#E6EEF8' } },
+    series:[{ name:'TVL ($)', type:'line', data:D, smooth:true, showSymbol:true, symbol:'circle', symbolSize:6,
+      lineStyle:{ width:3, color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#8A0AFF'},{offset:.5,color:'#3A3FFF'},{offset:1,color:'#00C9E8'}]) },
+      areaStyle:{ opacity:.15, color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#00B2FF'},{offset:1,color:'transparent'}]) },
+      itemStyle:{ color:'#00B2FF', borderColor:'#fff', borderWidth:1.2 }
+    }]
+  }, true);
+  document.querySelectorAll('.chart-buttons button')?.forEach(btn=>{
+    btn.onclick = ()=>{
+      document.querySelectorAll('.chart-buttons button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTVL(rows, btn.dataset.range);
+    };
+  });
+}
+async function loadTVL() {
+  const rows = await supa(`/rest/v1/tvl_history?select=date,tvl_usd&order=date.asc`);
+  if (rows.length) renderTVL(rows,'6M');
+  window.addEventListener('resize', ()=> tvlChart.resize());
+}
+
+// Weekly returns + Drawdown
+const weeklyChart = echarts.init(document.getElementById('weeklyChart'));
+const ddChart = echarts.init(document.getElementById('ddChart'));
+
+function renderWeekly(rows, range='3M') {
+  const Lfull = rows.map(r=>r.week);
+  const Pfull = rows.map(r=>Number(r.pct));
+  function slice(range){ if(range==='3M')return{L:Lfull.slice(-12),P:Pfull.slice(-12)}; if(range==='6M')return{L:Lfull.slice(-26),P:Pfull.slice(-26)}; return {L:Lfull,P:Pfull}; }
+  const {L,P}=slice(range);
+  const avg = P.length ? +(P.reduce((s,v)=>s+v,0)/P.length).toFixed(2) : 0;
+  const maxPos = Math.max(0,...P.filter(v=>v>0));
+  const maxNeg = Math.max(0,...P.filter(v=>v<0).map(v=>Math.abs(v)));
+  const grad=(h,t)=>new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:`hsla(${h},85%,${58-18*t}%,1)`},{offset:1,color:`hsla(${h},85%,${58-18*t}%,.35)`}]);
+  const colorFor = v => v>=0 ? grad(150, maxPos? v/maxPos:0) : grad(0, maxNeg? Math.abs(v)/maxNeg:0);
+  weeklyChart.setOption({
+    backgroundColor:'transparent',
+    tooltip:{ trigger:'axis', axisPointer:{type:'shadow'},
+      backgroundColor:'rgba(0,0,0,.75)', borderColor:'#00B2FF', textStyle:{color:'#E6EEF8'} },
+    grid:{ left:40, right:16, top:18, bottom:28, containLabel:true },
+    xAxis:{ type:'category', data:L, axisLine:{lineStyle:{color:'#E6EEF8'}}, axisLabel:{color:'#E6EEF8'} },
+    yAxis:{ type:'value', axisLine:{lineStyle:{color:'#E6EEF8'}}, splitLine:{lineStyle:{color:'rgba(255,255,255,.05)'}}, axisLabel:{color:'#E6EEF8', formatter:v=>v+' %'} },
+    series:[{ type:'bar', data:P.map(v=>({value:v, itemStyle:{color:colorFor(v)}})), barWidth:'60%',
+      markLine:{ symbol:'none', lineStyle:{ type:'dashed', color:'#3A3FFF' }, label:{show:false}, data:[{ yAxis: avg }] } }]
+  }, true);
+  document.querySelectorAll('#wr-buttons button').forEach(btn=>{
+    btn.onclick=()=>{
+      document.querySelectorAll('#wr-buttons button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active'); renderWeekly(rows, btn.dataset.range);
+    };
+  });
+}
+
+function renderDrawdown(rows, range='3M'){
+  const pct = rows.map(r=>Number(r.pct));
+  const labels = rows.map(r=>r.week);
+  const equity=[]; let e=100; for(const p of pct){ e*= (1+p/100); equity.push(e); }
+  const dd=[]; let peak=-Infinity; for(const x of equity){ peak=Math.max(peak,x); dd.push(((x/peak)-1)*100); }
+  function slice(range,L,D){ if(range==='3M')return{L:L.slice(-12),D:D.slice(-12)}; if(range==='6M')return{L:L.slice(-26),D:D.slice(-26)}; return {L,D}; }
+  const {L,D}=slice(range,labels,dd);
+  ddChart.setOption({
+    backgroundColor:'transparent',
+    tooltip:{ trigger:'axis', axisPointer:{type:'cross'},
+      backgroundColor:'rgba(0,0,0,.75)', borderColor:'#00B2FF', textStyle:{color:'#E6EEF8'},
+      formatter:p=>`<strong>Semaine ${p[0].axisValue}</strong><br>Drawdown: ${p[0].data.toFixed(2)} %` },
+    grid:{ left:40, right:16, top:18, bottom:28, containLabel:true },
+    xAxis:{ type:'category', data:L, axisLine:{lineStyle:{color:'#E6EEF8'}}, axisLabel:{color:'#E6EEF8'} },
+    yAxis:{ type:'value', axisLine:{lineStyle:{color:'#E6EEF8'}}, splitLine:{lineStyle:{color:'rgba(255,255,255,.05)'}}, axisLabel:{color:'#E6EEF8', formatter:v=>v+' %'} },
+    series:[{ type:'line', data:D.map(v=>+v.toFixed(2)), smooth:true, symbol:'none',
+      lineStyle:{ width:2, color:'#ff5c5c' },
+      areaStyle:{ color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(255,92,92,.55)'},{offset:1,color:'rgba(255,92,92,0)'}]) } }]
+  }, true);
+  document.querySelectorAll('#dd-buttons button').forEach(btn=>{
+    btn.onclick=()=>{
+      document.querySelectorAll('#dd-buttons button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active'); renderDrawdown(rows, btn.dataset.range);
+    };
+  });
+}
+
+async function loadWeeklyAndDD(){
+  const rows = await supa(`/rest/v1/weekly_returns?select=week,pct&order=week.asc`);
+  if(rows.length){
+    renderWeekly(rows,'3M'); renderDrawdown(rows,'3M');
+    window.addEventListener('resize', ()=>{ weeklyChart.resize(); ddChart.resize(); });
+  }
+}
+
+// Allocation
+const donut = echarts.init(document.getElementById('allocDonut'));
+async function loadAllocation(){
+  // ✅ ne demander que les colonnes existantes
+  const rows = await supa(`/rest/v1/allocation?select=strategy,pct&order=strategy.asc`);
+  if(!rows.length) return;
+
+  // ✅ construire la série avec les colonnes réelles
+  const data = rows.map(r => ({
+    value: Number(r.pct),
+    name: r.strategy
+  }));
+
+  donut.setOption({
+    backgroundColor:'transparent',
+    tooltip:{ trigger:'item', backgroundColor:'rgba(0,0,0,.75)', borderColor:'#00B2FF', textStyle:{ color:'#E6EEF8' } },
+    series:[{
+      name:'Allocation',
+      type:'pie',
+      radius:['55%','80%'],
+      avoidLabelOverlap:true,
+      itemStyle:{ borderColor:'#050A14', borderWidth:2 },
+      label:{ color:'#E6EEF8', formatter:'{b}\n{d}%'},
+      data
+    }]
+  }, true);
+
+  // responsive
+  function resizeDonut(){
+    const m = window.matchMedia('(max-width:768px)').matches;
+    donut.setOption({ series:[{ radius: m ? ['45%','70%'] : ['55%','80%'] }] });
+    donut.resize();
+  }
+  resizeDonut();
+  window.addEventListener('resize', resizeDonut);
+}
+
+
+// Boot
+(async function(){
+  try{
+    await Promise.all([loadKPI(), loadTVL(), loadWeeklyAndDD(), loadAllocation()]);
+  }catch(e){
+    console.error(e);
+  }
+})();
+</script>
+<script>
+const d = new Date(k.updated_at);
+document.getElementById("kpi-updated")?.textContent =
+  `Données mises à jour le ${new Date(k.updated_at).toLocaleDateString("fr-FR")}`;
+</script>
 </body>
 </html>
 
