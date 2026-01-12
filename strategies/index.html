@@ -548,12 +548,6 @@
           <a href="/docs" target="_blank">Lite paper</a>
         </nav>
 
-        <div class="nav-cta">
-          <div class="lang-switch">
-            <span class="active">EN</span>
-            <span> / FR</span>
-          </div>
-          
           <a href="/access" class="btn-magma-outline">
             Launch App
           </a>
@@ -571,11 +565,6 @@
         <a href="/blog">Blog</a>
         <a href="/docs" target="_blank">Lite paper</a>
         
-        <div class="nav-menu-secondary">
-          <div class="lang-switch">
-            <span class="active">EN</span>
-            <span> / FR</span>
-          </div>
           <a href="/access" class="btn-magma-outline">Launch App</a>
         </div>
       </div>
@@ -682,8 +671,8 @@
         <div class="vault-chart-area">
           <div class="chart-controls">
             <div class="chart-group metric-btns">
-                <button class="chart-btn active" onclick="setChartMetric('stable', 'share_price')">Share Price</button>
-                <button class="chart-btn" onclick="setChartMetric('stable', 'aum')">AUM</button>
+                <button class="chart-btn" onclick="setChartMetric('stable', 'share_price')">Share Price</button>
+                <button class="chart-btn active" onclick="setChartMetric('stable', 'aum')">AUM</button>
             </div>
             <div class="chart-group range-btns">
                 <button class="chart-btn active" onclick="updateChartRange('stable', '1W')">1W</button>
@@ -1035,7 +1024,8 @@
 
       const rows = await api("history", cfg.network);
       state.data[type] = {
-        metric: "share_price",
+        // Si c'est 'stable' on met 'aum', sinon 'share_price'
+        metric: type === 'stable' ? 'aum' : 'share_price',
         range: "1W",
         series: {
           aum: toPointArray(rows, "aum"),
