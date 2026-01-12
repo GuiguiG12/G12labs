@@ -1221,13 +1221,13 @@
     <div class="nav-shell">
       <div class="nav-inner">
         <a href="/" class="nav-brand">
-          <img src="logo_g12.svg" alt="G12 Labs" class="nav-brand-logo" />
+          <img src="/logo_g12.svg" alt="G12 Labs" class="nav-brand-logo" />
         </a>
 
         <nav class="nav-links" aria-label="Main navigation">
-          <a href="strategies.html">Strategies</a>
-          <a href="blog.html">Journal</a>
-          <a href="docs.html" target="_blank">Lite paper</a>
+          <a href="/strategies">Strategies</a>
+          <a href="/blog">Blog</a>
+          <a href="/docs" target="_blank">Lite paper</a>
         </nav>
 
         <div class="nav-cta">
@@ -1236,7 +1236,7 @@
             <span> / FR</span>
           </div>
           
-          <a href="access.html" class="btn-magma-outline">
+          <a href="/access" class="btn-magma-outline">
             Launch App
           </a>
         </div>
@@ -1249,16 +1249,16 @@
 
     <div class="nav-menu" id="navMenu">
       <div class="nav-menu-content">
-        <a href="strategies.html">Strategies</a>
-        <a href="blog.html">Journal</a>
-        <a href="docs.html" target="_blank">Lite paper</a>
+        <a href="/strategies">Strategies</a>
+        <a href="/blog">Blog</a>
+        <a href="/docs" target="_blank">Lite paper</a>
         
         <div class="nav-menu-secondary">
           <div class="lang-switch">
             <span class="active">EN</span>
             <span> / FR</span>
           </div>
-          <a href="access.html" class="btn-magma-outline">Launch App</a>
+          <a href="/access" class="btn-magma-outline">Launch App</a>
         </div>
       </div>
     </div>
@@ -1279,7 +1279,7 @@
           </p>
           
           <div style="display: flex; gap: 16px;">
-            <a href="#vaults" class="btn-primary">
+            <a href="/strategies" class="btn-primary">
                View Strategies
             </a>
           </div>
@@ -1287,10 +1287,10 @@
           <div class="hero-partners">
              <p class="partners-label">Built on leading infrastructure</p>
              <div class="partners-grid">
-                <img src="arbitrum.svg" alt="Arbitrum" />
-                <img src="enzyme.svg" alt="Enzyme" />
-                <img src="base.svg" alt="Base" />
-                <img src="supabase.svg" alt="Supabase" />
+                <img src="/arbitrum.svg" alt="Arbitrum" />
+                <img src="/enzyme.svg" alt="Enzyme" />
+                <img src="/base.svg" alt="Base" />
+                <img src="/supabase.svg" alt="Supabase" />
              </div>
           </div>
 
@@ -1493,7 +1493,7 @@
               </div>
 
               <div style="margin-top: 32px;">
-                <a href="access.html" class="btn-primary" style="width: 100%; justify-content: center;">
+                <a href="/access" class="btn-primary" style="width: 100%; justify-content: center;">
                    Deploy Capital Now
                 </a>
               </div>
@@ -1659,7 +1659,7 @@
           <h3 class="footer-heading">Platform</h3>
           <ul class="footer-links-list">
             <li><a href="/">Home</a></li>
-            <li><a href="strategies.html">Strategies</a></li>
+            <li><a href="/strategies">Strategies</a></li>
             <li><a href="/#live-access">Live Launch</a></li>
             <li><a href="/#roadmap">Roadmap</a></li>
           </ul>
@@ -1667,10 +1667,10 @@
         <div class="footer-column">
           <h3 class="footer-heading">Resources</h3>
           <ul class="footer-links-list">
-            <li><a href="blog.html">Journal</a></li>
-            <li><a href="access.html">Access</a></li>
-            <li><a href="index.html#faq">FAQ</a></li>
-            <li><a href="docs.html" target="_blank">Lite paper</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/access">Access</a></li>
+            <li><a href="/#faq">FAQ</a></li>
+            <li><a href="/docs" target="_blank">Lite paper</a></li>
           </ul>
         </div>
         <div class="footer-column">
@@ -1693,9 +1693,9 @@
         <div class="footer-bottom-right">
           <span>© 2026 G12 Labs</span>
           <span class="sep">·</span>
-          <a href="legal.html">Terms</a>
+          <a href="/legal">Terms</a>
           <span class="sep">·</span>
-          <a href="privacy.html">Privacy</a>
+          <a href="/privacy">Privacy</a>
         </div>
       </div>
 
@@ -1869,6 +1869,60 @@
         submitBtn.style.opacity = '1';
       });
     })();
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      
+      // 1. GESTION DES CLICS SUR LA MÊME PAGE
+      // On sélectionne tous les liens qui contiennent un #
+      const anchors = document.querySelectorAll('a[href*="#"]');
+      
+      anchors.forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          // On récupère l'URL du lien et l'ID de la cible
+          const href = this.getAttribute('href');
+          // On extrait juste l'ID (ce qu'il y a après le #)
+          const targetId = href.includes('#') ? href.split('#')[1] : null;
+          
+          if (!targetId) return;
+
+          // On cherche l'élément cible sur la page actuelle
+          const targetElement = document.getElementById(targetId);
+
+          // SI l'élément existe sur cette page (on est donc sur l'index)
+          if (targetElement) {
+            e.preventDefault(); // On bloque l'ajout du # dans l'URL par défaut
+            
+            // Calcul de la position pour scroller (en prenant en compte la Navbar fixe)
+            const headerOffset = 80; // Taille de votre navbar (5rem)
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            // Scroll fluide manuel
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth"
+            });
+            
+            // On s'assure que l'URL reste propre
+            history.replaceState(null, null, ' ');
+          }
+          // SINON (si on est sur Strategies et qu'on clique vers l'Index),
+          // on laisse le lien faire son travail normal.
+        });
+      });
+
+      // 2. GESTION DE L'ARRIVÉE DEPUIS UNE AUTRE PAGE
+      // Si on arrive sur la page avec un # dans l'URL (ex: g12labs.com/#faq)
+      if (window.location.hash) {
+        // On laisse le navigateur scroller vers la section...
+        // Puis après une petite fraction de seconde, on efface le # de la barre d'adresse
+        setTimeout(() => {
+          history.replaceState(null, null, ' ');
+        }, 50); 
+      }
+      
+    });
   </script>
 </body>
 </html>
