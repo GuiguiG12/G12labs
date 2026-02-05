@@ -741,30 +741,93 @@
   </footer>
 
   <script>
-    (function () {
-      // Fade-in
-      window.addEventListener('DOMContentLoaded', () => {
+ (function () {
+    const header   = document.getElementById('siteHeader');
+    const navToggle = document.getElementById('navToggle');
+    const navMenu   = document.getElementById('navMenu');
+
+    window.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('is-loaded');
-      });
+    });
 
-      // Navbar Logic (Scroll & Mobile)
-      const header = document.getElementById('siteHeader');
-      const navToggle = document.getElementById('navToggle');
-      const navMenu = document.getElementById('navMenu');
-
-      function onScroll() {
-        if (window.scrollY > 8) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
+    function onScroll() {
+      if (window.scrollY > 8) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
       }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
+    }
 
-      navToggle.addEventListener('click', () => {
-        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-        navToggle.setAttribute('aria-expanded', !expanded);
-        navMenu.classList.toggle('open', !expanded);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
+    });
+    
+    // Fermer le menu au clic
+    navMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => navMenu.classList.remove('open'));
+    });
+  })();
+
+  document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const articles = Array.from(document.querySelectorAll('#main-feed .article-card'));
+      const showMoreBtn = document.getElementById('showMoreBtn');
+      const INITIAL_LIMIT = 4;
+      let currentCategory = 'all';
+      let isExpanded = false;
+
+      function render() {
+        const visibleArticles = articles.filter(article => {
+          if (currentCategory === 'all') return true;
+          return article.dataset.category === currentCategory;
+        });
+
+        articles.forEach(article => { 
+            article.style.display = 'none'; 
+            article.classList.remove('fade-in'); 
+        });
+
+        visibleArticles.forEach((article, index) => {
+          if (isExpanded || index < INITIAL_LIMIT) {
+            article.style.display = 'flex';
+            if (isExpanded && index >= INITIAL_LIMIT) article.classList.add('fade-in');
+          }
+        });
+
+        if (visibleArticles.length <= INITIAL_LIMIT) {
+          showMoreBtn.style.display = 'none';
+        } else {
+          showMoreBtn.style.display = 'block';
+          showMoreBtn.textContent = isExpanded ? 'Show less' : 'Show more';
+        }
+      }
+
+      showMoreBtn.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+        render();
+        if (!isExpanded) {
+            const last = articles[INITIAL_LIMIT - 1];
+            if(last) last.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       });
-    })();
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentCategory = btn.dataset.filter;
+            isExpanded = false;
+            filterBtns.forEach(b => {
+                if(b.dataset.filter === currentCategory) b.classList.add('active');
+                else b.classList.remove('active');
+            });
+            render();
+        });
+      });
+
+      render();
+    });
   </script>
 
 </body>
