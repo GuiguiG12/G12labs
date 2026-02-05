@@ -12,394 +12,392 @@
 
   <style>
      /* =========================================================
-       DESIGN TOKENS
-       ========================================================= */
-    :root {
-      /* =========================================
-         1. BRAND COLORS (L'ADN G12)
-         ========================================= */
-      --magma-core: #E85A04;        /* Orange Principal */
-      --magma-light: #FF9E66;       /* Orange Clair (Highlights) */
-      --magma-dark: #4A1500;        /* Orange Sombre (Ombres) */
-      --magma-dim: rgba(232, 90, 4, 0.1); /* Fond Orange Transparent (Badges) */
+        DESIGN TOKENS
+        ========================================================= */
+      :root {
+        /* =========================================
+          1. BRAND COLORS (L'ADN G12)
+          ========================================= */
+        --magma-core: #E85A04;        /* Orange Principal */
+        --magma-light: #FF9E66;       /* Orange Clair (Highlights) */
+        --magma-dark: #4A1500;        /* Orange Sombre (Ombres) */
+        --magma-dim: rgba(232, 90, 4, 0.1); /* Fond Orange Transparent (Badges) */
 
-      /* =========================================
-         2. NETWORK & DATA COLORS (Tes demandes)
-         ========================================= */
-      --base-blue: #0052FF;         /* Le Bleu "Base" officiel */
-      --base-dim: rgba(0, 82, 255, 0.1); /* Fond Bleu Transparent */
-      
-      --arb-blue: #2D374B;          /* Bleu Gris "Arbitrum" (Optionnel) */
-      
-      /* Couleurs Financières (Exactement celles de strategies.html) */
-      --success: #10B981;           /* VERT Performance / Profit */
-      --success-dim: rgba(16, 185, 129, 0.1);
-      
-      --error: #EF4444;             /* ROUGE Perte / Erreur */
-      --error-dim: rgba(239, 68, 68, 0.1);
-      
-      --warning: #F59E0B;           /* JAUNE Attention / Timelock */
-      --neutral: #6B7280;           /* GRIS Neutre / Secondaire */
+        /* =========================================
+          2. NETWORK & DATA COLORS (Tes demandes)
+          ========================================= */
+        --base-blue: #0052FF;         /* Le Bleu "Base" officiel */
+        --base-dim: rgba(0, 82, 255, 0.1); /* Fond Bleu Transparent */
+        
+        --arb-blue: #2D374B;          /* Bleu Gris "Arbitrum" (Optionnel) */
+        
+        /* Couleurs Financières (Exactement celles de strategies.html) */
+        --success: #10B981;           /* VERT Performance / Profit */
+        --success-dim: rgba(16, 185, 129, 0.1);
+        
+        --error: #EF4444;             /* ROUGE Perte / Erreur */
+        --error-dim: rgba(239, 68, 68, 0.1);
+        
+        --warning: #F59E0B;           /* JAUNE Attention / Timelock */
+        --neutral: #6B7280;           /* GRIS Neutre / Secondaire */
 
-      /* =========================================
-         3. DARK THEME PALETTE (Index, Access, Docs)
-         ========================================= */
-      --carbon-base: #05070b;       /* Fond : Noir Profond */
-      --carbon-surface: #0e1116;    /* Fond : Carte Sombre */
-      --carbon-border: #1f2329;     /* Bordure Sombre */
-      --carbon-text-main: #ffffff;
-      --carbon-text-muted: #9aa4b2;
+        /* =========================================
+          3. DARK THEME PALETTE (Index, Access, Docs)
+          ========================================= */
+        --carbon-base: #05070b;       /* Fond : Noir Profond */
+        --carbon-surface: #0e1116;    /* Fond : Carte Sombre */
+        --carbon-border: #1f2329;     /* Bordure Sombre */
+        --carbon-text-main: #ffffff;
+        --carbon-text-muted: #9aa4b2;
 
-      /* =========================================
-         4. LIGHT THEME PALETTE (Strategies)
-         ========================================= */
-      --light-bg: #F9FAFB;          /* Fond : Gris très clair */
-      --light-card-bg: #FFFFFF;     /* Fond : Blanc pur */
-      --light-border: #E5E7EB;      /* Bordure Claire */
-      --light-text-main: #111827;   /* Texte : Noir Encre */
-      --light-text-muted: #6B7280;  /* Texte : Gris Moyen */
+        /* =========================================
+          4. LIGHT THEME PALETTE (Strategies)
+          ========================================= */
+        --light-bg: #F9FAFB;          /* Fond : Gris très clair */
+        --light-card-bg: #FFFFFF;     /* Fond : Blanc pur */
+        --light-border: #E5E7EB;      /* Bordure Claire */
+        --light-text-main: #111827;   /* Texte : Noir Encre */
+        --light-text-muted: #6B7280;  /* Texte : Gris Moyen */
 
-      /* =========================================
-         5. COMPATIBILITÉ UNIFIÉE (Le "Bridge")
-         ========================================= */
-      /* Alias pour que 'access.html' utilise le thème Magma sans tout casser */
-      --accent: var(--magma-core);
-      --accent-secondary: var(--magma-light);
-      --accent-dim: var(--magma-dim);
-      
-      /* Valeurs par défaut (Mode Dark) - Surchargées localement si besoin */
-      --bg-app: var(--carbon-base);
-      --bg-card: var(--carbon-surface);
-      --bg-input: #0a0d12;
-      --border-color: var(--carbon-border);
-      --border-highlight: #2d333b;
-      --text-main: var(--carbon-text-main);
-      --text-muted: var(--carbon-text-muted);
+        /* =========================================
+          5. COMPATIBILITÉ UNIFIÉE (Le "Bridge")
+          ========================================= */
+        /* Alias pour que 'access.html' utilise le thème Magma sans tout casser */
+        --accent: var(--magma-core);
+        --accent-secondary: var(--magma-light);
+        --accent-dim: var(--magma-dim);
+        
+        /* Valeurs par défaut (Mode Dark) - Surchargées localement si besoin */
+        --bg-app: var(--carbon-base);
+        --bg-card: var(--carbon-surface);
+        --bg-input: #0a0d12;
+        --border-color: var(--carbon-border);
+        --border-highlight: #2d333b;
+        --text-main: var(--carbon-text-main);
+        --text-muted: var(--carbon-text-muted);
 
-      /* =========================================
-         6. GRADIENTS & EFFECTS
-         ========================================= */
-      --grad-text-magma: linear-gradient(135deg, #FFFFFF 10%, #E85A04 60%, #853200 100%);
-      --grad-btn-magma: linear-gradient(135deg, #FF9E66 0%, #E85A04 50%, #B33600 100%);
-      --grad-glow: radial-gradient(circle, rgba(232, 90, 4, 0.15) 0%, transparent 70%);
+        /* =========================================
+          6. GRADIENTS & EFFECTS
+          ========================================= */
+        --grad-text-magma: linear-gradient(135deg, #FFFFFF 10%, #E85A04 60%, #853200 100%);
+        --grad-btn-magma: linear-gradient(135deg, #FF9E66 0%, #E85A04 50%, #B33600 100%);
+        --grad-glow: radial-gradient(circle, rgba(232, 90, 4, 0.15) 0%, transparent 70%);
 
-      /* =========================================
-         7. LAYOUT & SPACING (Anti-Saut)
-         ========================================= */
-      --container-max: 1280px;      /* Largeur Max Standard */
-      --container-width: 1280px;    /* Alias */
-      --page-padding-x: 1.25rem;
-      
-      /* NAVBAR HARMONISÉE */
-      --nav-height: 5rem;           /* 80px FIXE POUR TOUT LE MONDE */
-      --nav-bg: rgba(5, 7, 11, 0.8);
-      --nav-bg-scrolled: rgba(36, 36, 37, 0.811);
+        /* =========================================
+          7. LAYOUT & SPACING (Anti-Saut)
+          ========================================= */
+        --container-max: 1280px;      /* Largeur Max Standard */
+        --container-width: 1280px;    /* Alias */
+        --page-padding-x: 1.25rem;
+        
+        /* NAVBAR HARMONISÉE */
+        --nav-height: 5rem;           /* 80px FIXE POUR TOUT LE MONDE */
+        --nav-bg: rgba(5, 7, 11, 0.8);
+        --nav-bg-scrolled: rgba(36, 36, 37, 0.811);
 
-      /* =========================================
-         8. COMPONENT SPECS
-         ========================================= */
-      --radius-sm: 6px;
-      --radius-md: 12px;
-      --radius-lg: 24px;
-      --radius-pill: 999px;
-      
-      --dur-fast: 0.15s;
-      --dur-normal: 0.25s;
-      --ease-standard: cubic-bezier(0.2, 0.6, 0.2, 1);
-    }
-
-    /* --- RESET & BASE --- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
-    
-    body {
-      font-family: 'inter', 'sans serif';
-      background-color: var(--carbon-base);
-      color: var(--text-main);
-      line-height: 1.6;
-      overflow-x: hidden;
-      opacity: 0; transition: opacity 0.25s ease-out;
-    }
-    
-    body.is-loaded { opacity: 1; }
-
-    /* Grain texture overlay */
-    body::before {
-        content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-        opacity: 0.4; mix-blend-mode: overlay;
-    }
-
-    a { text-decoration: none; color: inherit; transition: 0.3s; }
-    h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; color: white; margin-bottom: 1rem; line-height: 1.1; }
-    p { color: var(--text-muted); margin-bottom: 1.5rem; }
-    ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
-    li { margin-bottom: 0.5rem; }
-    strong { color: var(--text-main); font-weight: 600; }
-
-    /* --- CLASSE MANQUANTE POUR LE FOOTER --- */
-    .container {
-      max-width: var(--container-max);
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-      z-index: 2;
-    }
-
-   /* =========================================
-       NAVBAR STYLES (EXACT COPY FROM INDEX)
-       ========================================= */
-    .site-header {
-      position: fixed;
-      inset-inline: 0;
-      top: 0;
-      height: var(--nav-height);
-      z-index: 1000; /* Z-index élevé pour passer au dessus du Hero */
-    }
-
-    .nav-shell {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-    }
-
-    .nav-inner {
-      width: 100%;
-      max-width: var(--container-max);
-      padding-inline: var(--page-padding-x);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-radius: 999px;
-      background: var(--nav-bg);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      margin-block: 1rem;
-      padding-block: 0.4rem;
-      transition:
-        background var(--dur-normal) var(--ease-standard),
-        border-color var(--dur-normal) var(--ease-standard),
-        transform var(--dur-normal) var(--ease-standard);
-      pointer-events: auto;
-      box-shadow: 0 5px 15px rgba(10, 10, 10, 0.536);
-      position: relative;
-      z-index: 200;
-    }
-
-    @media (max-width: 63.99rem) {
-      .nav-inner {
-        padding-inline: 1.2rem;
-        margin-inline: 0.9rem;
+        /* =========================================
+          8. COMPONENT SPECS
+          ========================================= */
+        --radius-sm: 6px;
+        --radius-md: 12px;
+        --radius-lg: 24px;
+        --radius-pill: 999px;
+        
+        --dur-fast: 0.15s;
+        --dur-normal: 0.25s;
+        --ease-standard: cubic-bezier(0.2, 0.6, 0.2, 1);
       }
-    }
 
-    .site-header.scrolled .nav-inner {
-      background: var(--nav-bg-scrolled);
-      border-color: rgba(255, 255, 255, 0.088);
-      transform: translateY(-0.35rem);
-    }
-
-    .nav-brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      font-size: 0.9rem;
-    }
-
-    .nav-brand-logo {
-      height: 2rem;
-      width: auto;
-    }
-
-    .nav-links {
-      display: none;
-      align-items: center;
-      gap: 5rem;
-      font-size: 0.9rem;
-    }
-
-    .nav-links a {
-      position: relative;
-      padding-block: 0.25rem;
-      color: rgba(255, 255, 255, 0.907);
-      transition: color var(--dur-fast) var(--ease-standard);
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -0.2rem;
-      width: 0;
-      height: 2px;
-      background: var(--magma-core);
-      transition: width var(--dur-fast) var(--ease-standard);
-    }
-
-    .nav-links a:hover {
-      color: white;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-cta {
-      display: none;
-      align-items: center;
-      gap: 0.75rem;
-      margin-left: 1.5rem;
-    }
-
-    .lang-switch {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.5);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.1rem;
-    }
-    .lang-switch span.active { color: white; opacity: 1; font-weight: 500; }
-
-    /* Nouveau Bouton : Fond transparent, Bordure Dégradée */
-    .btn-magma-outline {
-      position: relative;
-      background: transparent;
-      border: 1px solid var(--magma-core); /* Bordure simple orange */
-      border-radius: var(--radius-pill);
-      color: #fff;
-      padding: 0.5rem 1.1rem; 
-      font-size: 0.85rem; 
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex; align-items: center; justify-content: center;
-      overflow: hidden; /* Important pour l'effet de slide */
-      transition: all 0.3s ease;
-      z-index: 1;
-    }
-
-    /* L'élément qui va glisser (le fond caché) */
-    .btn-magma-outline::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--grad-btn-magma);
-      z-index: -1;
-      transform: scaleX(0); /* Caché par défaut (largeur 0) */
-      transform-origin: left;
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .btn-magma-outline:hover {
-      border-color: transparent;
-      color: #05070b; /* Texte noir au survol */
-      box-shadow: 0 4px 15px rgba(232, 90, 4, 0.3);
-    }
-
-    .btn-magma-outline:hover::before {
-      transform: scaleX(1); /* Remplissage complet */
-    }
-    /* Burger */
-    .nav-toggle {
-      border: none; background: none; padding: 0.35rem; border-radius: var(--radius-pill);
-      cursor: pointer; position: relative; width: 1.6rem; height: 1.1rem; display: inline-block;
-    }
-    .nav-toggle span {
-      position: absolute; left: 0; right: 0; height: 2px; border-radius: 999px;
-      background: white; transform-origin: center; transition: all var(--dur-fast) var(--ease-standard);
-    }
-    .nav-toggle span:nth-child(1) { top: 0; }
-    .nav-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
-    .nav-toggle span:nth-child(3) { bottom: 0; }
-    
-    .nav-toggle[aria-expanded='true'] span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
-    .nav-toggle[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
-    .nav-toggle[aria-expanded='true'] span:nth-child(3) { bottom: auto; top: 50%; transform: translateY(-50%) rotate(-45deg); }
-
-    @media (min-width: 64rem) {
-      .nav-links {
-        display: flex;
-        /* C'est ici que la magie opère pour le centrage absolu */
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+      /* --- RESET & BASE --- */
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+      
+      body {
+        font-family: 'inter', 'sans serif';
+        background-color: var(--carbon-base);
+        color: var(--text-main);
+        line-height: 1.6;
+        overflow-x: hidden;
+        opacity: 0; transition: opacity 0.25s ease-out;
       }
-      .nav-cta { display: flex; }
-      .nav-toggle { display: none; }
-    }
+      
+      body.is-loaded { opacity: 1; }
 
-    /* Menu mobile plein écran */
-    .nav-menu {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 50;
-      opacity: 0; pointer-events: none; background: rgba(3, 7, 12, 0.35);
-      backdrop-filter: blur(0px); transition: all 0.33s var(--ease-standard);
-      overflow: hidden; touch-action: none;
-    }
-    .nav-menu::before {
-      content: ""; position: absolute; inset: 0;
-      background: radial-gradient(circle at top, rgba(68, 83, 80, 0.2), transparent 60%), rgba(21, 23, 26, 0.95);
-    }
-    .nav-menu.open { opacity: 1; pointer-events: auto; backdrop-filter: blur(22px); }
-    
-    .nav-menu-content {
-      position: absolute; top: var(--nav-height); left: 0; right: 0; bottom: 0;
-      padding: 1.5rem var(--page-padding-x) 2.5rem;
-      display: flex; flex-direction: column; justify-content: flex-start;
-      overflow: hidden;
-    }
-    .nav-menu-content > a {
-      display: block; width: 100%; font-size: 1.1rem; font-weight: 500; color: white;
-      padding: 1.2rem 0; border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-    }
-    .nav-menu-content > a:first-of-type { border-top: 2px solid rgba(255, 255, 255, 0.1); }
-    
-    .nav-menu-content .nav-menu-secondary {
-      margin-top: 1.8rem; padding-top: 1.2rem; display: flex;
-      justify-content: space-between; align-items: center; gap: 1rem;
-    }
-    body.menu-open { overflow: hidden; }
-    @media (min-width: 64rem) { .nav-menu { display: none !important; } }
+      /* Grain texture overlay */
+      body::before {
+          content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+          opacity: 0.4; mix-blend-mode: overlay;
+      }
 
+      a { text-decoration: none; color: inherit; transition: 0.3s; }
+      h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; color: white; margin-bottom: 1rem; line-height: 1.1; }
+      p { color: var(--text-muted); margin-bottom: 1.5rem; }
+      ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
+      li { margin-bottom: 0.5rem; }
+      strong { color: var(--text-main); font-weight: 600; }
+
+      /* --- CLASSE MANQUANTE POUR LE FOOTER --- */
+      .container {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 24px;
+        position: relative;
+        z-index: 2;
+      }
 
     /* =========================================
-       DOCS CONTENT STYLES
-       ========================================= */
+        NAVBAR STYLES (EXACT COPY FROM INDEX)
+        ========================================= */
+      .site-header {
+        position: fixed;
+        inset-inline: 0;
+        top: 0;
+        height: var(--nav-height);
+        z-index: 1000; /* Z-index élevé pour passer au dessus du Hero */
+      }
+
+      .nav-shell {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+      }
+
+      .nav-inner {
+        width: 100%;
+        max-width: var(--container-max);
+        padding-inline: var(--page-padding-x);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 999px;
+        background: var(--nav-bg);
+        backdrop-filter: blur(18px);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        margin-block: 1rem;
+        padding-block: 0.4rem;
+        transition:
+          background var(--dur-normal) var(--ease-standard),
+          border-color var(--dur-normal) var(--ease-standard),
+          transform var(--dur-normal) var(--ease-standard);
+        pointer-events: auto;
+        box-shadow: 0 5px 15px rgba(10, 10, 10, 0.536);
+        position: relative;
+        z-index: 200;
+      }
+
+      @media (max-width: 63.99rem) {
+        .nav-inner {
+          padding-inline: 1.2rem;
+          margin-inline: 0.9rem;
+        }
+      }
+
+      .site-header.scrolled .nav-inner {
+        background: var(--nav-bg-scrolled);
+        border-color: rgba(255, 255, 255, 0.088);
+        transform: translateY(-0.35rem);
+      }
+
+      .nav-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        font-size: 0.9rem;
+      }
+
+      .nav-brand-logo {
+        height: 2rem;
+        width: auto;
+      }
+
+      .nav-links {
+        display: none;
+        align-items: center;
+        gap: 5rem;
+        font-size: 0.9rem;
+      }
+
+      .nav-links a {
+        position: relative;
+        padding-block: 0.25rem;
+        color: rgba(255, 255, 255, 0.907);
+        transition: color var(--dur-fast) var(--ease-standard);
+      }
+
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -0.2rem;
+        width: 0;
+        height: 2px;
+        background: var(--magma-core);
+        transition: width var(--dur-fast) var(--ease-standard);
+      }
+
+      .nav-links a:hover {
+        color: white;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .nav-cta {
+        display: none;
+        align-items: center;
+        gap: 0.75rem;
+        margin-left: 1.5rem;
+      }
+
+      .lang-switch {
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.5);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.1rem;
+      }
+      .lang-switch span.active { color: white; opacity: 1; font-weight: 500; }
+
+      /* Nouveau Bouton : Fond transparent, Bordure Dégradée */
+      .btn-magma-outline {
+        position: relative;
+        background: transparent;
+        border: 1px solid var(--magma-core); /* Bordure simple orange */
+        border-radius: var(--radius-pill);
+        color: #fff;
+        padding: 0.5rem 1.1rem; 
+        font-size: 0.85rem; 
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex; align-items: center; justify-content: center;
+        overflow: hidden; /* Important pour l'effet de slide */
+        transition: all 0.3s ease;
+        z-index: 1;
+      }
+
+      /* L'élément qui va glisser (le fond caché) */
+      .btn-magma-outline::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--grad-btn-magma);
+        z-index: -1;
+        transform: scaleX(0); /* Caché par défaut (largeur 0) */
+        transform-origin: left;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .btn-magma-outline:hover {
+        border-color: transparent;
+        color: #05070b; /* Texte noir au survol */
+        box-shadow: 0 4px 15px rgba(232, 90, 4, 0.3);
+      }
+
+      .btn-magma-outline:hover::before {
+        transform: scaleX(1); /* Remplissage complet */
+      }
+      /* Burger */
+      .nav-toggle {
+        border: none; background: none; padding: 0.35rem; border-radius: var(--radius-pill);
+        cursor: pointer; position: relative; width: 1.6rem; height: 1.1rem; display: inline-block;
+      }
+      .nav-toggle span {
+        position: absolute; left: 0; right: 0; height: 2px; border-radius: 999px;
+        background: white; transform-origin: center; transition: all var(--dur-fast) var(--ease-standard);
+      }
+      .nav-toggle span:nth-child(1) { top: 0; }
+      .nav-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+      .nav-toggle span:nth-child(3) { bottom: 0; }
+      
+      .nav-toggle[aria-expanded='true'] span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+      .nav-toggle[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+      .nav-toggle[aria-expanded='true'] span:nth-child(3) { bottom: auto; top: 50%; transform: translateY(-50%) rotate(-45deg); }
+
+      @media (min-width: 64rem) {
+        .nav-links {
+          display: flex;
+          /* C'est ici que la magie opère pour le centrage absolu */
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        .nav-cta { display: flex; }
+        .nav-toggle { display: none; }
+      }
+
+      /* Menu mobile plein écran */
+      .nav-menu {
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 50;
+        opacity: 0; pointer-events: none; background: rgba(3, 7, 12, 0.35);
+        backdrop-filter: blur(0px); transition: all 0.33s var(--ease-standard);
+        overflow: hidden; touch-action: none;
+      }
+      .nav-menu::before {
+        content: ""; position: absolute; inset: 0;
+        background: radial-gradient(circle at top, rgba(68, 83, 80, 0.2), transparent 60%), rgba(21, 23, 26, 0.95);
+      }
+      .nav-menu.open { opacity: 1; pointer-events: auto; backdrop-filter: blur(22px); }
+      
+      .nav-menu-content {
+        position: absolute; top: var(--nav-height); left: 0; right: 0; bottom: 0;
+        padding: 1.5rem var(--page-padding-x) 2.5rem;
+        display: flex; flex-direction: column; justify-content: flex-start;
+        overflow: hidden;
+      }
+      .nav-menu-content > a {
+        display: block; width: 100%; font-size: 1.1rem; font-weight: 500; color: white;
+        padding: 1.2rem 0; border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      }
+      .nav-menu-content > a:first-of-type { border-top: 2px solid rgba(255, 255, 255, 0.1); }
+      
+      .nav-menu-content .nav-menu-secondary {
+        margin-top: 1.8rem; padding-top: 1.2rem; display: flex;
+        justify-content: space-between; align-items: center; gap: 1rem;
+      }
+      body.menu-open { overflow: hidden; }
+      @media (min-width: 64rem) { .nav-menu { display: none !important; } }
+
+
+
+    /* DOCS LAYOUT */
     .docs-container {
       max-width: var(--container-max); margin: 0 auto; padding: 0 1.5rem;
       display: grid; grid-template-columns: 260px 1fr; gap: 60px;
-      padding-top: 200px; /* Espace pour la navbar flottante */
-      padding-bottom: 100px;
+      padding-top: 200px; padding-bottom: 100px;
     }
 
     /* SIDEBAR */
     .docs-sidebar {
-      position: sticky; top: 120px; height: fit-content;
+      position: sticky; top: 120px; height: fit-content; max-height: 80vh; overflow-y: auto;
       border-right: 1px solid var(--carbon-border); padding-right: 20px;
+      scrollbar-width: thin; scrollbar-color: var(--carbon-border) transparent;
     }
     .toc-title {
       font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; 
-      letter-spacing: 1px; color: var(--text-soft); margin-bottom: 1.5rem;
+      letter-spacing: 1px; color: var(--carbon-text-soft); margin-bottom: 1.5rem;
     }
     .toc-list { list-style: none; padding: 0; margin: 0; }
     .toc-link {
-      display: block; padding: 8px 0; font-size: 0.9rem; color: var(--text-muted);
-      border-left: 2px solid transparent; padding-left: 12px; margin-left: -2px;
+      display: block; padding: 8px 0; font-size: 0.9rem; color: var(--carbon-text-muted);
+      border-left: 2px solid transparent; padding-left: 12px; margin-left: -2px; transition: 0.2s;
     }
     .toc-link:hover { color: white; }
-    .toc-link.active { color: var(--magma-core); border-left-color: var(--magma-core); font-weight: 500; }
+    .toc-link.active { color: var(--magma-core); border-left-color: var(--magma-core); font-weight: 600; }
 
     /* MAIN CONTENT */
     .docs-content { min-width: 0; }
-
     .doc-header { border-bottom: 1px solid var(--carbon-border); padding-bottom: 40px; margin-bottom: 60px; }
     .doc-meta { display: flex; gap: 16px; margin-bottom: 16px; font-family: var(--font-mono); font-size: 0.8rem; }
     .meta-tag { background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 4px; color: var(--magma-core); border: 1px solid rgba(232, 90, 4, 0.2); }
-    .doc-h1 { font-size: 3rem; margin-bottom: 1rem; line-height: 1.1; }
-    .doc-intro { font-size: 1.2rem; color: var(--text-muted); max-width: 650px; }
+    .doc-h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 1rem; line-height: 1.1; }
+    .doc-intro { font-size: 1.2rem; color: var(--carbon-text-muted); max-width: 650px; }
 
     .doc-actions { display: flex; gap: 12px; margin-top: 24px; }
     .btn-action {
@@ -407,38 +405,102 @@
       padding: 10px 16px; border-radius: 6px; font-size: 0.9rem; font-weight: 500;
       display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.2s;
     }
-    .btn-action:hover { border-color: var(--text-muted); transform: translateY(-1px); }
+    .btn-action:hover { border-color: var(--magma-core); color: var(--magma-core); }
 
     /* SECTIONS */
-    .doc-section { margin-bottom: 80px; scroll-margin-top: 140px; }
+    .doc-section { margin-bottom: 100px; scroll-margin-top: 120px; }
     .doc-section h2 { font-size: 2rem; color: white; margin-bottom: 1.5rem; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .doc-section h3 { font-size: 1.4rem; margin-top: 2rem; color: #eee; }
+    .doc-section h3 { font-size: 1.4rem; margin-top: 2.5rem; color: #eee; }
     .doc-section h4 { font-size: 1.1rem; margin-top: 1.5rem; color: var(--magma-core); text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-mono); }
     
+    /* ELEMENTS GRAPHIQUES */
     .callout {
       background: rgba(232, 90, 4, 0.05); border-left: 3px solid var(--magma-core);
-      padding: 20px; border-radius: 0 8px 8px 0; margin: 24px 0;
+      padding: 24px; border-radius: 0 8px 8px 0; margin: 32px 0;
     }
+    .callout-warning {
+      background: rgba(245, 158, 11, 0.08); border-left: 3px solid var(--warning);
+      padding: 24px; border-radius: 0 8px 8px 0; margin: 32px 0;
+    }
+    .callout-success {
+      background: rgba(16, 185, 129, 0.08); border-left: 3px solid var(--success);
+      padding: 24px; border-radius: 0 8px 8px 0; margin: 32px 0;
+    }
+    
     .table-wrapper { overflow-x: auto; margin: 30px 0; border-radius: 8px; border: 1px solid var(--carbon-border); }
     table { width: 100%; border-collapse: collapse; min-width: 600px; }
-    th { background: var(--carbon-surface); text-align: left; padding: 16px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-soft); border-bottom: 1px solid var(--carbon-border); }
-    td { padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.95rem; color: var(--text-muted); }
+    th { background: var(--carbon-surface); text-align: left; padding: 16px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--carbon-text-soft); border-bottom: 1px solid var(--carbon-border); }
+    td { padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.95rem; color: var(--carbon-text-muted); }
     tr:last-child td { border-bottom: none; }
     .highlight-cell { color: var(--magma-core); font-weight: 600; }
 
-    /* SCHEMAS */
+    /* Schema Box & Flow */
     .schema-box {
         background: var(--carbon-surface); border: 1px solid var(--carbon-border);
         border-radius: 12px; padding: 40px; margin: 30px 0; text-align: center;
     }
-    .mint-burn-flow { display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .flow-step {
-        background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; width: 140px;
-        border: 1px solid rgba(255,255,255,0.1); position: relative;
+    
+    /* Allocation Bar */
+    .allocation-bar {
+        display: flex; height: 32px; border-radius: 6px; overflow: hidden; margin: 20px 0 10px 0;
     }
-    .flow-step i { font-size: 24px; color: var(--magma-core); margin-bottom: 10px; }
-    .flow-step span { display: block; font-weight: 600; font-size: 0.9rem; }
-    .flow-arrow { color: var(--text-soft); font-size: 20px; }
+    .alloc-segment {
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.8rem; font-weight: 700; color: white;
+    }
+    .alloc-legend { display: flex; gap: 20px; font-size: 0.85rem; justify-content: center; margin-bottom: 30px; flex-wrap: wrap;}
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+
+    /* Step Flow */
+    .step-flow { display: flex; flex-direction: column; gap: 16px; margin: 30px 0; }
+    .step-item { 
+        display: flex; gap: 16px; align-items: flex-start; 
+        background: rgba(255,255,255,0.02); padding: 16px; border-radius: 8px; border: 1px solid var(--carbon-border);
+    }
+    .step-num { 
+        background: var(--magma-core); color: white; width: 28px; height: 28px; 
+        border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0;
+    }
+
+    /* Grid cards */
+    .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 24px 0; }
+    .info-card {
+        background: rgba(255,255,255,0.02); border: 1px solid var(--carbon-border);
+        padding: 24px; border-radius: 8px; transition: 0.2s;
+    }
+    .info-card:hover { border-color: var(--magma-core); transform: translateY(-2px); }
+    .info-card-icon { font-size: 24px; color: var(--magma-core); margin-bottom: 12px; }
+    .info-card-title { font-weight: 600; color: white; margin-bottom: 8px; display: block; }
+
+    /* Address Box */
+    .address-box {
+        background: black; border: 1px solid var(--carbon-border); padding: 12px 16px;
+        border-radius: 6px; font-family: var(--font-mono); font-size: 0.85rem; color: #ccc;
+        display: flex; justify-content: space-between; align-items: center; margin-top: 8px; word-break: break-all;
+    }
+    .copy-btn { background: none; border: none; color: var(--magma-core); cursor: pointer; padding: 4px; }
+
+    /* Check list styled */
+    .check-list { list-style: none; padding-left: 0; }
+    .check-list li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+    .check-list li::before { content: "✓"; color: var(--success); font-weight: bold; }
+
+    /* Risk list */
+    .risk-list { list-style: none; padding-left: 0; }
+    .risk-list li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+    .risk-list li::before { content: "⚠"; color: var(--error); }
+
+    /* Two column grid */
+    .two-col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 24px 0; }
+    @media (max-width: 768px) { .two-col-grid { grid-template-columns: 1fr; } }
+
+    /* Decision Flow Box */
+    .decision-flow {
+        background: linear-gradient(135deg, rgba(232, 90, 4, 0.05) 0%, rgba(0,0,0,0) 100%);
+        border: 1px solid var(--carbon-border); border-radius: 12px; padding: 24px; margin: 24px 0;
+        font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-muted);
+    }
+    .decision-flow .arrow { color: var(--magma-core); margin: 0 8px; }
 
     /* =========================================
        FOOTER (Strict Copy Index)
@@ -452,7 +514,7 @@
         font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
         color: #666; margin-bottom: 20px; font-family: 'JetBrains Mono', monospace;
     }
-    .footer-links-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
     .footer-links-list a { color: #999; font-size: 15px; transition: color 0.2s, transform 0.2s; display: inline-block; }
     .footer-links-list a:hover { color: white; transform: translateX(2px); }
     
@@ -462,135 +524,23 @@
         margin-bottom: 40px;
     }
     .footer-tagline-main {
-        font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; letter-spacing: -0.03em;
-        line-height: 1; color: white; position: relative; z-index: 2; margin: 0;
-    }
-    .footer-main-logo-img {
-        position: absolute; right: 0; top: 50%; transform: translateY(-50%);
-        height: 200%; width: auto; opacity: 0.15; filter: grayscale(100%); pointer-events: none; z-index: 1;
-    }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #555; }
-    .footer-back-top { color: #888; font-family: 'JetBrains Mono', monospace; transition: color 0.2s; }
-    .footer-back-top:hover { color: var(--magma-core); }
-    .footer-bottom-right { display: flex; gap: 15px; }
-    .footer-bottom-right a { color: #888; }
-    .footer-bottom-right a:hover { color: white; }
-    .sep { color: #333; }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-        .docs-container { grid-template-columns: 1fr; padding-top: 100px; }
-        .docs-sidebar { display: none; }
-        .nav-inner { padding-inline: 1.2rem; margin-inline: 0.9rem; }
-        .footer-columns { grid-template-columns: 1fr; gap: 40px; }
-        .footer-main-logo-img { height: 100%; right: -20%; opacity: 0.1; }
-        .footer-bottom { flex-direction: column; gap: 20px; }
-    }
-
-    /* PDF Print */
-    @media print {
-        @page { margin: 2cm; size: A4; }
-        body { background: white !important; color: black !important; font-size: 11pt; line-height: 1.5; }
-        .site-header, .docs-sidebar, .doc-actions, .site-footer, body::before { display: none !important; }
-        .docs-container { display: block !important; max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
-        .doc-header { border-bottom: 2px solid #000; padding-bottom: 20px; margin-bottom: 30px; }
-        .doc-h1 { color: #000; font-size: 24pt; }
-        .doc-intro { color: #333; font-size: 14pt; }
-        .meta-tag { border: 1px solid #000; color: #000; }
-        h2 { color: #000; border-bottom: 1px solid #ccc; font-size: 18pt; margin-top: 20px; }
-        h3 { color: #333; font-size: 14pt; margin-top: 15px; }
-        h4 { color: #000; }
-        p, li { color: #000 !important; }
-        .callout { border-left: 3px solid #000; background: #f5f5f5; color: #000; }
-        .schema-box { border: 1px solid #ccc; background: #fff; color: #000; }
-        .flow-step { border: 1px solid #000; color: #000; }
-        .flow-step i { color: #000; }
-        .table-wrapper { border: none; }
-        table { border: 1px solid #000; }
-        th { background: #eee; color: #000; border-bottom: 1px solid #000; }
-        td { color: #000; border-bottom: 1px solid #ccc; }
-        .highlight-cell { color: #000; font-weight: bold; }
-        a { text-decoration: underline; color: #000; }
-        .doc-section { page-break-inside: avoid; }
-    }
-
-    /* =========================================
-       FOOTER (ADAPTÉ MAGMA)
-       ========================================= */
-    .site-footer {
-        background-color: #000000; /* Fond noir pur pour finir la page */
-        padding: 80px 0 40px;
-        border-top: 1px solid var(--carbon-border);
-        overflow: hidden; /* Important pour le logo qui dépasse */
-        position: relative;
-    }
-
-    /* COLONNES */
-    .footer-columns {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
-        margin-bottom: 80px;
-    }
-
-    .footer-heading {
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: #666;
-        margin-bottom: 20px;
-        font-family: 'JetBrains Mono', monospace;
-    }
-
-    .footer-links-list {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .footer-links-list a {
-        color: #999;
-        font-size: 15px;
-        transition: color 0.2s, transform 0.2s;
-        display: inline-block;
-    }
-
-    .footer-links-list a:hover {
-        color: white;
-        transform: translateX(2px);
-    }
-
-    /* SECTION PRINCIPALE (TAGLINE + GHOST LOGO) */
-    .footer-main {
-        position: relative;
-        padding: 60px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        margin-bottom: 40px;
-    }
-
-    .footer-tagline-main {
-        font-size: clamp(3rem, 6vw, 5rem); /* Responsive typography */
+        font-size: clamp(3rem, 6vw, 5rem);
         font-weight: 800;
         letter-spacing: -0.03em;
         line-height: 1;
         color: white;
         position: relative;
-        z-index: 2; /* Devant le logo */
+        z-index: 2;
         margin: 0;
     }
-
-    /* Le logo fantôme en arrière-plan */
     .footer-main-logo-img {
         position: absolute;
         right: 0;
         top: 50%;
         transform: translateY(-50%);
-        height: 200%; /* Très grand */
+        height: 200%;
         width: auto;
-        opacity: 0.15; /* Discret */
+        opacity: 0.15;
         filter: grayscale(100%);
         pointer-events: none;
         z-index: 1;
@@ -622,9 +572,44 @@
     .sep { color: #333; }
 
     /* RESPONSIVE */
+    @media (max-width: 900px) {
+        .docs-container {
+            grid-template-columns: 1fr;
+            padding-top: 120px;
+        }
+        .docs-sidebar {
+            position: relative;
+            top: 0;
+            border-right: none;
+            border-bottom: 1px solid var(--carbon-border);
+            padding-right: 0;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            max-height: none;
+        }
+        .toc-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .toc-link {
+            border-left: none;
+            padding-left: 0;
+            margin-left: 0;
+            background: rgba(255,255,255,0.05);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .toc-link.active {
+            background: var(--magma-dim);
+            border-left: none;
+        }
+    }
+
     @media (max-width: 768px) {
         .footer-columns {
-            grid-template-columns: 1fr; /* 1 seule colonne sur mobile */
+            grid-template-columns: 1fr;
             gap: 40px;
         }
         
@@ -639,6 +624,67 @@
             gap: 20px;
         }
     }
+    /* Ajoute ceci dans la section RESPONSIVE */
+@media (max-width: 768px) {
+    table { 
+        min-width: 100%; /* Retire le min-width fixe sur mobile */
+        font-size: 0.85rem; /* Réduit légèrement la taille */
+    }
+    
+    td, th {
+        padding: 12px 8px; /* Réduit le padding */
+    }
+}
+
+/* =========================================
+   PRINT STYLES (Fix PDF readability)
+   ========================================= */
+@media print {
+  body {
+    background: white !important;
+    color: #000000 !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+  }
+  
+  p, li, td, th, span, div {
+    color: #000000 !important;
+  }
+  
+  .doc-intro,
+  .article-excerpt,
+  .carbon-text-muted {
+    color: #333333 !important;
+  }
+  
+  /* Cache les éléments non imprimables */
+  .site-header,
+  .nav-menu,
+  .doc-actions {
+    display: none !important;
+  }
+  
+  /* Assure un bon contraste pour les bordures */
+  .table-wrapper,
+  .info-card,
+  .callout {
+    border-color: #cccccc !important;
+  }
+}
+.doc-header {
+  border-bottom: 1px solid var(--carbon-border);
+  padding-bottom: 40px;
+  margin-bottom: 60px; /* Augmente de 40px à 60px */
+}
+
+.doc-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  margin-bottom: 20px; /* AJOUTE CETTE LIGNE */
+}
   </style>
 </head>
 <body>
@@ -689,7 +735,11 @@
         <li><a href="#competitive-advantage" class="toc-link">4. Competitive Advantage</a></li>
         <li><a href="#architecture" class="toc-link">5. Architecture & Fees</a></li>
         <li><a href="#risk-management" class="toc-link">6. Risk Management</a></li>
-        <li><a href="#legal" class="toc-link">7. Legal & Disclaimer</a></li>
+        <li><a href="#security" class="toc-link">7. Security Infrastructure</a></li>
+        <li><a href="#smart-contracts" class="toc-link">8. Smart Contracts</a></li>
+        <li><a href="#governance" class="toc-link">9. Governance</a></li>
+        <li><a href="#transparency" class="toc-link">10. Transparency</a></li>
+        <li><a href="#legal" class="toc-link">11. Legal & Disclaimer</a></li>
       </ul>
     </aside>
 
@@ -697,7 +747,7 @@
       
       <div class="doc-header">
         <div class="doc-meta">
-          <span class="meta-tag">VERSION 1.0</span>
+          <span class="meta-tag">VERSION 2.0</span>
           <span class="meta-tag">JANUARY 2026</span>
         </div>
         <h1 class="doc-h1">G12 Labs Litepaper</h1>
@@ -706,15 +756,15 @@
           A comprehensive guide to our vaults, strategies, and risk management framework.
         </p>
         <div class="doc-actions">
-          <button class="btn-action" onclick="window.print()">
-            <i class="ph ph-file-pdf"></i> Download PDF
-          </button>
-          <button class="btn-action" onclick="copyContent()">
-            <i class="ph ph-copy"></i> Copy Text
-          </button>
-        </div>
-      </div>
+  <button class="btn-action" onclick="window.print()">
+    <i class="ph ph-file-pdf"></i> Download PDF
+  </button>
+  <button class="btn-action" onclick="copyContent()">
+    <i class="ph ph-copy"></i> Copy Text
+  </button>
+</div>
 
+      <!-- ==================== SECTION 1 ==================== -->
       <section id="executive-summary" class="doc-section">
         <h2>1. Executive Summary</h2>
         <h3>Unique Value Proposition</h3>
@@ -728,43 +778,70 @@
         
         <h3>Objectives & Target Amount</h3>
         <p>
-          G12 Labs operates on a <strong>Vault System</strong>. Different Vaults are proposed so you can find the one matching your risk aversion. By creating G12 Labs, we want to make DeFi accessible to the greatest number. That is why we lowered the minimum entry amount to <strong>$1 USDC</strong>. A symbolic dollar, accessible by all, for all.
+          G12 Labs operates on a <strong>Vault System</strong>. Different Vaults will be proposed so you can find the one matching your risk aversion. By creating G12 Labs, we want to make DeFi accessible to the greatest number. That is why we lowered the minimum entry amount to <strong>$1 USDC</strong>. A symbolic dollar, accessible by all, for all.
         </p>
 
         <h3>Performance Expectations</h3>
         <p>
-          Performance cannot be guaranteed. We recommend forming an opinion by looking at the past performance of each Vault. Keep in mind that past performance does not guarantee future results.
+          Performance cannot be guaranteed. We recommend forming an opinion by looking at the past performance of each Vault. Keep in mind that <strong>past performance does not guarantee future results</strong>.
         </p>
 
-        <div class="callout">
-          <strong>Key Differentiators</strong>
-          <ul style="margin:0; padding-left:1rem; color:var(--text-muted);">
-            <li><strong>Transparency:</strong> Everything is on-chain. Every transaction is traceable. Nothing can be hidden.</li>
-            <li><strong>Accessibility:</strong> An EVM wallet and $1 is all you need to join.</li>
-            <li><strong>Precision:</strong> No opaque changes. Each vault has its own rules decided before launch.</li>
-            <li><strong>Honesty:</strong> We earn mostly on performance. We win together, we lose together. No profit = No performance fees.</li>
-          </ul>
+        <h3>Key Differentiators</h3>
+        <div class="grid-cards">
+            <div class="info-card">
+                <i class="ph ph-lock-key-open info-card-icon"></i>
+                <span class="info-card-title">Transparency</span>
+                <p style="font-size:0.9rem; margin:0;">Everything is on-chain. Every transaction is traceable. Nothing can be hidden.</p>
+            </div>
+            <div class="info-card">
+                <i class="ph ph-currency-dollar info-card-icon"></i>
+                <span class="info-card-title">Accessibility</span>
+                <p style="font-size:0.9rem; margin:0;">An EVM wallet and $1 is all you need to join.</p>
+            </div>
+            <div class="info-card">
+                <i class="ph ph-target info-card-icon"></i>
+                <span class="info-card-title">Precision</span>
+                <p style="font-size:0.9rem; margin:0;">No opaque changes. Each vault has its own rules decided before launch.</p>
+            </div>
+            <div class="info-card">
+                <i class="ph ph-handshake info-card-icon"></i>
+                <span class="info-card-title">Honesty</span>
+                <p style="font-size:0.9rem; margin:0;">We earn mostly on performance. We win together, we lose together. No profit = No performance fees.</p>
+            </div>
+            <div class="info-card">
+                <i class="ph ph-shield-check info-card-icon"></i>
+                <span class="info-card-title">Security</span>
+                <p style="font-size:0.9rem; margin:0;">Multi-signature governance and battle-tested infrastructure.</p>
+            </div>
         </div>
       </section>
 
+      <!-- ==================== SECTION 2 ==================== -->
       <section id="vision-mission" class="doc-section">
         <h2>2. Vision & Mission</h2>
         <h3>Market Problem</h3>
         <p>
-          DeFi represents unprecedented financial possibilities but remains inaccessible to the majority. Barriers are numerous: technical complexity, omnipresent security risks (hacks, rug pulls), lack of time to analyze opportunities, and a steep learning curve. Result: millions of potential investors stay on the sidelines.
+          DeFi represents unprecedented financial possibilities but remains inaccessible to the majority.
+          Barriers are numerous: technical complexity, omnipresent security risks (hacks, rug pulls), lack of time to analyze opportunities, and a steep learning curve.
+          <strong>Result:</strong> millions of potential investors stay on the sidelines.
         </p>
+        
         <h3>The G12 Solution</h3>
         <p>
-          G12 Labs democratizes DeFi access by offering a turnkey solution: professionally managed vaults, accessible from $1, fully on-chain and transparent. We are the bridge between decentralized finance and the investor, eliminating friction while preserving fundamental blockchain advantages.
+          G12 Labs democratizes DeFi access by offering a turnkey solution: professionally managed vaults, accessible from $1, fully on-chain and transparent.
+          We are the bridge between decentralized finance and the investor, eliminating friction while preserving fundamental blockchain advantages.
         </p>
-        <h3>Long-term Vision</h3>
-        <p>
-          To become the reference for passive DeFi management, where every investor—regardless of expertise or capital—can access the market's best strategies with confidence. Our ambition: make G12 Labs the standard of excellence for transparency, performance, and accessibility.
-        </p>
+        
+        <div class="callout">
+            <strong>Long-term Vision</strong><br>
+            To become the reference for passive DeFi management, where every investor—regardless of expertise or capital—can access the market's best strategies with confidence. Our ambition: make G12 Labs the standard of excellence for transparency, performance, and accessibility.
+        </div>
       </section>
 
+      <!-- ==================== SECTION 3 ==================== -->
       <section id="investment-strategy" class="doc-section">
         <h2>3. Investment Strategy</h2>
+        
         <h3>Thematic Focus</h3>
         <p>G12 Labs deploys diversified strategies across different vaults, covering:</p>
         <ul>
@@ -776,98 +853,397 @@
         <p><em>Security remains our main focus. Combining new opportunities with risk management is our standard.</em></p>
 
         <h3>Asset Allocation & Vaults</h3>
+        <h4>bG12 Token - BTC Yield Vault (Ethereum)</h4>
+        <p><strong>Current Strategy:</strong> Balanced exposure to DeFi blue-chip protocols with dynamic risk management.</p>
+        
+        <p style="margin-bottom:10px; font-size:0.9rem; color:#888;">Target Allocation (Dynamic):</p>
+        <div class="allocation-bar">
+            <div class="alloc-segment" style="width: 40%; background: #2D374B;">30-50%</div>
+            <div class="alloc-segment" style="width: 50%; background: var(--magma-core);">40-60%</div>
+            <div class="alloc-segment" style="width: 10%; background: #333;">5-10%</div>
+        </div>
+        <div class="alloc-legend">
+            <div><span class="dot" style="background:#2D374B;"></span>Liquidity Provision (Uniswap V3, Curve)</div>
+            <div><span class="dot" style="background:var(--magma-core);"></span>Lending & Borrowing (Aave V3, Morpho)</div>
+            <div><span class="dot" style="background:#333;"></span>Cash Reserve (USDC)</div>
+        </div>
+        <p style="font-size:0.85rem; color:#666;"><em>Note: Actual allocation varies based on market conditions and strategy optimization.</em></p>
+
+        <h4>Active Positions (Example Snapshot)</h4>
+        <p style="font-size:0.85rem; color:#888;">Position data as of January 26, 2026:</p>
+
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <td width="50"><i class="ph ph-arrows-left-right" style="font-size:28px; color:var(--magma-core);"></i></td>
+                    <td>
+                        <strong>1. Uniswap V3 Liquidity Provision (~40% allocation)</strong><br>
+                        Multiple concentrated liquidity positions in WBTC/USDC pools.
+                        <ul style="margin-top:10px; margin-bottom:0;">
+                            <li><strong>Wide Range LP:</strong> Captures broad market movements with lower fee tier</li>
+                            <li><strong>Tight Range LP:</strong> Higher fee tier for optimal yield when price is stable</li>
+                            <li>Dynamic rebalancing based on market conditions</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><i class="ph ph-bank" style="font-size:28px; color:var(--magma-core);"></i></td>
+                    <td>
+                        <strong>2. Aave V3 Lending Position (~60% allocation)</strong><br>
+                        <ul style="margin-top:10px; margin-bottom:0;">
+                            <li><strong>Supplied:</strong> WBTC as collateral</li>
+                            <li><strong>Borrowed:</strong> USDC</li>
+                            <li><strong>Health Factor:</strong> Maintained at safe ratio (safe above liquidation threshold of 1.0)</li>
+                            <li><strong>Leverage:</strong> ~1.9x</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><i class="ph ph-wallet" style="font-size:28px; color:var(--magma-core);"></i></td>
+                    <td>
+                        <strong>3. Cash Reserve (&lt;5%)</strong><br>
+                        USDC for gas fees, rebalancing, and opportunities.
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>Dynamic Risk Management</h3>
+        <p>Our strategy employs intelligent position management to optimize returns while maintaining safety:</p>
+        
+        <div class="two-col-grid">
+            <div class="info-card">
+                <i class="ph ph-chart-line-up info-card-icon"></i>
+                <span class="info-card-title">Liquidity Pool Management</span>
+                <p style="font-size:0.9rem; margin:0;">We utilize multiple Uniswap V3 ranges with different width strategies. When tight-range positions move out of range, capital is automatically reallocated.</p>
+            </div>
+            <div class="info-card">
+                <i class="ph ph-shield info-card-icon"></i>
+                <span class="info-card-title">Collateral Optimization</span>
+                <p style="font-size:0.9rem; margin:0;">During market volatility, we dynamically adjust collateral positions on Aave V3 to maintain healthy liquidation margins. This includes strategic increases in collateral during bearish phases.</p>
+            </div>
+        </div>
+
+        <h4>Automated Rebalancing Triggers</h4>
+        <p>Positions are continuously monitored and adjusted based on:</p>
         <ul>
-            <li><strong>Conservative Vault:</strong> Focus on established protocols, stable expected performance without large variations.</li>
-            <li><strong>Balanced Vault:</strong> Mix between security and emerging opportunities. Aimed at exposing capital to more complex DeFi strategies.</li>
-            <li><strong>Aggressive Vault:</strong> High performance strategies accompanied by higher risk. Reserved for experienced profiles.</li>
+            <li>Price movement and volatility</li>
+            <li>Fee generation efficiency</li>
+            <li>Health factor thresholds</li>
+            <li>Market regime detection (bull/bear/crab)</li>
         </ul>
+
+        <div class="schema-box" style="text-align: left;">
+            <h4 style="margin-top:0; color:var(--magma-core);">Example Scenario — Bearish Market Protection</h4>
+            <p>When BTC price drops significantly:</p>
+            <div class="step-flow">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div>Tight-range LP exits → Full BTC position</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div>BTC transferred to Aave V3 as additional collateral</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div>Health factor improves</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div>Liquidation risk substantially reduced</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">5</div>
+                    <div><strong>When price recovers →</strong> Redeploy to LP positions</div>
+                </div>
+            </div>
+            <p style="margin-bottom:0; font-size:0.9rem; color:#888;"><em>This approach ensures capital preservation during downturns while maintaining yield generation during stable periods.</em></p>
+        </div>
 
         <h3>Protocol Selection Criteria</h3>
         <p>Before any allocation, a protocol passes our rigorous filter:</p>
         <div class="table-wrapper">
             <table>
-                <tr>
-                    <td width="40"><i class="ph ph-shield-check" style="font-size:24px; color:var(--magma-core);"></i></td>
-                    <td><strong>Technical Security</strong><br>Multiple audits by recognized firms.</td>
-                </tr>
-                <tr>
-                    <td><i class="ph ph-chart-line-up" style="font-size:24px; color:var(--magma-core);"></i></td>
-                    <td><strong>Economic Viability</strong><br>Significant TVL and at least 6 months of operational history. Analysis of tokenomics.</td>
-                </tr>
-                <tr>
-                    <td><i class="ph ph-users-three" style="font-size:24px; color:var(--magma-core);"></i></td>
-                    <td><strong>Team & Governance</strong><br>Evaluation of the team and governance structure.</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Criterion</th>
+                        <th>Requirement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>✅ Technical Security</strong></td>
+                        <td>Multiple audits by recognized firms (ChainSecurity, Trail of Bits, OpenZeppelin, etc.)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>✅ Economic Viability</strong></td>
+                        <td>Significant TVL (&gt;$100M) and at least 6 months of operational history</td>
+                    </tr>
+                    <tr>
+                        <td><strong>✅ Team & Governance</strong></td>
+                        <td>Transparent team or established DAO with proven track record</td>
+                    </tr>
+                    <tr>
+                        <td><strong>✅ Bug Bounty</strong></td>
+                        <td>Active bug bounty program with meaningful rewards</td>
+                    </tr>
+                    <tr>
+                        <td><strong>✅ Smart Contract Verification</strong></td>
+                        <td>All contracts verified on blockchain explorers</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
-        
+
+        <h4>Currently Approved Protocols</h4>
+        <ul>
+            <li><strong>Uniswap V3</strong> (DEX)</li>
+            <li><strong>Aave V3</strong> (Lending)</li>
+            <li>Additional protocols reviewed on ongoing basis</li>
+        </ul>
+
         <h3>Rebalancing Strategy</h3>
         <p>
-            We use a <strong>Hybrid Approach</strong>. Working with algorithmic bots and AI is necessary, but must not replace decision making. 
-            <strong>The marriage of both—Human accompanied by modern tools—is the best approach.</strong>
+          We use a <strong>Hybrid Approach</strong> combining algorithmic monitoring with expert human validation.
+          Working with algorithmic bots and AI is necessary, but must not replace decision making. The marriage of both—Human accompanied by modern tools—is the best approach.
         </p>
+
+        <div class="two-col-grid">
+            <div>
+                <h4 style="color: var(--success);">Automated Monitoring (24/7)</h4>
+                <ul class="check-list">
+                    <li>Real-time tracking of all positions</li>
+                    <li>Health factor monitoring (Aave V3)</li>
+                    <li>LP range efficiency tracking (Uniswap V3)</li>
+                    <li>Fee generation analysis</li>
+                    <li>Market regime detection (volatility, trend)</li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: var(--warning);">Manual Review Required</h4>
+                <ul>
+                    <li>Adding new protocol integrations</li>
+                    <li>Significant strategy changes (&gt;20% allocation shift)</li>
+                    <li>Emergency situations (protocol exploit, major market event)</li>
+                    <li>Large leverage adjustments (&gt;0.5x change)</li>
+                </ul>
+            </div>
+        </div>
+
+        <h4>Rebalancing Triggers</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Trigger</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>LP position out of range</td>
+                        <td>Redeploy or adjust</td>
+                    </tr>
+                    <tr>
+                        <td>Health factor at risk</td>
+                        <td>Increase collateral</td>
+                    </tr>
+                    <tr>
+                        <td>High volatility detected</td>
+                        <td>Reduce risk exposure</td>
+                    </tr>
+                    <tr>
+                        <td>Fee generation &lt; threshold</td>
+                        <td>Optimize positions</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>Rebalancing Frequency</h4>
         <ul>
-            <li>Rebalancing based on analysis to optimize yield.</li>
-            <li>Exit if a protocol presents warning signals.</li>
-            <li>Rotation to new opportunities via quantitative analysis.</li>
-            <li>Automatic collection and compounding of rewards.</li>
+            <li><strong>Continuous:</strong> Monitoring via automated systems</li>
+            <li><strong>As needed:</strong> Position adjustments (market-driven)</li>
+            <li><strong>Daily to weekly:</strong> Fee harvesting</li>
+            <li><strong>Multi-sig approval:</strong> Major rebalancing for material changes</li>
+            <li><strong>Monthly:</strong> Strategy review by team</li>
         </ul>
+
+        <h3>Capital Preservation Priority</h3>
+        <p>Our rebalancing philosophy prioritizes capital preservation over yield maximization:</p>
+        <div class="step-flow">
+            <div class="step-item">
+                <div class="step-num">1</div>
+                <div><strong>Risk First:</strong> Ensure health factor remains safe before optimizing yield</div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">2</div>
+                <div><strong>Gradual Adjustments:</strong> No sudden large position changes unless emergency</div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">3</div>
+                <div><strong>Market Adaptation:</strong> Reduce risk during uncertainty, increase during stability</div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">4</div>
+                <div><strong>Transparent Execution:</strong> All major rebalances visible on-chain</div>
+            </div>
+        </div>
+
+        <h4>Example Decision Flow</h4>
+        <div class="decision-flow">
+            Market drops 15% <span class="arrow">→</span> 
+            Check health factor <span class="arrow">→</span> 
+            If at risk: Increase collateral (redeploy LP to Aave) <span class="arrow">→</span> 
+            Monitor recovery <span class="arrow">→</span> 
+            When stable: Gradually redeploy to LP positions
+        </div>
+        <p style="font-size:0.9rem; color:#888;"><em>This systematic approach ensures consistent risk management while capturing yield opportunities.</em></p>
       </section>
 
+      <!-- ==================== SECTION 4 ==================== -->
       <section id="competitive-advantage" class="doc-section">
         <h2>4. Competitive Advantage</h2>
+        
+        <h3>Experienced Team</h3>
         <p>
             Our team accumulates years of DeFi experience, having navigated multiple market cycles. This expertise allows us to identify opportunities while detecting red flags before they become problematic.
         </p>
         
+        <h3>Systematic Approach</h3>
         <div class="schema-box">
-            <div class="mint-burn-flow" style="justify-content: space-around;">
-                <div class="flow-step">
-                    <i class="ph ph-robot"></i>
-                    <span>24/7 Monitoring</span>
-                    <div style="font-size:0.8rem; color:#666; margin-top:5px;">Bots & AI</div>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; width: 160px;">
+                    <i class="ph ph-robot" style="font-size:32px; color:var(--magma-core);"></i>
+                    <br><strong>24/7 Monitoring</strong>
+                    <div style="font-size:0.8rem; color:#888;">Bots & AI</div>
                 </div>
-                <div class="flow-arrow">+</div>
-                <div class="flow-step">
-                    <i class="ph ph-user-check"></i>
-                    <span>Validation</span>
-                    <div style="font-size:0.8rem; color:#666; margin-top:5px;">Human Expert</div>
+                <div style="font-size:24px; color:#666;">+</div>
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; width: 160px;">
+                    <i class="ph ph-user-check" style="font-size:32px; color:var(--magma-core);"></i>
+                    <br><strong>Validation</strong>
+                    <div style="font-size:0.8rem; color:#888;">Human Expert</div>
                 </div>
-                <div class="flow-arrow">=</div>
-                <div class="flow-step" style="border-color:var(--magma-core);">
-                    <i class="ph ph-lightning" style="color:white;"></i>
-                    <span style="color:var(--magma-core);">Execution</span>
-                    <div style="font-size:0.8rem; color:#666; margin-top:5px;">Safe & Optimal</div>
+                <div style="font-size:24px; color:#666;">=</div>
+                <div style="border: 1px solid var(--magma-core); padding: 20px; border-radius: 8px; width: 160px;">
+                    <i class="ph ph-lightning" style="font-size:32px; color:white;"></i>
+                    <br><strong style="color:var(--magma-core);">Execution</strong>
+                    <div style="font-size:0.8rem; color:#888;">Safe & Optimal</div>
                 </div>
             </div>
         </div>
+        <ul>
+            <li><strong>Data-driven decisions:</strong> Algorithms analyze market conditions 24/7</li>
+            <li><strong>Human oversight:</strong> Critical decisions validated by experienced team</li>
+            <li><strong>Risk management:</strong> Automated alerts and circuit breakers</li>
+        </ul>
 
         <h3>Total Alignment of Interests</h3>
-        <p>
-            We employ a "Skin in the game" model. The team holds significant positions in the vaults.
-        </p>
+        <p>We employ a <strong>"Skin in the game"</strong> model. The team holds significant positions in the vaults.</p>
+        
+        <div class="grid-cards">
+            <div class="info-card">
+                <span class="info-card-title">Management Fee (0.75%)</span>
+                <p style="font-size:0.9rem; margin:0;">Covers essential fixed costs to guarantee project longevity.</p>
+            </div>
+            <div class="info-card">
+                <span class="info-card-title">Performance Fee (10%)</span>
+                <p style="font-size:0.9rem; margin:0;">Remuneration based on NET profits. We only win if you win.</p>
+            </div>
+            <div class="info-card">
+                <span class="info-card-title">High-Water Mark</span>
+                <p style="font-size:0.9rem; margin:0;">In case of loss, no fees until the previous level is recovered.</p>
+            </div>
+        </div>
+
+        <h4>Team Commitment</h4>
         <ul>
-            <li><strong>Management Fee (1%):</strong> Covers essential fixed costs to guarantee project longevity.</li>
-            <li><strong>Performance Fee:</strong> Remuneration based on NET profits. We only win if you win.</li>
-            <li><strong>High-Water Mark:</strong> In case of loss, no fees until the previous level is recovered.</li>
+            <li>Management team is <strong>primary depositor</strong> in all vaults</li>
+            <li>Long-term incentive alignment through token holdings</li>
+            <li><strong>No profit without investor profit</strong></li>
         </ul>
       </section>
 
+      <!-- ==================== SECTION 5 ==================== -->
       <section id="architecture" class="doc-section">
         <h2>5. Architecture & Fees</h2>
+        
+        <h3>Vault Architecture</h3>
         <p>
-            G12 Labs operates via decentralized vaults on-chain. Each vault emits its own ERC-20 tokens representing your proportional share.
+            G12 Labs operates via decentralized vaults on-chain built on <strong>Enzyme Finance</strong> infrastructure.
+            Each vault emits its own ERC-20 tokens representing your proportional share.
         </p>
-        <ul>
-            <li><strong>G12 Token:</strong> DeFi Yield Vault (Arbitrum)</li>
-            <li><strong>xG12 Token:</strong> Stable Yield Vault (Base)</li>
-        </ul>
+        
+        <div class="callout-success">
+            <strong>Active Vault:</strong> bG12 Token — DeFi Yield Vault (Ethereum)
+        </div>
+
+        <h3>Technology Stack</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Layer</th>
+                        <th>Technology</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Infrastructure</strong></td>
+                        <td>Enzyme Finance v4</td>
+                        <td>Vault management and DeFi integration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Blockchain</strong></td>
+                        <td>Arbitrum One, Base</td>
+                        <td>Low fees, fast transactions, Ethereum security</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Governance</strong></td>
+                        <td>Gnosis Safe</td>
+                        <td>Multi-signature wallet for security</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Protocols</strong></td>
+                        <td>Uniswap, Aave, others</td>
+                        <td>Yield generation strategies</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Automation</strong></td>
+                        <td>Custom bots + AI</td>
+                        <td>24/7 monitoring and execution</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <h3>Mint & Burn Mechanism</h3>
-        <p><strong>Deposit (Mint):</strong> Connect wallet -> Select Vault -> Deposit USDC -> Receive Tokens calculated on NAV.</p>
-        <p><strong>Withdraw (Burn):</strong> Initiate withdrawal -> Tokens burned -> Receive share of assets + gains.</p>
-        <p><em>Note: A 72h cooldown applies to withdrawals to allow optimized liquidation and prevent bank runs.</em></p>
-
+        <div class="two-col-grid">
+            <div class="info-card">
+                <i class="ph ph-arrow-circle-down info-card-icon"></i>
+                <span class="info-card-title">Deposit (Mint)</span>
+                <ol style="font-size:0.9rem; margin:0; padding-left: 1.2rem;">
+                    <li>Connect wallet</li>
+                    <li>Select Vault</li>
+                    <li>Deposit USDC</li>
+                    <li>Receive Vault Tokens calculated on NAV (Net Asset Value)</li>
+                </ol>
+            </div>
+            <div class="info-card">
+                <i class="ph ph-arrow-circle-up info-card-icon"></i>
+                <span class="info-card-title">Withdraw (Burn)</span>
+                <ol style="font-size:0.9rem; margin:0; padding-left: 1.2rem;">
+                    <li>Initiate withdrawal request</li>
+                    <li><strong>72h cooldown period</strong></li>
+                    <li>Tokens burned</li>
+                    <li>Receive proportional share of assets + gains in USDC</li>
+                </ol>
+            </div>
+        </div>
+        <p style="font-size:0.85rem; color:#888;"><em>Note: A 72h cooldown applies to withdrawals to allow optimized liquidation and prevent bank runs.</em></p>
+        
         <h3>Fee Structure Detail</h3>
         <div class="table-wrapper">
             <table>
@@ -876,110 +1252,734 @@
                         <th>Fee Type</th>
                         <th style="color:white;">G12 Labs</th>
                         <th>Traditional Funds</th>
+                        <th>Notes</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Management Fees</td>
-                        <td class="highlight-cell">1% / year</td>
+                        <td class="highlight-cell">0.75% / year</td>
                         <td>2% - 3%</td>
+                        <td>Covers operational costs</td>
                     </tr>
                     <tr>
                         <td>Protocol Fees</td>
                         <td class="highlight-cell">0.25% / year</td>
                         <td>Hidden</td>
+                        <td>Enzyme Finance fee (transparent)</td>
                     </tr>
                     <tr>
                         <td>Performance Fees</td>
-                        <td class="highlight-cell">20% (High-Water Mark)</td>
+                        <td class="highlight-cell">10.00%</td>
                         <td>20% - 30%</td>
+                        <td>Only on NET profits above High-Water Mark</td>
                     </tr>
                     <tr>
                         <td>Entry Fee</td>
                         <td class="highlight-cell">0%</td>
                         <td>0% - 2%</td>
+                        <td>No cost to enter</td>
                     </tr>
                     <tr>
                         <td>Exit Fee</td>
-                        <td class="highlight-cell">0.2% *</td>
+                        <td class="highlight-cell">0.20%</td>
                         <td>1% - 3%</td>
+                        <td>Redistributed to vault holders *</td>
                     </tr>
                     <tr>
                         <td>Transparency</td>
                         <td class="highlight-cell">100% On-Chain</td>
                         <td>Limited / Opaque</td>
+                        <td>All transactions visible</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <p style="font-size:0.85rem; opacity:0.7;">
-            *Exit fees (0.2%) are redistributed back into the vault to benefit long-term holders and cover rebalancing costs. They protect against short-term arbitrage.
-        </p>
-      </section>
-
-      <section id="risk-management" class="doc-section">
-        <h2>6. Risk Management</h2>
-        <p>
-            Security is our absolute priority. We utilize <strong>Enzyme Finance</strong> infrastructure, a battle-tested asset management protocol operating since 2019 with $200M+ TVL and zero major exploits.
-        </p>
         
-        <h4>Smart Contract Risks</h4>
-        <ul>
-            <li><strong>Enzyme Infrastructure:</strong> Audited by ChainSecurity, OpenZeppelin, Trail of Bits.</li>
-            <li><strong>Our Vaults:</strong> Parameters verified before launch. Multi-sig validation for critical actions.</li>
-        </ul>
-
-        <h4>Protocol Risks</h4>
-        <ul>
-            <li><strong>Due Diligence:</strong> We only use audited protocols with active bug bounties.</li>
-            <li><strong>Economic Health:</strong> We avoid protocols with < 6 months history or overly inflationary tokenomics.</li>
-        </ul>
-
-        <h4>Liquidity Risks (72h Cooldown)</h4>
-        <p>The 72h delay between request and execution offers critical advantages:</p>
-        <ul>
-            <li><strong>Optimized Liquidation:</strong> Time to dismantle positions without market impact (slippage).</li>
-            <li><strong>Collective Protection:</strong> Prevents bank runs.</li>
-            <li><strong>Predictability:</strong> Allows the team to anticipate liquidity needs.</li>
-        </ul>
-
         <div class="callout">
-            <strong>Risk Philosophy</strong>
-            "Security is never absolute in DeFi, but we prioritize it above short-term yield. A secure 12% yield is infinitely better than a risky 30%. We prefer to sleep well, and so should you."
+            <strong>Exit Fee Details:</strong>
+            <ul style="margin-bottom:0;">
+                <li>0.2% on withdrawals</li>
+                <li><strong>Not taken by the team</strong> — redistributed back into the vault</li>
+                <li>Benefits long-term holders</li>
+                <li>Covers rebalancing costs</li>
+                <li>Protects against short-term arbitrage</li>
+            </ul>
+        </div>
+
+        <h3>Fee Examples</h3>
+        <div class="grid-cards">
+            <div class="info-card">
+                <span class="info-card-title">Scenario 1: No Profit</span>
+                <p style="font-size:0.85rem; margin:0; color:#888;">Deposit $10,000</p>
+                <ul style="font-size:0.9rem; margin: 10px 0 0 0;">
+                    <li>Management Fee: $75/year (0.75%)</li>
+                    <li>Performance Fee: <strong>$0</strong> (no profit)</li>
+                    <li>Total Annual Cost: $75 (1%)</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <span class="info-card-title">Scenario 2: +20% Profit</span>
+                <p style="font-size:0.85rem; margin:0; color:#888;">Deposit $10,000, profit $2,000</p>
+                <ul style="font-size:0.9rem; margin: 10px 0 0 0;">
+                    <li>Management Fee: $75/year</li>
+                    <li>Performance Fee: $200 (10% of $2,000)</li>
+                    <li>Total Cost: $275</li>
+                    <li style="color:var(--success);"><strong>Net Gain: $1,725 (17.25%)</strong></li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <span class="info-card-title">Scenario 3: -10% Loss</span>
+                <p style="font-size:0.85rem; margin:0; color:#888;">Deposit $10,000</p>
+                <ul style="font-size:0.9rem; margin: 10px 0 0 0;">
+                    <li>Management Fee: $75/year</li>
+                    <li>Performance Fee: <strong>$0</strong> (no profit = no fee)</li>
+                    <li style="color:var(--warning);">High-Water Mark set: Must recover loss before next performance fee</li>
+                </ul>
+            </div>
         </div>
       </section>
 
-      <section id="legal" class="doc-section">
-        <h2>7. Legal & Disclaimer</h2>
+      <!-- ==================== SECTION 6 ==================== -->
+      <section id="risk-management" class="doc-section">
+        <h2>6. Risk Management</h2>
         
-        <h4>Non-Custodial Service</h4>
+        <div class="callout">
+            <strong>Risk Philosophy</strong><br>
+            "Security is never absolute in DeFi, but we prioritize it above short-term yield. A secure 12% yield is infinitely better than a risky 30%. We prefer to sleep well, and so should you."
+        </div>
+
+        <h4>Risk Hierarchy</h4>
+        <div class="step-flow">
+            <div class="step-item">
+                <div class="step-num">1</div>
+                <div><strong>Capital Preservation</strong> — Protect against total loss</div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">2</div>
+                <div><strong>Consistent Returns</strong> — Stable, predictable performance</div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">3</div>
+                <div><strong>Yield Optimization</strong> — Maximize returns within risk constraints</div>
+            </div>
+        </div>
+        
+        <h3>Security Framework</h3>
         <p>
-            G12 Labs operates a 100% non-custodial model. You keep total control. Your funds remain in your wallet (via Vault Tokens), we never access your private keys. We do NOT act as a custodian.
+            Security is our absolute priority. We utilize <strong>Enzyme Finance</strong> infrastructure, a battle-tested asset management protocol operating since 2019 with $200M+ TVL and zero major exploits.
         </p>
 
-        <h4>Investment Risks</h4>
+        <h3>Smart Contract Risks</h3>
+        <div class="two-col-grid">
+            <div>
+                <h4>Enzyme Infrastructure</h4>
+                <ul class="check-list">
+                    <li>Audited by ChainSecurity, OpenZeppelin, Trail of Bits</li>
+                    <li>5+ years of battle-testing</li>
+                    <li>$200M+ TVL managed without major exploits</li>
+                    <li>Open-source and verified contracts</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Our Vaults</h4>
+                <ul class="check-list">
+                    <li>Parameters verified before launch</li>
+                    <li>Multi-sig validation for critical actions</li>
+                    <li>Configuration auditable on-chain</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Protocol Risks</h3>
+        <h4>Due Diligence Process</h4>
+        <ul class="check-list">
+            <li>Only use audited protocols with active bug bounties</li>
+            <li>Minimum 6 months operational history</li>
+            <li>Minimum $100M TVL for major allocations</li>
+            <li>Team and governance evaluation</li>
+            <li>Economic analysis (tokenomics, sustainability)</li>
+        </ul>
+
+        <h4>Currently Whitelisted</h4>
+        <ul>
+            <li><strong>Uniswap V3</strong> (DEX) — $4B+ TVL</li>
+            <li><strong>Aave V3</strong> (Lending) — $10B+ TVL</li>
+            <li>Additional protocols reviewed continuously</li>
+        </ul>
+
+        <h3>Liquidation & Leverage Risks</h3>
+        <h4>Leverage Management</h4>
+        <ul>
+            <li>Accurate leverage tracking</li>
+            <li>Continuous monitoring of health factors</li>
+            <li>Automated alerts at multiple thresholds</li>
+            <li>Emergency procedures for rapid deleveraging</li>
+        </ul>
+
+        <h4>Aave V3 Position Management</h4>
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <td><strong>Health factor target</strong></td>
+                    <td>Between 1.4 and 1.6</td>
+                </tr>
+                <tr>
+                    <td><strong>Collateralization</strong></td>
+                    <td>Conservative ratios</td>
+                </tr>
+                <tr>
+                    <td><strong>Monitoring</strong></td>
+                    <td>Real-time 24/7</td>
+                </tr>
+                <tr>
+                    <td><strong>Dynamic adjustment</strong></td>
+                    <td>During volatility: Increase collateral from idle positions<br>During stability: Optimize capital efficiency</td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>Uniswap V3 Specific Risks</h3>
+        
+        <h4>Impermanent Loss Management</h4>
+        <ul>
+            <li>Multiple range strategies reduce single-point risk</li>
+            <li>Wide-range positions provide downside protection</li>
+            <li>Tight-range positions maximize fees during stability</li>
+            <li>Dynamic redeployment based on market conditions</li>
+        </ul>
+
+        <h4>Out-of-Range Management</h4>
+        <ul>
+            <li>Automated detection when LP exits range</li>
+            <li><strong>Capital preservation priority:</strong>
+                <ul>
+                    <li>If bearish: Consolidate to Aave collateral (boost health factor)</li>
+                    <li>If bullish: Maintain positions or redeploy higher</li>
+                    <li>If ranging: Adjust ranges to current price</li>
+                </ul>
+            </li>
+            <li>No forced positions in unfavorable ranges</li>
+        </ul>
+
+        <h4>Position Concentration</h4>
+        <ul>
+            <li>No single LP position &gt;50% of vault</li>
+            <li>Multiple range widths deployed simultaneously</li>
+            <li>Fee tier diversification (0.05%, 0.3%, 1%)</li>
+        </ul>
+
+        <div class="schema-box" style="text-align: left;">
+            <h4 style="margin-top:0; color:var(--error);">Example Risk Scenario — BTC Crash</h4>
+            <p><strong>Scenario:</strong> BTC drops from $95K to $85K (-10%)</p>
+            
+            <p style="margin-top:20px;"><strong>Automatic Response:</strong></p>
+            <div class="step-flow">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div>Tight-range LP exits range → Full WBTC position</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div>Wide-range LP still active (due to larger range)</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div>System detects health factor drop</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div><strong>Emergency action:</strong> Transfer WBTC from exited LP to Aave collateral</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">5</div>
+                    <div>Health factor recovers → Liquidation risk mitigated</div>
+                </div>
+            </div>
+
+            <p style="margin-top:20px;"><strong>When price recovers:</strong></p>
+            <ul style="margin-bottom:0;">
+                <li>Gradually redeploy WBTC to new LP ranges</li>
+                <li>Restore optimal allocation</li>
+                <li>Continue yield generation</li>
+            </ul>
+            <p style="margin-bottom:0; margin-top:15px; font-size:0.9rem; color:#888;"><em>This multi-layer approach protects capital during volatility while maintaining yield during favorable conditions.</em></p>
+        </div>
+
+        <h3>Liquidity Risks (72h Cooldown)</h3>
+        <p>The 72h delay between withdrawal request and execution offers critical advantages:</p>
+        <ul>
+            <li><strong>Optimized Liquidation:</strong> Time to dismantle positions without market impact (slippage)</li>
+            <li><strong>Collective Protection:</strong> Prevents bank runs and panic withdrawals</li>
+            <li><strong>Predictability:</strong> Allows the team to anticipate liquidity needs</li>
+            <li><strong>Fair Treatment:</strong> All withdrawals processed at optimal execution prices</li>
+        </ul>
+        <p><strong>Emergency Liquidity:</strong> Ability to liquidate positions within 24h if needed. Diversified positions for easier unwinding.</p>
+
+        <h3>Market Risks</h3>
+        <h4>Volatility Management</h4>
+        <ul>
+            <li>Portfolio volatility target: &lt;50% annualized</li>
+            <li>Dynamic position sizing based on market conditions</li>
+            <li>Risk metrics monitored: Sharpe ratio, maximum drawdown, correlation</li>
+        </ul>
+
+        <h4>Concentration Risk</h4>
+        <ul>
+            <li>Maximum <strong>60% allocation</strong> to single protocol</li>
+            <li>Maximum <strong>50% allocation</strong> to single strategy</li>
+            <li>Asset diversification (currently BTC, USDC focus)</li>
+        </ul>
+      </section>
+
+      <!-- ==================== SECTION 7 ==================== -->
+      <section id="security" class="doc-section">
+        <h2>7. Security Infrastructure</h2>
+        
+        <h3>Multi-Layer Security Model</h3>
+        <p>G12 Labs implements a defense-in-depth security strategy:</p>
+        
+        <div class="step-flow">
+            <div class="step-item">
+                <div class="step-num">1</div>
+                <div><strong>Layer 1:</strong> Enzyme Finance (Audited Infrastructure)</div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">2</div>
+                <div><strong>Layer 2:</strong> Multi-Signature Governance (2-of-3)</div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">3</div>
+                <div><strong>Layer 3:</strong> Protocol Whitelisting (Blue-chip only)</div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">4</div>
+                <div><strong>Layer 4:</strong> Automated Monitoring (24/7 Alerts)</div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">5</div>
+                <div><strong>Layer 5:</strong> Human Oversight (Expert Review)</div>
+            </div>
+        </div>
+        
+        <h3>Security Audits</h3>
+        <div class="two-col-grid">
+            <div>
+                <h4>Infrastructure Audits (Enzyme Finance)</h4>
+                <ul class="check-list">
+                    <li>ChainSecurity — Full audit (2023)</li>
+                    <li>OpenZeppelin — Security review (2023)</li>
+                    <li>Trail of Bits — Code audit (2022)</li>
+                    <li>5+ years of production testing</li>
+                    <li>Bug bounty program active</li>
+                </ul>
+            </div>
+            <div>
+                <h4>G12 Labs Specific</h4>
+                <ul>
+                    <li><span style="color:var(--warning);">⚠️</span> Third-party audit in progress (TBD)</li>
+                    <li><span style="color:var(--success);">✓</span> All configurations verifiable on-chain</li>
+                    <li><span style="color:var(--success);">✓</span> Open for community review</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Incident Response Plan</h3>
+        <div class="grid-cards">
+            <div class="info-card">
+                <i class="ph ph-eye info-card-icon"></i>
+                <span class="info-card-title">Detection</span>
+                <p style="font-size:0.9rem; margin:0;">Real-time alerts for anomalies</p>
+            </div>
+            <div class="info-card">
+                <i class="ph ph-warning info-card-icon"></i>
+                <span class="info-card-title">Response</span>
+                <ul style="font-size:0.85rem; margin:0; padding-left:1rem;">
+                    <li>Immediate multi-sig meeting</li>
+                    <li>Position assessment and risk evaluation</li>
+                    <li>Communication to depositors within 24h</li>
+                    <li>Emergency procedures if needed</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <i class="ph ph-first-aid-kit info-card-icon"></i>
+                <span class="info-card-title">Recovery</span>
+                <ul style="font-size:0.85rem; margin:0; padding-left:1rem;">
+                    <li>Detailed post-mortem analysis</li>
+                    <li>Implementation of preventive measures</li>
+                    <li>Compensation policy (case-by-case basis)</li>
+                    <li>Public disclosure of findings</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Insurance & Backstops</h3>
+        <h4>Current Status</h4>
+        <ul>
+            <li>Enzyme Finance has operated 5+ years without major exploits</li>
+            <li>No formal insurance policy (DeFi insurance market immature)</li>
+            <li>Team committed to transparent communication in case of issues</li>
+        </ul>
+
+        <h4>Future Plans</h4>
+        <ul>
+            <li>Exploring Nexus Mutual coverage</li>
+            <li>Building reserve fund from performance fees</li>
+            <li>Partnership discussions with insurance protocols</li>
+        </ul>
+      </section>
+
+      <!-- ==================== SECTION 8 ==================== -->
+      <section id="smart-contracts" class="doc-section">
+        <h2>8. Smart Contracts & Addresses</h2>
+        
+        <div class="info-card" style="margin-bottom: 20px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                    <span class="info-card-title">bG12 Token — BTC Yield Vault</span>
+                    <p style="font-size:0.9rem; margin-bottom:4px;">Symbol: <strong>bG12</strong> | Network: <strong>Ethereum</strong> | Type: ERC-20 (Enzyme Vault Share) | Decimals: 18</p>
+                </div>
+                <span class="meta-tag">LIVE</span>
+            </div>
+            <div class="address-box">
+                <span id="addr-bg12">0x22B46549f9906c384436C60983ACcC5b191205cf</span>
+                <button class="copy-btn" onclick="navigator.clipboard.writeText('0x22B46549f9906c384436C60983ACcC5b191205cf')"><i class="ph ph-copy"></i></button>
+            </div>
+            <p style="font-size:0.85rem; margin-top:10px; margin-bottom:0;"><a href="https://etherscan.io/address/0x22B46549f9906c384436C60983ACcC5b191205cf" target="_blank" style="color:var(--magma-core);">View on Etherscan →</a></p>
+        </div>
+
+        <div class="info-card" style="margin-bottom: 20px;">
+            <span class="info-card-title">Manager Address (Multi-Sig)</span>
+            <p style="font-size:0.9rem; margin-bottom:4px;">Type: <strong>Gnosis Safe 2-of-3</strong> | Network: <strong>Ethereum</strong></p>
+            <div class="address-box">
+                <span id="addr-manager">0x4ce70dcd34c283f890c37ee1185924e264bfd14e</span>
+                <button class="copy-btn" onclick="navigator.clipboard.writeText('0x4ce70dcd34c283f890c37ee1185924e264bfd14e')"><i class="ph ph-copy"></i></button>
+            </div>
+            <p style="font-size:0.85rem; margin-top:10px; margin-bottom:0;"><a href="https://etherscan.io/address/0x4ce70dcd34c283f890c37ee1185924e264bfd14e" target="_blank" style="color:var(--magma-core);">View on Etherscan →</a></p>
+        </div>
+
+        <h4>Key Integrated Protocols</h4>
+        <ul>
+            <li>Uniswap V3 Router (Arbitrum)</li>
+            <li>Aave V3 Pool (Arbitrum)</li>
+            <li>Additional integrations via Enzyme adapters</li>
+        </ul>
+        
+        <h3>Denomination Asset</h3>
+        <div class="info-card">
+            <span class="info-card-title">Accounting Currency: USDC (USD Coin)</span>
+            <p style="font-size:0.9rem; margin-bottom:4px;">Address: <code style="background:#111; padding:2px 6px; border-radius:4px;">0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48</code> (Ethereum)</p>
+            <p style="font-size:0.9rem; margin:0; color:#888;"><strong>Reason:</strong> Stablecoin ensures clear performance tracking. All vault performance and share prices are calculated in USDC.</p>
+        </div>
+      </section>
+
+      <!-- ==================== SECTION 9 ==================== -->
+      <section id="governance" class="doc-section">
+        <h2>9. Governance & Multi-Signature</h2>
+        
+        <h3>Multi-Signature Configuration</h3>
+        <div class="schema-box">
+            <div style="font-size:3rem; font-weight:800; color:var(--magma-core);">2-of-3</div>
+            <p style="margin:10px 0 0 0; color:#888;">Gnosis Safe v1.4.1 | 2 signatures required | 3 total owners</p>
+        </div>
+
+        <h4>Why 2-of-3?</h4>
+        <ul class="check-list">
+            <li><strong>Security:</strong> Requires compromise of 2 wallets (not just 1)</li>
+            <li><strong>Redundancy:</strong> Can operate if 1 signer temporarily unavailable</li>
+            <li><strong>Best Practice:</strong> Standard configuration for small teams</li>
+            <li><strong>Flexibility:</strong> Balance between security and operational efficiency</li>
+        </ul>
+
+        <h3>Governance Scope</h3>
+        <div class="two-col-grid">
+            <div>
+                <h4 style="color:var(--warning);">Actions Requiring Multi-Sig Approval</h4>
+                <ul style="display: grid; gap: 8px;">
+                    <li><i class="ph ph-check-circle" style="color:var(--magma-core);"></i> Vault configuration changes</li>
+                    <li><i class="ph ph-check-circle" style="color:var(--magma-core);"></i> Adding new protocol integrations</li>
+                    <li><i class="ph ph-check-circle" style="color:var(--magma-core);"></i> Modifying fee structure</li>
+                    <li><i class="ph ph-check-circle" style="color:var(--magma-core);"></i> Emergency pause/unpause</li>
+                    <li><i class="ph ph-check-circle" style="color:var(--magma-core);"></i> Upgrading vault infrastructure</li>
+                    <li><i class="ph ph-check-circle" style="color:var(--magma-core);"></i> Large rebalancing operations</li>
+                    <li><i class="ph ph-check-circle" style="color:var(--magma-core);"></i> Changing manager address</li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color:var(--success);">Automated Actions (No Multi-Sig)</h4>
+                <ul>
+                    <li>Regular rebalancing within approved protocols</li>
+                    <li>Yield harvesting and compounding</li>
+                    <li>Position monitoring and alerts</li>
+                    <li>Fee collection</li>
+                    <li>Share minting/burning (user-initiated)</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Decision-Making Process</h3>
+        <h4>Standard Operations</h4>
+        <ol>
+            <li>Strategy team proposes action</li>
+            <li>Multi-sig signatories review proposal</li>
+            <li>2 signatures required to execute</li>
+            <li>Transaction executed on-chain</li>
+            <li>Community notification (if material)</li>
+        </ol>
+
+        <h4>Emergency Procedures</h4>
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <td><strong>Critical security issues</strong></td>
+                    <td>&lt;4h response time</td>
+                </tr>
+                <tr>
+                    <td><strong>Material protocol risks</strong></td>
+                    <td>&lt;24h response time</td>
+                </tr>
+                <tr>
+                    <td><strong>Routine operations</strong></td>
+                    <td>1-3 days review period</td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>Transparency Commitments</h3>
+        <div class="two-col-grid">
+            <div class="info-card">
+                <span class="info-card-title" style="color:var(--success);">What's Public</span>
+                <ul style="font-size:0.9rem; margin:10px 0 0 0;">
+                    <li>All multi-sig transactions on Etherscan</li>
+                    <li>Vault configuration on Enzyme</li>
+                    <li>Holdings and positions (real-time)</li>
+                    <li>Performance metrics</li>
+                    <li>Fee calculations</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <span class="info-card-title" style="color:var(--neutral);">What's Private</span>
+                <ul style="font-size:0.9rem; margin:10px 0 0 0;">
+                    <li>Identity of individual signatories (security reasons)</li>
+                    <li>Internal strategy discussions</li>
+                    <li>Proprietary trading algorithms</li>
+                </ul>
+            </div>
+        </div>
+      </section>
+
+      <!-- ==================== SECTION 10 ==================== -->
+      <section id="transparency" class="doc-section">
+        <h2>10. Transparency & Verification</h2>
+        <p>Don't trust, verify. Here is how you can check everything yourself:</p>
+        
+        <h3>How to Verify Everything</h3>
+        <div class="step-flow">
+            <div class="step-item">
+                <div class="step-num">1</div>
+                <div>
+                    <strong>Verify Smart Contracts:</strong><br>
+                    Visit Etherscan, check the "Contract" tab to see verified code matching Enzyme Finance GlobalConfigProxy. Check contract creation date.
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">2</div>
+                <div>
+                    <strong>Verify Multi-Sig Configuration:</strong><br>
+                    Visit Safe Interface, check "Settings" to see 2-of-3 configuration. Review transaction history. Verify all critical actions require multiple signatures.
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">3</div>
+                <div>
+                    <strong>Verify Vault Configuration:</strong><br>
+                    Visit Enzyme Vault, check "Policies" tab (Deposit minimum: 1 USDC, Redemption asset: USDC only, Lock-up period: 3 days). Check "Fees" tab (Management: 1%, Performance: 20% with HWM, Exit: 0.2%).
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">4</div>
+                <div>
+                    <strong>Verify Current Holdings:</strong><br>
+                    Same Enzyme vault page, check "Portfolio" tab. See real-time allocation: Token balances, Uniswap V3 positions, Aave V3 positions. Verify against claimed strategy.
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">5</div>
+                <div>
+                    <strong>Verify Performance:</strong><br>
+                    Check "Financials" tab on Enzyme. Review: Share price history, Returns (inception-to-date), Sharpe ratio, Volatility metrics.
+                </div>
+            </div>
+        </div>
+        
+        <h3>Real-Time Monitoring</h3>
+        <h4>Public Dashboards</h4>
+        <ul>
+            <li><strong>Enzyme Vault Interface</strong> — most comprehensive</li>
+            <li><strong>Etherscan</strong> — transaction history</li>
+            <li><strong>Safe Interface</strong> — governance actions</li>
+        </ul>
+
+        <h4>What You Can Track</h4>
+        <ul class="check-list">
+            <li>Every deposit and withdrawal</li>
+            <li>Every rebalancing transaction</li>
+            <li>Every protocol interaction</li>
+            <li>Fee collections</li>
+            <li>Share price evolution</li>
+            <li>NAV (Net Asset Value)</li>
+        </ul>
+
+        <h3>Data Export</h3>
+        <h4>Available Data</h4>
+        <ul>
+            <li>Historical transactions (CSV export via Etherscan)</li>
+            <li>Performance metrics (API via Enzyme)</li>
+            <li>Holdings evolution (snapshot via Enzyme)</li>
+            <li>Fee calculations (on-chain data)</li>
+        </ul>
+
+        <h3>Community Verification</h3>
         <p>
-            Cryptocurrencies and DeFi involve significant risks. You could lose all or part of your capital. Risks include volatility (+/- 50% in 24h), smart contract bugs, third-party protocol exploits, and regulatory changes. Past performance is not indicative of future results.
+            <strong>Open Review:</strong> All code is verifiable on-chain. Configuration is auditable by anyone. Community members can analyze strategies. Findings and suggestions welcome at <a href="mailto:info@g12labs.com" style="color:var(--magma-core);">info@g12labs.com</a>
+        </p>
+      </section>
+
+      <!-- ==================== SECTION 11 ==================== -->
+      <section id="legal" class="doc-section">
+        <h2>11. Legal & Disclaimer</h2>
+        
+        <h3>Non-Custodial Service</h3>
+        <p>G12 Labs operates a <strong>100% non-custodial model</strong>:</p>
+        <ul class="check-list">
+            <li>You keep total control of your funds</li>
+            <li>Your funds remain in your wallet (via Vault Tokens)</li>
+            <li>We never access your private keys</li>
+            <li>We do NOT act as a custodian</li>
+            <li>You can verify everything on-chain</li>
+        </ul>
+        <p>
+            <strong>What This Means:</strong> Your G12 tokens are ERC-20 tokens in YOUR wallet. You control when to redeem. Even if G12 Labs disappears, you own your vault shares.
         </p>
 
-        <h4>Not Financial Advice</h4>
-        <p>
-            This document is for informational purposes only. It does not constitute investment, tax, or legal advice. Consult a qualified professional before any decision.
-        </p>
+        <h3>Investment Risks</h3>
+        <div class="callout-warning">
+            <strong>⚠️ Warning:</strong> Cryptocurrencies and DeFi involve significant risks. You could lose all or part of your capital.
+        </div>
 
-        <h4>Jurisdiction</h4>
-        <p>
-            G12 Labs services may not be available in certain jurisdictions. It is your responsibility to verify legality in your country.
-        </p>
+        <h4>Key Risks</h4>
+        <ul class="risk-list">
+            <li><strong>Market Risk:</strong> Crypto prices are extremely volatile (+/- 50% or more in 24h)</li>
+            <li><strong>Smart Contract Risk:</strong> Bugs in smart contracts can lead to loss of funds</li>
+            <li><strong>Protocol Risk:</strong> Third-party protocols (Aave, Uniswap) could be exploited</li>
+            <li><strong>Liquidation Risk:</strong> Leveraged positions could be liquidated in market downturns</li>
+            <li><strong>Impermanent Loss:</strong> Liquidity provision can result in losses vs holding</li>
+            <li><strong>Regulatory Risk:</strong> Laws may change and affect DeFi operations</li>
+            <li><strong>Operational Risk:</strong> Human errors or system failures</li>
+            <li><strong>Liquidity Risk:</strong> May not be able to exit quickly (72h cooldown)</li>
+        </ul>
 
-        <p style="margin-top:2rem; border-top:1px solid #333; padding-top:1rem; font-size:0.8rem;">
-            <em>Last Update: January 09, 2026.</em>
+        <h4>Risk Mitigation</h4>
+        <ul class="check-list">
+            <li>Blue-chip protocols only</li>
+            <li>Multi-signature governance</li>
+            <li>Moderate leverage (&lt;2x)</li>
+            <li>24/7 monitoring</li>
+            <li>Transparent operations</li>
+        </ul>
+        <p><strong>Important:</strong> Past performance is not indicative of future results.</p>
+
+        <h3>Not Financial Advice</h3>
+        <p>This document is for <strong>informational purposes only</strong>. It does not constitute:</p>
+        <ul>
+            <li>Investment advice</li>
+            <li>Tax advice</li>
+            <li>Legal advice</li>
+            <li>Financial planning advice</li>
+        </ul>
+
+        <h4>Before Investing</h4>
+        <ul class="check-list">
+            <li>Do your own research (DYOR)</li>
+            <li>Consult qualified professionals</li>
+            <li>Only invest what you can afford to lose</li>
+            <li>Understand the risks completely</li>
+            <li>Verify all information independently</li>
+        </ul>
+
+        <h3>Jurisdiction & Access</h3>
+        <p>
+            <strong>Geographic Restrictions:</strong> G12 Labs services may not be available in certain jurisdictions due to local regulations. It is your responsibility to verify legality in your country.
         </p>
+        <p>
+            <strong>No KYC Required:</strong> We do not collect personal information. Fully decentralized and permissionless. Responsibility on users to comply with local laws.
+        </p>
+        
+        <h3>Service Terms</h3>
+        <h4>No Guarantees</h4>
+        <ul>
+            <li>We do not guarantee any specific returns</li>
+            <li>We do not guarantee uninterrupted service</li>
+            <li>We do not guarantee error-free operations</li>
+            <li>Smart contracts may contain bugs</li>
+        </ul>
+
+        <h4>Liability Limitation</h4>
+        <ul>
+            <li>Use at your own risk</li>
+            <li>We are not liable for losses</li>
+            <li>No insurance or compensation guarantees</li>
+            <li>Non-custodial = you bear the risk</li>
+        </ul>
+
+        <h4>Service Changes</h4>
+        <ul>
+            <li>We may modify strategies</li>
+            <li>We may add/remove protocols</li>
+            <li>We may adjust fees (with notice)</li>
+            <li>We may discontinue service</li>
+        </ul>
+
+        <h3>Contact & Support</h3>
+        <div class="two-col-grid">
+            <div class="info-card">
+                <i class="ph ph-envelope info-card-icon"></i>
+                <span class="info-card-title">General Inquiries</span>
+                <p style="font-size:0.9rem; margin:0;">
+                    Email: <a href="mailto:info@g12labs.com" style="color:var(--magma-core);">info@g12labs.com</a><br>
+                    Website: <a href="https://g12labs.com" target="_blank" style="color:var(--magma-core);">https://g12labs.com</a>
+                </p>
+            </div>
+            <div class="info-card">
+                <i class="ph ph-wrench info-card-icon"></i>
+                <span class="info-card-title">Technical Issues</span>
+                <p style="font-size:0.9rem; margin:0;">
+                    Report via email with transaction details.<br>
+                    Include wallet address and timestamp.<br>
+                    We aim to respond within 48h.
+                </p>
+            </div>
+        </div>
+
+        <div style="margin-top:3rem; border-top:1px solid #333; padding-top:1.5rem;">
+            <p style="font-size:0.85rem; color:#666; margin-bottom:0.5rem;">
+                <strong>Document Information</strong>
+            </p>
+            <p style="font-size:0.85rem; color:#666; margin-bottom:0;">
+                Version: 2.0 | Last Updated: January 28, 2026 | Status: Live / Production | Network: Ethereum
+            </p>
+            <p style="font-size:0.8rem; color:#555; margin-top:1rem;">
+                © 2026 G12 Labs. All rights reserved.<br>
+                This litepaper is subject to updates as the protocol evolves. Always refer to the latest version at <a href="https://g12labs.com/docs" style="color:var(--magma-core);">https://g12labs.com/docs</a>
+            </p>
+            <p style="font-size:0.8rem; color:#555;">
+                For questions, suggestions, or partnership inquiries: <a href="mailto:info@g12labs.com" style="color:var(--magma-core);">info@g12labs.com</a>
+            </p>
+        </div>
       </section>
 
     </main>
   </div>
-
   <footer class="site-footer">
     <div class="container">
       
