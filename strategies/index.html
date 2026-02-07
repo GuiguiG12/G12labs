@@ -916,55 +916,59 @@
       </div>
     </div>
  <footer class="site-footer">
-    <div class="container">
+  <!-- PAS de .container ici pour que le background noir prenne toute la largeur -->
+  
+  <div style="max-width: var(--container-max); margin: 0 auto; padding: 0 24px;">
+    
+    <div class="footer-columns">
+      <div class="footer-column">
+        <h3 class="footer-heading">Platform</h3>
+        <ul class="footer-links-list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/strategies">Strategies</a></li>
+          <li><a href="/#live-access">Live Launch</a></li>
+          <li><a href="/#roadmap">Roadmap</a></li>
+        </ul>
+      </div>
       
-      <div class="footer-columns">
-        <div class="footer-column">
-          <h3 class="footer-heading">Platform</h3>
-          <ul class="footer-links-list">
-            <li><a href="/">Home</a></li>
-            <li><a href="/strategies">Strategies</a></li>
-            <li><a href="/#live-access">Live Launch</a></li>
-            <li><a href="/#roadmap">Roadmap</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h3 class="footer-heading">Resources</h3>
-          <ul class="footer-links-list">
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/access">Access</a></li>
-            <li><a href="/#faq">FAQ</a></li>
-            <li><a href="/docs" target="_blank">Lite paper</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h3 class="footer-heading">Contact</h3>
-          <ul class="footer-links-list">
-            <li><a href="mailto:info@g12labs.com">info@g12labs.com</a></li>
-          </ul>
-        </div>
+      <div class="footer-column">
+        <h3 class="footer-heading">Resources</h3>
+        <ul class="footer-links-list">
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/access">Access</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/docs" target="_blank">Lite paper</a></li>
+        </ul>
       </div>
-
-      <div class="footer-main" style="border: none; padding: 20px 0;">
-        <img src="fulllogo_transparent_nobuffer.png" alt="" class="footer-main-logo-img" />
+      
+      <div class="footer-column">
+        <h3 class="footer-heading">Contact</h3>
+        <ul class="footer-links-list">
+          <li><a href="mailto:info@g12labs.com">info@g12labs.com</a></li>
+        </ul>
       </div>
-
-      <div class="footer-bottom" style="border: none;">
-        <a href="#" class="footer-back-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
-          <span>↑ Back to top</span>
-        </a>
-
-        <div class="footer-bottom-right">
-          <span>© 2026 G12 Labs</span>
-          <span class="sep">·</span>
-          <a href="/legal">Terms</a>
-          <span class="sep">·</span>
-          <a href="/privacy">Privacy</a>
-        </div>
-      </div>
-
     </div>
-  </footer>
+
+    <div class="footer-main" style="border: none; padding: 20px 0;">
+      <img src="fulllogo_transparent_nobuffer.png" alt="" class="footer-main-logo-img" />
+    </div>
+
+    <div class="footer-bottom" style="border: none;">
+      <a href="#" class="footer-back-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+        <span>↑ Back to top</span>
+      </a>
+
+      <div class="footer-bottom-right">
+        <span>© 2026 G12 Labs</span>
+        <span class="sep">·</span>
+        <a href="/legal">Terms</a>
+        <span class="sep">·</span>
+        <a href="/privacy">Privacy</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
 
   <script>
     (function () {
