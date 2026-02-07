@@ -350,7 +350,7 @@
     }
     body.menu-open { overflow: hidden; }
     @media (min-width: 64rem) { .nav-menu { display: none !important; } }
-    /* =========================================
+     /* =========================================
        STRATEGIES PAGE LAYOUT
        ========================================= */
     .hero-section {
@@ -459,7 +459,128 @@
         display: flex; justify-content: space-between; align-items: baseline;
         padding-bottom: 12px; border-bottom: 1px solid #E5E7EB;
     }
-    .stat-row:last-child { border-bottom: none; }
+    .stat-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+    /* ACCORDÉON FEES */
+.fees-section {
+  margin-top: 1px;
+  padding-top: 1px;
+}
+
+.fees-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 0;
+  user-select: none;
+  transition: opacity 0.2s;
+}
+
+.fees-header:hover {
+  opacity: 0.7;
+}
+
+.fees-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fees-chevron {
+  transition: transform 0.3s ease;
+  font-size: 16px;
+  color: #9CA3AF;
+}
+
+.fees-chevron.open {
+  transform: rotate(180deg);
+}
+
+.fees-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.fees-content.open {
+  max-height: 300px;
+}
+
+.fee-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 12px;
+}
+
+.fee-label {
+  color: #6B7280;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fee-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* TOOLTIP INFO */
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #E5E7EB;
+  color: #6B7280;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: help;
+  position: relative;
+}
+
+.info-icon:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: 0;
+  left: auto;
+  bottom: calc(100% + 8px);
+  transform: none;
+  background: #4F46E5;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-family: 'Inter', sans-serif;
+  max-width: 200px;
+  white-space: normal;
+  text-align: left;
+}
+
+.info-icon:hover::before {
+  content: '';
+  position: absolute;
+  right: 40px;
+  left: auto;
+  bottom: calc(100% + 2px);
+  transform: none;
+  border: 6px solid transparent;
+  border-top-color: #4F46E5;
+  z-index: 1000;
+}
     
     .stat-label { font-size: 13px; color: #666; font-weight: 500; }
     .stat-val { font-family: 'JetBrains Mono'; font-size: 15px; font-weight: 700; color: #111; }
@@ -507,6 +628,10 @@
         background: #F3F4F6;
         color: #555; font-size: 14px; line-height: 1.6;
     }
+    .fees-content a:hover {
+  color: var(--magma-core) !important;
+  border-color: var(--magma-core) !important;
+}
 
     /* =========================================
        FOOTER (EXACT COPY)
@@ -586,12 +711,12 @@
     <div class="vault-container">
       <div class="vault-header">
         <div class="vault-title">
-          <img src="/favicon_arbitrum.svg" class="vault-net-icon" alt="Arb">
-          <span>G12 Labs DeFi Yield</span>
+          <img src="/ethereum-eth-logo.png" class="vault-net-icon" alt="Arb">
+          <span>G12 Labs BTC Yield</span>
         </div>
         <div class="vault-badges">
-          <span class="badge">Network: Arbitrum</span>
-          <span class="badge">Symbol: G12</span>
+          <span class="badge">Network: Ethereum</span>
+          <span class="badge">Symbol: bG12</span>
           <span class="badge">Timelock: 3 days</span>
         </div>
       </div>
@@ -622,7 +747,7 @@
             <span class="stat-val skeleton" id="depositors-arb">—</span>
           </div>
           <div class="stat-row">
-            <span class="stat-label">Avg Monthly Return</span>
+            <span class="stat-label">Daily Performance</span>
             <span class="stat-val skeleton" style="color:#10B981" id="monthly-arb">—</span>
           </div>
           <div class="stat-row">
@@ -640,91 +765,53 @@
               <div class="risk-dot"></div><div class="risk-dot"></div>
             </div>
           </div>
-          
-          <button class="btn-deposit" onclick="window.location.href='/access/?vault=defi'">Deposit USDC</button>
-          
-          <a href="/docs" target="_blank" class="btn-litepaper">
-            <i class="ph ph-file-text"></i> View Details & Risks
-          </a>
-        </div>
-      </div>
-      <div class="vault-explainer">
-        DeFi yield strategy on Arbitrum: a strategy primarily designed to increase BTC reserves through various DeFi protocols. The main risk stems from Bitcoin price volatility. Time serves as the hedge: the longer you maintain your position, the greater your potential for strong performance.
-      </div>
-    </div>
-
-    <div class="vault-container">
-      <div class="vault-header">
-        <div class="vault-title">
-          <img src="/favicon_base.jpeg" class="vault-net-icon" alt="Base">
-          <span>G12 Labs Stable Yield</span>
-        </div>
-        <div class="vault-badges">
-          <span class="badge">Network: Base</span>
-          <span class="badge">Symbol: xG12</span>
-          <span class="badge">Timelock: 3 days</span>
-        </div>
-      </div>
-
-      <div class="vault-body">
-        <div class="vault-chart-area">
-          <div class="chart-controls">
-            <div class="chart-group metric-btns">
-                <button class="chart-btn" onclick="setChartMetric('stable', 'share_price')">Share Price</button>
-                <button class="chart-btn active" onclick="setChartMetric('stable', 'aum')">AUM</button>
-            </div>
-            <div class="chart-group range-btns">
-                <button class="chart-btn active" onclick="updateChartRange('stable', '1W')">1W</button>
-                <button class="chart-btn" onclick="updateChartRange('stable', '1M')">1M</button>
-                <button class="chart-btn" onclick="updateChartRange('stable', 'ALL')">ALL</button>
-            </div>
-          </div>
-          <div id="chart-stable" class="echart-container"></div>
-        </div>
-
-        <div class="vault-sidebar">
-          <div class="stat-row">
-            <span class="stat-label">Assets Under Management</span>
-            <span class="stat-val highlight skeleton" id="aum-base">$—</span>
-          </div>
-          <div class="stat-row">
-            <span class="stat-label">Depositors</span>
-            <span class="stat-val skeleton" id="depositors-base">—</span>
-          </div>
-          <div class="stat-row">
-            <span class="stat-label">Avg Monthly Return</span>
-            <span class="stat-val skeleton" style="color:#10B981" id="monthly-base">—</span>
-          </div>
-          <div class="stat-row">
-            <span class="stat-label">Share Price</span>
-            <span class="stat-val skeleton" id="shareprice-base">$—</span>
-          </div>
-          <div class="stat-row">
-            <span class="stat-label">Denomination</span>
-            <span class="stat-val">USDC</span>
-          </div>
-          <div class="stat-row">
-            <span class="stat-label">Risk Level</span>
-            <div class="risk-meter">
-              <div class="risk-dot on-blue"></div><div class="risk-dot"></div><div class="risk-dot"></div>
-              <div class="risk-dot"></div><div class="risk-dot"></div>
-            </div>
-          </div>
-
-          <button class="btn-deposit" onclick="window.location.href='/access/?vault=stable'">Deposit USDC</button>
-          
-          <a href="/docs" target="_blank" class="btn-litepaper">
-            <i class="ph ph-file-text"></i> View Details & Risks
-          </a>
-        </div>
-      </div>
-      <div class="vault-explainer">
-        Stable yield strategy on Base: conservative stable allocation with a focus on low volatility and predictable yield. Optimized routing and strict exposure limits.
-      </div>
-    </div>
-
+          <!-- FEES SECTION -->
+<div class="fees-section">
+  <div class="fees-header" onclick="toggleFees()">
+    <span class="fees-title">
+      <span class="fees-chevron" id="fees-chevron">▼</span>
+      Fees & Costs
+    </span>
   </div>
-
+  <div class="fees-content" id="fees-content">
+    <div class="fee-item">
+      <span class="fee-label">Management Fee</span>
+      <span class="fee-value skeleton" id="mgmt-fee-arb">—</span>
+    </div>
+    <div class="fee-item">
+      <span class="fee-label">Performance Fee</span>
+      <span class="fee-value skeleton" id="perf-fee-arb">—</span>
+    </div>
+    <div class="fee-item">
+      <span class="fee-label">Exit Fee</span>
+      <span class="fee-value skeleton" id="exit-fee-arb">—</span>
+    </div>
+    <div class="fee-item">
+      <span class="fee-label">
+        High Watermark
+        <span class="info-icon" data-tooltip="Share price under which performance fees cannot be claimed">i</span>
+      </span>
+      <span class="fee-value skeleton" id="hwm-arb">—</span>
+    </div>
+    <div style="margin-top: 12px; padding-top: 8px; border-top: 1px solid #E5E7EB; text-align: right;">
+  <a href="https://g12labs.com/docs/#architecture" target="_blank" style="font-size: 11px; color: #6B7280; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: color 0.2s;">
+    <span>About Fees</span>
+    <i class="ph ph-arrow-right" style="font-size: 12px;"></i>
+  </a>
+</div>
+  </div>
+</div>
+          <button class="btn-deposit" onclick="/access">Deposit USDC</button>
+          
+          <a href="/docs" target="_blank" class="btn-litepaper">
+            <i class="ph ph-file-text"></i> View Details & Risks
+          </a>
+        </div>
+      </div>
+      <div class="vault-explainer">
+        DeFi yield strategy on Arbitrum: diversified stable yield across top protocols with strict risk gating, low leverage, and weekly rebalancing. Focus on sustainable yield and capital preservation.
+      </div>
+    </div>
   <footer class="site-footer">
     <div class="container">
       
@@ -829,24 +916,40 @@
     })();
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
   <script>
+    // Configuration
+    const SUPABASE_URL = "https://ucrvaqztvfnphhoqcbpo.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVjcnZhcXp0dmZucGhob3FjYnBvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczNTY2MzQsImV4cCI6MjA4MjkzMjYzNH0.l_983umaG_ojeDjXJ4DqWhPNEw9RotNApGLpl_ASkZk";
     const API_URL = "https://ucrvaqztvfnphhoqcbpo.supabase.co/functions/v1/FIRECRAWL_DATA";
+
+    let supabaseClient = null;
+
+    // Initialize Supabase après que la lib soit chargée
+    window.addEventListener('load', () => {
+      if (window.supabase) {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        console.log("✅ Supabase initialized");
+        // Lance le chargement des vaults
+        Promise.all([loadVault("defi"), loadVault("stable")]);
+      } else {
+        console.error("❌ Supabase library not loaded!");
+      }
+    });
 
     const VAULT_MAP = {
       defi:   { network: "arbitrum", color: "#E85A04", ids: { aum: "aum-arb", dep: "depositors-arb", mon: "monthly-arb", sp: "shareprice-arb" }, chartId: "chart-defi" },
       stable: { network: "base",     color: "#0052FF", ids: { aum: "aum-base", dep: "depositors-base", mon: "monthly-base", sp: "shareprice-base" }, chartId: "chart-stable" }
     };
 
-    const state = {
-      charts: {},
-      data: {},
-    };
-
+    const state = { charts: {}, data: {} };
     const nfUsd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 });
 
     function safeText(id, value) {
       const el = document.getElementById(id);
       if (el) {
+        console.log(`✅ Setting ${id} to:`, value);
         el.textContent = value;
         el.classList.remove('skeleton');
       }
@@ -942,11 +1045,8 @@
           type: "value",
           show: true,
           scale: true,
-          boundaryGap: ['20%', '20%'], /* PADDING AJOUTÉ ICI (CENTRE LA COURBE) */
-          splitLine: { 
-            show: true, 
-            lineStyle: { color: "#E5E7EB", type: "dashed" } 
-          },
+          boundaryGap: ['20%', '20%'],
+          splitLine: { show: true, lineStyle: { color: "#E5E7EB", type: "dashed" } },
           axisLabel: { color: "#9CA3AF", fontSize: 11 }
         },
         series: [{
@@ -963,10 +1063,7 @@
             ])
           }
         }],
-        graphic: emptyText ? [{
-          type: "text", left: "center", top: "middle",
-          style: { text: emptyText, fontSize: 14, fill: "#9CA3AF" }
-        }] : []
+        graphic: emptyText ? [{ type: "text", left: "center", top: "middle", style: { text: emptyText, fontSize: 14, fill: "#9CA3AF" } }] : []
       };
     }
 
@@ -1001,42 +1098,180 @@
       const pts = filterByRange(d.series?.[metric] || [], range);
       const emptyText = pts.length < 2 ? "Waiting for data..." : "";
       
+      console.log(`📊 Rendering ${type}:`, { metric, range, points: pts.length });
+      
       inst.setOption(chartOption(metric, pts.length ? pts : [{t:Date.now(),v:0}], cfg.color, emptyText), true);
       inst.resize();
     }
+
+    // Toggle Fees Section
+function toggleFees() {
+  const content = document.getElementById('fees-content');
+  const chevron = document.getElementById('fees-chevron');
+  
+  if (content.classList.contains('open')) {
+    content.classList.remove('open');
+    chevron.classList.remove('open');
+  } else {
+    content.classList.add('open');
+    chevron.classList.add('open');
+  }
+}
 
     async function loadVault(type) {
       const cfg = VAULT_MAP[type];
       if (!cfg) return;
       
-      const snap = await api("get", cfg.network);
-      safeText(cfg.ids.aum, fmtUsd(snap.aum));
-      safeText(cfg.ids.dep, (snap.depositors ?? "—").toString());
-      safeText(cfg.ids.sp, fmtSharePrice(snap.share_price));
+      console.log(`🔄 Loading vault: ${type}`);
       
-      const monEl = document.getElementById(cfg.ids.mon);
-      if (monEl) {
-        monEl.textContent = fmtMonthly(snap.monthly_return);
-        monEl.classList.remove('skeleton');
-        setMonthlyColor(monEl, snap.monthly_return);
-      }
+      if (type === 'defi') {
+        try {
+          if (!supabaseClient) {
+            console.error("❌ Supabase client not initialized");
+            return;
+          }
 
-      const rows = await api("history", cfg.network);
-      state.data[type] = {
-        // Si c'est 'stable' on met 'aum', sinon 'share_price'
-        metric: type === 'stable' ? 'aum' : 'share_price',
-        range: "1W",
-        series: {
-          aum: toPointArray(rows, "aum"),
-          share_price: toPointArray(rows, "share_price")
+          console.log("📡 Fetching from Supabase...");
+          
+          const { data: vault, error: vaultError } = await supabaseClient
+            .from('vaults')
+            .select('id')
+            .eq('symbol', 'bG12')
+            .single();
+
+          if (vaultError) throw vaultError;
+          if (!vault) throw new Error('Vault not found');
+
+          console.log("✅ Vault found:", vault);
+
+          const { data: latestSnapshot } = await supabaseClient
+            .from('vault_snapshots')
+            .select('*')
+            .eq('vault_id', vault.id)
+            .order('timestamp', { ascending: false })
+            .limit(1)
+            .single();
+
+          console.log("📸 Latest snapshot:", latestSnapshot);
+
+          if (latestSnapshot) {
+            safeText(cfg.ids.aum, fmtUsd(latestSnapshot.total_aum));
+            safeText(cfg.ids.dep, latestSnapshot.depositors.toString());
+            safeText(cfg.ids.sp, fmtSharePrice(latestSnapshot.share_price));
+          }
+
+          const { data: config } = await supabaseClient
+  .from('vault_configurations')
+  .select('*')
+  .eq('vault_id', vault.id)
+  .single();
+
+console.log("⚙️ Configuration:", config);
+
+if (config) {
+  // Management Fee (annuel)
+  const mgmtFee = config.management_fee ? (config.management_fee * 100).toFixed(2) + '%' : '—';
+  safeText('mgmt-fee-arb', mgmtFee);
+  
+  // Performance Fee
+  const perfFee = config.performance_fee ? (config.performance_fee * 100).toFixed(2) + '%' : '—';
+  safeText('perf-fee-arb', perfFee);
+  
+  // Exit Fee
+  const exitFee = config.exit_fee ? (config.exit_fee * 100).toFixed(2) + '%' : '—';
+  safeText('exit-fee-arb', exitFee);
+  
+  // High Watermark
+  const hwm = config.high_water_mark ? '$' + Number(config.high_water_mark).toFixed(4) : '—';
+  safeText('hwm-arb', hwm);
+}
+
+          const oneDayAgo = new Date();
+          oneDayAgo.setDate(oneDayAgo.getDate() - 1);
+
+          const { data: daySnapshots } = await supabaseClient
+            .from('vault_snapshots')
+            .select('share_price, timestamp')
+            .eq('vault_id', vault.id)
+            .gte('timestamp', oneDayAgo.toISOString())
+            .order('timestamp', { ascending: true });
+
+          let dailyPerf = null;
+          if (daySnapshots && daySnapshots.length >= 2) {
+            const startPrice = daySnapshots[0].share_price;
+            const endPrice = daySnapshots[daySnapshots.length - 1].share_price;
+            dailyPerf = ((endPrice - startPrice) / startPrice) * 100;
+          }
+
+          const monEl = document.getElementById(cfg.ids.mon);
+          if (monEl) {
+            monEl.textContent = fmtMonthly(dailyPerf);
+            monEl.classList.remove('skeleton');
+            setMonthlyColor(monEl, dailyPerf);
+          }
+
+          const { data: historySnapshots } = await supabaseClient
+            .from('vault_snapshots')
+            .select('timestamp, share_price, total_aum')
+            .eq('vault_id', vault.id)
+            .order('timestamp', { ascending: true });
+
+          const aumPts = (historySnapshots || []).map(s => ({
+            t: new Date(s.timestamp).getTime(),
+            v: Number(s.total_aum)
+          }));
+
+          const sharePts = (historySnapshots || []).map(s => ({
+            t: new Date(s.timestamp).getTime(),
+            v: Number(s.share_price)
+          }));
+
+          state.data[type] = {
+            metric: 'share_price',
+            range: "1W",
+            series: { aum: aumPts, share_price: sharePts }
+          };
+
+          if (!state.charts[type]) state.charts[type] = echarts.init(document.getElementById(cfg.chartId));
+          render(type);
+
+          console.log("✅ DeFi vault loaded");
+
+        } catch (error) {
+          console.error('❌ Error loading DeFi vault:', error);
         }
-      };
+      } else {
+        try {
+          const snap = await api("get", cfg.network);
+          safeText(cfg.ids.aum, fmtUsd(snap.aum));
+          safeText(cfg.ids.dep, (snap.depositors ?? "—").toString());
+          safeText(cfg.ids.sp, fmtSharePrice(snap.share_price));
+          
+          const monEl = document.getElementById(cfg.ids.mon);
+          if (monEl) {
+            monEl.textContent = fmtMonthly(snap.monthly_return);
+            monEl.classList.remove('skeleton');
+            setMonthlyColor(monEl, snap.monthly_return);
+          }
 
-      if (!state.charts[type]) state.charts[type] = echarts.init(document.getElementById(cfg.chartId));
-      render(type);
+          const rows = await api("history", cfg.network);
+          state.data[type] = {
+            metric: 'aum',
+            range: "1W",
+            series: {
+              aum: toPointArray(rows, "aum"),
+              share_price: toPointArray(rows, "share_price")
+            }
+          };
+
+          if (!state.charts[type]) state.charts[type] = echarts.init(document.getElementById(cfg.chartId));
+          render(type);
+        } catch (error) {
+          console.error("❌ Error loading Base vault:", error);
+        }
+      }
     }
 
-    window.addEventListener("load", () => Promise.all([loadVault("defi"), loadVault("stable")]));
     window.addEventListener("resize", () => Object.values(state.charts).forEach(c => c.resize()));
   </script>
 </body>
