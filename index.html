@@ -781,16 +781,16 @@
         <div class="vault-card-inner">
           <div>
             <span class="vault-row-num">Vault 01</span>
-            <div class="vault-row-name">G12 BTC Yield Pro</div>
+            <div class="vault-row-name" id="vault-btc-name">G12 Labs BTC Yield</div>
             <p class="vault-row-desc">A Bitcoin-focused yield strategy designed around capital preservation. Conservative positioning, active monitoring, strict drawdown limits.</p>
             <div class="vault-stats">
               <div class="vs">
-                <span class="vs-label">TVL</span>
-                <span class="vs-val">$2.4M</span>
+                <span class="vs-label">AUM</span>
+                <span class="vs-val" id="vault-btc-aum">—</span>
               </div>
               <div class="vs">
                 <span class="vs-label">Depositors</span>
-                <span class="vs-val">147</span>
+                <span class="vs-val" id="vault-btc-depositors">—</span>
               </div>
               <div class="vs">
                 <span class="vs-label">Denomination</span>
@@ -808,21 +808,21 @@
         </div>
       </div>
 
-      <!-- Vault 02 — Stable / ETH exposure -->
+      <!-- Vault 02 — Stable Yield -->
       <div class="vault-card vault-card--eth r">
         <div class="vault-card-inner">
           <div>
             <span class="vault-row-num">Vault 02</span>
-            <div class="vault-row-name">G12 ETH Staking Plus</div>
-            <p class="vault-row-desc">Ethereum liquid staking amplified through Morpho Protocol. Higher yield potential within a framework designed to avoid liquidation risk.</p>
+            <div class="vault-row-name" id="vault-stable-name">G12 Labs Stable Yield</div>
+            <p class="vault-row-desc">Stable yield on USDC through decentralised lending markets on Morpho. Conservative profile, instant withdrawals, no management fees.</p>
             <div class="vault-stats">
               <div class="vs">
-                <span class="vs-label">TVL</span>
-                <span class="vs-val">$1.8M</span>
+                <span class="vs-label">AUM</span>
+                <span class="vs-val" id="vault-stable-aum">—</span>
               </div>
               <div class="vs">
                 <span class="vs-label">Depositors</span>
-                <span class="vs-val">203</span>
+                <span class="vs-val" id="vault-stable-depositors">—</span>
               </div>
               <div class="vs">
                 <span class="vs-label">Denomination</span>
@@ -831,10 +831,7 @@
               <div class="vs">
                 <span class="vs-label">Exposure</span>
                 <div class="token-stack">
-                  <img src="/stETH_ug10fg.svg" alt="stETH">
-                  <img src="/weth-logotic.png" alt="WETH">
-                  <img src="/wrapped-bitcoin-wbtc-icon.svg" alt="WBTC">
-                  <img src="/cbbtc.png" alt="cbBTC">
+                  <img src="/usd-coin-usdc-logo.png" alt="USDC">
                 </div>
               </div>
             </div>
@@ -845,7 +842,6 @@
 
     </div>
     <div class="vaults-footer r">
-      <p>More vaults coming as we grow. Quality over quantity.</p>
       <a href="https://app.g12labs.com/strategies" target="_blank" rel="noopener" class="btn-line btn-line--dark">View all strategies <i class="ph-bold ph-arrow-right"></i></a>
     </div>
   </div>
@@ -1599,6 +1595,49 @@ gsap.to('.road', {
     scrub: 2,
   }
 });
+</script>
+
+<script>
+  // Live vault data from Supabase edge function
+  (function () {
+    const SUPABASE_URL = 'https://ucrvaqztvfnphhoqcbpo.supabase.co';
+    const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVjcnZhcXp0dmZucGhob3FjYnBvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczNTY2MzQsImV4cCI6MjA4MjkzMjYzNH0.l_983umaG_ojeDjXJ4DqWhPNEw9RotNApGLpl_ASkZk';
+    const VAULTS = [
+      { id: 'a2e34b54-501a-4796-b6c9-76c0709fa12d', aumEl: 'vault-btc-aum',    depEl: 'vault-btc-depositors',    nameEl: 'vault-btc-name' },
+      { id: 'f326057c-535b-419a-87e7-31dcdfb3d1cd', aumEl: 'vault-stable-aum', depEl: 'vault-stable-depositors', nameEl: 'vault-stable-name' },
+    ];
+
+    function fmt(n) {
+      if (!n && n !== 0) return '—';
+      if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'M';
+      if (n >= 1e3) return '$' + (n / 1e3).toFixed(1) + 'K';
+      return '$' + n.toFixed(0);
+    }
+
+    VAULTS.forEach(function (v) {
+      fetch(SUPABASE_URL + '/functions/v1/get-vault-data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': ANON_KEY,
+          'Authorization': 'Bearer ' + ANON_KEY,
+        },
+        body: JSON.stringify({ vault_id: v.id }),
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var vault = data && data.vaults && data.vaults[0];
+          if (!vault) return;
+          var aumEl  = document.getElementById(v.aumEl);
+          var depEl  = document.getElementById(v.depEl);
+          var nameEl = document.getElementById(v.nameEl);
+          if (aumEl)  aumEl.textContent  = fmt(vault.total_aum);
+          if (depEl)  depEl.textContent  = vault.depositors != null ? vault.depositors : '—';
+          if (nameEl) nameEl.textContent = vault.name || nameEl.textContent;
+        })
+        .catch(function () {});
+    });
+  })();
 </script>
 
 </body>
