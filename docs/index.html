@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Litepaper & Documentation — G12 Labs</title>
-  <meta name="description" content="Comprehensive documentation on G12 Labs architecture, fees, and risk management. Understand how our non-custodial vaults operate on-chain.">
+  <title>Litepaper — G12 Labs</title>
+  <meta name="description" content="G12 Labs Litepaper V3 — Automated DeFi yield strategies, transparent and non-custodial, accessible from $1.">
   <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -75,12 +75,10 @@
     .nav-burger span:nth-child(1) { top:0; }
     .nav-burger span:nth-child(2) { top:7px; }
     .nav-burger span:nth-child(3) { top:14px; }
-    /* open state */
     .nav-burger[aria-expanded="true"] span:nth-child(1) { transform:translate3d(0,7px,0) rotate(45deg); }
     .nav-burger[aria-expanded="true"] span:nth-child(2) { opacity:0; width:0; }
     .nav-burger[aria-expanded="true"] span:nth-child(3) { transform:translate3d(0,-7px,0) rotate(-45deg); }
 
-    /* Burger gets more room on mobile */
     @media(max-width:1024px){ .nav-pill { padding-right:16px; } }
 
     /* ── Mobile menu ── */
@@ -110,7 +108,6 @@
     .nav-mob-links a:hover::after { opacity:1; }
     .nav-mob-links a.active { color:var(--tw); }
     .nav-mob-links a.active::after { opacity:.35; }
-    /* Launch App link — différencié */
     .nav-mob-links a.mob-launch {
       margin-top:8px; border-top:none; border-bottom:none;
       background:linear-gradient(135deg,#FF9100,#E51A00);
@@ -388,6 +385,116 @@
     .decision-flow .arrow { color:var(--brand-orange); margin:0 8px; }
 
     /* =========================================================
+       JOURNEY DIAGRAM
+       ========================================================= */
+    .journey-diagram {
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      gap:0;
+      margin:24px 0;
+      border-radius:var(--r-xl);
+      overflow:hidden;
+      border:1px solid var(--bd-dark);
+    }
+    .journey-col {
+      background:var(--d2);
+      padding:0;
+    }
+    .journey-col-header {
+      padding:14px 20px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      color:var(--tw);
+      border-bottom:1px solid var(--bd-dark);
+    }
+    .journey-col-header.you { background:var(--d3); }
+    .journey-col-header.g12 { background:rgba(255,145,0,.12); color:var(--brand-orange); }
+    .journey-divider {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      background:var(--d2);
+      padding:0 10px;
+      border-left:1px solid var(--bd-dark);
+      border-right:1px solid var(--bd-dark);
+    }
+    .journey-row {
+      display:flex;
+      align-items:center;
+      padding:14px 20px;
+      font-size:13.5px;
+      color:var(--t1);
+      border-bottom:1px solid var(--bd-dark);
+      min-height:56px;
+    }
+    .journey-row:last-child { border-bottom:none; }
+    .journey-row.you { background:var(--d2); }
+    .journey-row.g12 { background:rgba(255,145,0,.04); }
+    .journey-arrow {
+      color:var(--brand-orange);
+      font-size:14px;
+      border-bottom:1px solid var(--bd-dark);
+      min-height:56px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .journey-arrow:last-child { border-bottom:none; }
+    @media(max-width:580px){
+      .journey-diagram { grid-template-columns:1fr 24px 1fr; }
+      .journey-row { padding:12px 12px; font-size:12px; }
+      .journey-col-header { padding:12px 12px; font-size:11px; }
+    }
+
+    /* =========================================================
+       VAULT BADGE
+       ========================================================= */
+    .vault-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(16,185,129,.12); border:1px solid rgba(16,185,129,.3);
+      border-radius:var(--r-pill); padding:5px 14px;
+      font-size:11px; font-weight:700; color:var(--success);
+      font-family:'JetBrains Mono',monospace; letter-spacing:.05em;
+      text-transform:uppercase; margin-bottom:16px;
+    }
+    .vault-badge::before { content:'●'; font-size:8px; animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+    /* =========================================================
+       VAULT CARD
+       ========================================================= */
+    .vault-card {
+      background:var(--d2); border:1px solid var(--bd-dark);
+      border-radius:var(--r-xl); padding:28px; margin-bottom:24px;
+      transition:border-color .2s;
+    }
+    .vault-card:hover { border-color:var(--bd-dark2); }
+    .vault-card-title { font-size:18px; font-weight:700; color:var(--tw); margin-bottom:4px; }
+    .vault-card-sub { font-size:13px; color:var(--t3); margin-bottom:20px; }
+
+    /* =========================================================
+       SECURITY GRID
+       ========================================================= */
+    .security-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:12px;
+      margin:20px 0;
+    }
+    .security-item {
+      background:var(--d2); border:1px solid var(--bd-dark);
+      border-radius:var(--r-lg); padding:20px 22px;
+      transition:border-color .2s;
+    }
+    .security-item:hover { border-color:var(--bd-dark2); }
+    .security-item-icon { font-size:24px; color:var(--brand-orange); margin-bottom:10px; }
+    .security-item-title { font-size:13px; font-weight:700; color:var(--tw); margin-bottom:6px; }
+    .security-item-desc { font-size:12.5px; color:var(--t2); line-height:1.65; margin:0; }
+
+    /* =========================================================
        PREV / NEXT BAR
        ========================================================= */
     .doc-nav-bar {
@@ -484,21 +591,20 @@
   <div class="mobile-section-nav" id="mobileSectionNav">
     <div class="mob-dropdown" id="mobDropdown">
       <button class="mob-dropdown-trigger" id="mobDropdownTrigger">
-        <span id="mobDropdownLabel">01 · Executive Summary</span>
+        <span id="mobDropdownLabel">01 · G12 Labs</span>
         <i class="ph-bold ph-caret-down"></i>
       </button>
       <div class="mob-dropdown-menu" id="mobDropdownMenu">
-        <button class="mob-dropdown-item active" data-index="0">01 · Executive Summary</button>
-        <button class="mob-dropdown-item" data-index="1">02 · Vision &amp; Mission</button>
-        <button class="mob-dropdown-item" data-index="2">03 · Investment Strategy</button>
-        <button class="mob-dropdown-item" data-index="3">04 · Competitive Advantage</button>
-        <button class="mob-dropdown-item" data-index="4">05 · Architecture &amp; Fees</button>
-        <button class="mob-dropdown-item" data-index="5">06 · Risk Management</button>
-        <button class="mob-dropdown-item" data-index="6">07 · Security Infrastructure</button>
-        <button class="mob-dropdown-item" data-index="7">08 · Smart Contracts</button>
-        <button class="mob-dropdown-item" data-index="8">09 · Governance</button>
-        <button class="mob-dropdown-item" data-index="9">10 · Transparency</button>
-        <button class="mob-dropdown-item" data-index="10">11 · Legal &amp; Disclaimer</button>
+        <button class="mob-dropdown-item active"  data-index="0">01 · G12 Labs</button>
+        <button class="mob-dropdown-item" data-index="1">02 · The Problem We Solve</button>
+        <button class="mob-dropdown-item" data-index="2">03 · How It Works</button>
+        <button class="mob-dropdown-item" data-index="3">04 · Our Strategies</button>
+        <button class="mob-dropdown-item" data-index="4">05 · Fees</button>
+        <button class="mob-dropdown-item" data-index="5">06 · Security</button>
+        <button class="mob-dropdown-item" data-index="6">07 · Transparency</button>
+        <button class="mob-dropdown-item" data-index="7">08 · Contract Addresses</button>
+        <button class="mob-dropdown-item" data-index="8">09 · Risks</button>
+        <button class="mob-dropdown-item" data-index="9">10 · Legal &amp; Disclaimers</button>
       </div>
     </div>
   </div>
@@ -513,38 +619,35 @@
       <div class="sidebar-inner">
         <p class="sidebar-label">Litepaper</p>
         <nav class="sidebar-nav">
-          <a href="#" class="sidebar-link active" data-section="executive-summary">
-            <span class="sidebar-num">01</span> Executive Summary
+          <a href="#" class="sidebar-link active" data-section="about">
+            <span class="sidebar-num">01</span> G12 Labs
           </a>
-          <a href="#" class="sidebar-link" data-section="vision-mission">
-            <span class="sidebar-num">02</span> Vision &amp; Mission
+          <a href="#" class="sidebar-link" data-section="problem">
+            <span class="sidebar-num">02</span> The Problem We Solve
           </a>
-          <a href="#" class="sidebar-link" data-section="investment-strategy">
-            <span class="sidebar-num">03</span> Investment Strategy
+          <a href="#" class="sidebar-link" data-section="how-it-works">
+            <span class="sidebar-num">03</span> How It Works
           </a>
-          <a href="#" class="sidebar-link" data-section="competitive-advantage">
-            <span class="sidebar-num">04</span> Competitive Advantage
+          <a href="#" class="sidebar-link" data-section="strategies">
+            <span class="sidebar-num">04</span> Our Strategies
           </a>
-          <a href="#" class="sidebar-link" data-section="architecture">
-            <span class="sidebar-num">05</span> Architecture &amp; Fees
-          </a>
-          <a href="#" class="sidebar-link" data-section="risk-management">
-            <span class="sidebar-num">06</span> Risk Management
+          <a href="#" class="sidebar-link" data-section="fees">
+            <span class="sidebar-num">05</span> Fees
           </a>
           <a href="#" class="sidebar-link" data-section="security">
-            <span class="sidebar-num">07</span> Security Infrastructure
-          </a>
-          <a href="#" class="sidebar-link" data-section="smart-contracts">
-            <span class="sidebar-num">08</span> Smart Contracts
-          </a>
-          <a href="#" class="sidebar-link" data-section="governance">
-            <span class="sidebar-num">09</span> Governance
+            <span class="sidebar-num">06</span> Security
           </a>
           <a href="#" class="sidebar-link" data-section="transparency">
-            <span class="sidebar-num">10</span> Transparency
+            <span class="sidebar-num">07</span> Transparency
+          </a>
+          <a href="#" class="sidebar-link" data-section="contracts">
+            <span class="sidebar-num">08</span> Contract Addresses
+          </a>
+          <a href="#" class="sidebar-link" data-section="risks">
+            <span class="sidebar-num">09</span> Risks
           </a>
           <a href="#" class="sidebar-link" data-section="legal">
-            <span class="sidebar-num">11</span> Legal &amp; Disclaimer
+            <span class="sidebar-num">10</span> Legal &amp; Disclaimers
           </a>
         </nav>
       </div>
@@ -556,13 +659,12 @@
       <!-- doc-header: shown only on first section -->
       <div class="doc-header" id="doc-header">
         <div>
-          <span class="meta-tag">VERSION 2.0</span>
-          <span class="meta-tag">JANUARY 2026</span>
+          <span class="meta-tag">VERSION 3.0</span>
+          <span class="meta-tag">MARCH 2026</span>
         </div>
         <h1 class="doc-h1">G12 Labs Litepaper</h1>
         <p class="doc-intro">
-          Institutional-grade DeFi exposure through a single token.
-          A comprehensive guide to our vaults, strategies, and risk management framework.
+          Informational document — Does not constitute an offer of financial services.
         </p>
         <div class="doc-actions">
           <button class="btn-action" onclick="window.print()">
@@ -574,1217 +676,601 @@
         </div>
       </div>
 
-      <!-- ==================== PANEL 1: Executive Summary ==================== -->
-      <div class="doc-panel active" data-panel="executive-summary">
-        <h2>1. Executive Summary</h2>
-        <h3>Unique Value Proposition</h3>
+      <!-- ==================== PANEL 1: G12 Labs ==================== -->
+      <div class="doc-panel active" data-panel="about">
+        <h2>1. G12 Labs</h2>
         <p>
-          G12 Labs offers the most complete exposure to DeFi through a single token.
-          The crypto environment is undeniably expanding, with more major players entering the ecosystem. Yet, today, this same ecosystem remains complicated to access. Adding hacks, scams, and fraud, it feels like an adventure in the 19th-century Wild West.
+          G12 Labs builds yield strategies on the blockchain and makes them accessible to everyone, from a single application. Our conviction: DeFi offers real opportunities, but they are too complex for most people. <strong>We do the technical work. You keep control.</strong>
         </p>
         <p>
-          <strong>G12 Labs is your gateway</strong> to this modern ecosystem with streamlined access to the best opportunities, directly on-chain, without intermediaries. DeFi, within reach of a token.
+          Concretely, we develop and operate vaults — automated, transparent and non-custodial strategies — accessible via <a href="https://app.g12labs.com" target="_blank" style="color:var(--brand-orange);">app.g12labs.com</a>. Users interact directly with decentralized protocols, without intermediary.
         </p>
 
-        <h3>Objectives & Target Amount</h3>
-        <p>
-          G12 Labs operates on a <strong>Vault System</strong>. Different Vaults will be proposed so you can find the one matching your risk aversion. By creating G12 Labs, we want to make DeFi accessible to the greatest number. That is why we lowered the minimum entry amount to <strong>$1 USDC</strong>. A symbolic dollar, accessible by all, for all.
-        </p>
+        <div class="callout">
+          <em>This document describes how our vaults work for informational purposes. Past performance and the ranges indicated do not predict future results.</em>
+        </div>
 
-        <h3>Performance Expectations</h3>
-        <p>
-          Performance cannot be guaranteed. We recommend forming an opinion by looking at the past performance of each Vault. Keep in mind that <strong>past performance does not guarantee future results</strong>.
-        </p>
-
-        <h3>Key Differentiators</h3>
         <div class="grid-cards">
           <div class="info-card">
             <i class="ph ph-lock-key-open info-card-icon"></i>
-            <span class="info-card-title">Transparency</span>
-            <p style="font-size:.9rem;margin:0;">Everything is on-chain. Every transaction is traceable. Nothing can be hidden.</p>
+            <span class="info-card-title">Non-Custodial</span>
+            <p style="font-size:.9rem;margin:0;">Your funds stay in your wallet at all times. We can never access them.</p>
+          </div>
+          <div class="info-card">
+            <i class="ph ph-eye info-card-icon"></i>
+            <span class="info-card-title">Transparent</span>
+            <p style="font-size:.9rem;margin:0;">Everything is verifiable on-chain. Every transaction, every position, every fee.</p>
           </div>
           <div class="info-card">
             <i class="ph ph-currency-dollar info-card-icon"></i>
-            <span class="info-card-title">Accessibility</span>
-            <p style="font-size:.9rem;margin:0;">An EVM wallet and $1 is all you need to join.</p>
-          </div>
-          <div class="info-card">
-            <i class="ph ph-target info-card-icon"></i>
-            <span class="info-card-title">Precision</span>
-            <p style="font-size:.9rem;margin:0;">No opaque changes. Each vault has its own rules decided before launch.</p>
-          </div>
-          <div class="info-card">
-            <i class="ph ph-handshake info-card-icon"></i>
-            <span class="info-card-title">Honesty</span>
-            <p style="font-size:.9rem;margin:0;">We earn mostly on performance. We win together, we lose together. No profit = No performance fees.</p>
+            <span class="info-card-title">Accessible</span>
+            <p style="font-size:.9rem;margin:0;">An EVM wallet and $1 USDC is all you need to get started.</p>
           </div>
           <div class="info-card">
             <i class="ph ph-shield-check info-card-icon"></i>
-            <span class="info-card-title">Security</span>
-            <p style="font-size:.9rem;margin:0;">Multi-signature governance and battle-tested infrastructure.</p>
+            <span class="info-card-title">Security First</span>
+            <p style="font-size:.9rem;margin:0;">Built on audited infrastructure, governed by multi-signature, monitored 24/7.</p>
           </div>
         </div>
       </div>
 
-      <!-- ==================== PANEL 2: Vision & Mission ==================== -->
-      <div class="doc-panel" data-panel="vision-mission">
-        <h2>2. Vision &amp; Mission</h2>
-        <h3>Market Problem</h3>
+      <!-- ==================== PANEL 2: The Problem ==================== -->
+      <div class="doc-panel" data-panel="problem">
+        <h2>2. The Problem We Solve</h2>
         <p>
-          DeFi represents unprecedented financial possibilities but remains inaccessible to the majority.
-          Barriers are numerous: technical complexity, omnipresent security risks (hacks, rug pulls), lack of time to analyze opportunities, and a steep learning curve.
-          <strong>Result:</strong> millions of potential investors stay on the sidelines.
+          DeFi creates value. But accessing it requires time, technical skills and constant vigilance. Between dozens of protocols, security risks, and ecosystem fragmentation, most users stay on the sidelines or take risks they don't fully understand.
+        </p>
+        <p>
+          G12 Labs simplifies this equation. One single application, a team that selects and manages the strategies, and a user who freely chooses what matches their profile. <strong>No unnecessary jargon. No hidden complexity.</strong> Just clear access to opportunities that were previously reserved for insiders.
         </p>
 
-        <h3>The G12 Solution</h3>
-        <p>
-          G12 Labs democratizes DeFi access by offering a turnkey solution: professionally managed vaults, accessible from $1, fully on-chain and transparent.
-          We are the bridge between decentralized finance and the investor, eliminating friction while preserving fundamental blockchain advantages.
-        </p>
-
-        <div class="callout">
-          <strong>Long-term Vision</strong><br>
-          To become the reference for passive DeFi management, where every investor—regardless of expertise or capital—can access the market's best strategies with confidence. Our ambition: make G12 Labs the standard of excellence for transparency, performance, and accessibility.
-        </div>
-      </div>
-
-      <!-- ==================== PANEL 3: Investment Strategy ==================== -->
-      <div class="doc-panel" data-panel="investment-strategy">
-        <h2>3. Investment Strategy</h2>
-
-        <h3>Thematic Focus</h3>
-        <p>G12 Labs deploys diversified strategies across different vaults, covering:</p>
-        <ul>
-          <li><strong>Optimized Yield Farming:</strong> Automatic rotation to the best yield opportunities (e.g., stablecoins), combining protocol security and returns.</li>
-          <li><strong>Liquidity Pools:</strong> Exposure to trading fee revenues as Liquidity Providers.</li>
-          <li><strong>Blue-Chip Protocols:</strong> Positions on established protocols (Aave, Morpho, Uniswap).</li>
-          <li><strong>Emerging Opportunities:</strong> Controlled allocation to innovative protocols after rigorous due diligence.</li>
-        </ul>
-        <p><em>Security remains our main focus. Combining new opportunities with risk management is our standard.</em></p>
-
-        <h3>Asset Allocation &amp; Vaults</h3>
-        <h4>bG12 Token - BTC Yield Vault (Ethereum)</h4>
-        <p><strong>Current Strategy:</strong> Balanced exposure to DeFi blue-chip protocols with dynamic risk management.</p>
-
-        <p style="margin-bottom:10px;font-size:.9rem;color:var(--t2);">Target Allocation (Dynamic):</p>
-        <div class="allocation-bar">
-          <div class="alloc-segment" style="width:40%;background:var(--d3);">30-50%</div>
-          <div class="alloc-segment" style="width:50%;background:var(--brand-orange);">40-60%</div>
-          <div class="alloc-segment" style="width:10%;background:#333;">5-10%</div>
-        </div>
-        <div class="alloc-legend">
-          <div><span class="dot" style="background:var(--d3);"></span>Liquidity Provision (Uniswap V3, Curve)</div>
-          <div><span class="dot" style="background:var(--brand-orange);"></span>Lending &amp; Borrowing (Aave V3, Morpho)</div>
-          <div><span class="dot" style="background:#333;"></span>Cash Reserve (USDC)</div>
-        </div>
-        <p style="font-size:.85rem;color:var(--t3);"><em>Note: Actual allocation varies based on market conditions and strategy optimization.</em></p>
-
-        <h4>Active Positions (Example Snapshot)</h4>
-        <p style="font-size:.85rem;color:var(--t2);">Position data as of January 26, 2026:</p>
-
-        <div class="table-wrapper">
-          <table>
-            <tr>
-              <td width="50"><i class="ph ph-arrows-left-right" style="font-size:28px;color:var(--brand-orange);"></i></td>
-              <td>
-                <strong>1. Uniswap V3 Liquidity Provision (~40% allocation)</strong><br>
-                Multiple concentrated liquidity positions in WBTC/USDC pools.
-                <ul style="margin-top:10px;margin-bottom:0;">
-                  <li><strong>Wide Range LP:</strong> Captures broad market movements with lower fee tier</li>
-                  <li><strong>Tight Range LP:</strong> Higher fee tier for optimal yield when price is stable</li>
-                  <li>Dynamic rebalancing based on market conditions</li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td><i class="ph ph-bank" style="font-size:28px;color:var(--brand-orange);"></i></td>
-              <td>
-                <strong>2. Aave V3 Lending Position (~60% allocation)</strong><br>
-                <ul style="margin-top:10px;margin-bottom:0;">
-                  <li><strong>Supplied:</strong> WBTC as collateral</li>
-                  <li><strong>Borrowed:</strong> USDC</li>
-                  <li><strong>Health Factor:</strong> Maintained at safe ratio (safe above liquidation threshold of 1.0)</li>
-                  <li><strong>Leverage:</strong> ~1.9x</li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td><i class="ph ph-wallet" style="font-size:28px;color:var(--brand-orange);"></i></td>
-              <td>
-                <strong>3. Cash Reserve (&lt;5%)</strong><br>
-                USDC for gas fees, rebalancing, and opportunities.
-              </td>
-            </tr>
-          </table>
-        </div>
-
-        <h3>Dynamic Risk Management</h3>
-        <p>Our strategy employs intelligent position management to optimize returns while maintaining safety:</p>
-
-        <div class="two-col-grid">
-          <div class="info-card">
-            <i class="ph ph-chart-line-up info-card-icon"></i>
-            <span class="info-card-title">Liquidity Pool Management</span>
-            <p style="font-size:.9rem;margin:0;">We utilize multiple Uniswap V3 ranges with different width strategies. When tight-range positions move out of range, capital is automatically reallocated.</p>
-          </div>
-          <div class="info-card">
-            <i class="ph ph-shield info-card-icon"></i>
-            <span class="info-card-title">Collateral Optimization</span>
-            <p style="font-size:.9rem;margin:0;">During market volatility, we dynamically adjust collateral positions on Aave V3 to maintain healthy liquidation margins. This includes strategic increases in collateral during bearish phases.</p>
-          </div>
-        </div>
-
-        <h4>Automated Rebalancing Triggers</h4>
-        <p>Positions are continuously monitored and adjusted based on:</p>
-        <ul>
-          <li>Price movement and volatility</li>
-          <li>Fee generation efficiency</li>
-          <li>Health factor thresholds</li>
-          <li>Market regime detection (bull/bear/crab)</li>
-        </ul>
-
-        <div class="schema-box" style="text-align:left;">
-          <h4 style="margin-top:0;color:var(--brand-orange);">Example Scenario — Bearish Market Protection</h4>
-          <p>When BTC price drops significantly:</p>
-          <div class="step-flow">
-            <div class="step-item">
-              <div class="step-num">1</div>
-              <div>Tight-range LP exits → Full BTC position</div>
-            </div>
-            <div class="step-item">
-              <div class="step-num">2</div>
-              <div>BTC transferred to Aave V3 as additional collateral</div>
-            </div>
-            <div class="step-item">
-              <div class="step-num">3</div>
-              <div>Health factor improves</div>
-            </div>
-            <div class="step-item">
-              <div class="step-num">4</div>
-              <div>Liquidation risk substantially reduced</div>
-            </div>
-            <div class="step-item">
-              <div class="step-num">5</div>
-              <div><strong>When price recovers →</strong> Redeploy to LP positions</div>
-            </div>
-          </div>
-          <p style="margin-bottom:0;font-size:.9rem;color:var(--t3);"><em>This approach ensures capital preservation during downturns while maintaining yield generation during stable periods.</em></p>
-        </div>
-
-        <h3>Protocol Selection Criteria</h3>
-        <p>Before any allocation, a protocol passes our rigorous filter:</p>
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Criterion</th>
-                <th>Requirement</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>✅ Technical Security</strong></td>
-                <td>Multiple audits by recognized firms (ChainSecurity, Trail of Bits, OpenZeppelin, etc.)</td>
-              </tr>
-              <tr>
-                <td><strong>✅ Economic Viability</strong></td>
-                <td>Significant TVL (&gt;$100M) and at least 6 months of operational history</td>
-              </tr>
-              <tr>
-                <td><strong>✅ Team &amp; Governance</strong></td>
-                <td>Transparent team or established DAO with proven track record</td>
-              </tr>
-              <tr>
-                <td><strong>✅ Bug Bounty</strong></td>
-                <td>Active bug bounty program with meaningful rewards</td>
-              </tr>
-              <tr>
-                <td><strong>✅ Smart Contract Verification</strong></td>
-                <td>All contracts verified on blockchain explorers</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h4>Currently Approved Protocols</h4>
-        <ul>
-          <li><strong>Uniswap V3</strong> (DEX)</li>
-          <li><strong>Aave V3</strong> (Lending)</li>
-          <li>Additional protocols reviewed on ongoing basis</li>
-        </ul>
-
-        <h3>Rebalancing Strategy</h3>
-        <p>
-          We use a <strong>Hybrid Approach</strong> combining algorithmic monitoring with expert human validation.
-          Working with algorithmic bots and AI is necessary, but must not replace decision making. The marriage of both—Human accompanied by modern tools—is the best approach.
-        </p>
-
-        <div class="two-col-grid">
-          <div>
-            <h4 style="color:var(--success);">Automated Monitoring (24/7)</h4>
-            <ul class="check-list">
-              <li>Real-time tracking of all positions</li>
-              <li>Health factor monitoring (Aave V3)</li>
-              <li>LP range efficiency tracking (Uniswap V3)</li>
-              <li>Fee generation analysis</li>
-              <li>Market regime detection (volatility, trend)</li>
-            </ul>
-          </div>
-          <div>
-            <h4 style="color:var(--warning);">Manual Review Required</h4>
-            <ul>
-              <li>Adding new protocol integrations</li>
-              <li>Significant strategy changes (&gt;20% allocation shift)</li>
-              <li>Emergency situations (protocol exploit, major market event)</li>
-              <li>Large leverage adjustments (&gt;0.5x change)</li>
-            </ul>
-          </div>
-        </div>
-
-        <h4>Rebalancing Triggers</h4>
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Trigger</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>LP position out of range</td>
-                <td>Redeploy or adjust</td>
-              </tr>
-              <tr>
-                <td>Health factor at risk</td>
-                <td>Increase collateral</td>
-              </tr>
-              <tr>
-                <td>High volatility detected</td>
-                <td>Reduce risk exposure</td>
-              </tr>
-              <tr>
-                <td>Fee generation &lt; threshold</td>
-                <td>Optimize positions</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h4>Rebalancing Frequency</h4>
-        <ul>
-          <li><strong>Continuous:</strong> Monitoring via automated systems</li>
-          <li><strong>As needed:</strong> Position adjustments (market-driven)</li>
-          <li><strong>Daily to weekly:</strong> Fee harvesting</li>
-          <li><strong>Multi-sig approval:</strong> Major rebalancing for material changes</li>
-          <li><strong>Monthly:</strong> Strategy review by team</li>
-        </ul>
-
-        <h3>Capital Preservation Priority</h3>
-        <p>Our rebalancing philosophy prioritizes capital preservation over yield maximization:</p>
-        <div class="step-flow">
-          <div class="step-item">
-            <div class="step-num">1</div>
-            <div><strong>Risk First:</strong> Ensure health factor remains safe before optimizing yield</div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">2</div>
-            <div><strong>Gradual Adjustments:</strong> No sudden large position changes unless emergency</div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">3</div>
-            <div><strong>Market Adaptation:</strong> Reduce risk during uncertainty, increase during stability</div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">4</div>
-            <div><strong>Transparent Execution:</strong> All major rebalances visible on-chain</div>
-          </div>
-        </div>
-
-        <h4>Example Decision Flow</h4>
-        <div class="decision-flow">
-          Market drops 15% <span class="arrow">→</span>
-          Check health factor <span class="arrow">→</span>
-          If at risk: Increase collateral (redeploy LP to Aave) <span class="arrow">→</span>
-          Monitor recovery <span class="arrow">→</span>
-          When stable: Gradually redeploy to LP positions
-        </div>
-        <p style="font-size:.9rem;color:var(--t3);"><em>This systematic approach ensures consistent risk management while capturing yield opportunities.</em></p>
-      </div>
-
-      <!-- ==================== PANEL 4: Competitive Advantage ==================== -->
-      <div class="doc-panel" data-panel="competitive-advantage">
-        <h2>4. Competitive Advantage</h2>
-
-        <h3>Experienced Team</h3>
-        <p>
-          Our team accumulates years of DeFi experience, having navigated multiple market cycles. This expertise allows us to identify opportunities while detecting red flags before they become problematic.
-        </p>
-
-        <h3>Systematic Approach</h3>
         <div class="schema-box">
-          <div style="display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;">
-            <div style="background:rgba(255,255,255,0.04);padding:20px;border-radius:var(--r-md);width:160px;text-align:center;">
-              <i class="ph ph-robot" style="font-size:32px;color:var(--brand-orange);"></i>
-              <br><strong>24/7 Monitoring</strong>
-              <div style="font-size:.8rem;color:var(--t2);">Bots &amp; AI</div>
+          <div style="display:grid;grid-template-columns:1fr 40px 1fr;align-items:center;gap:0;text-align:center;">
+            <div style="padding:20px 16px;">
+              <div style="font-size:28px;margin-bottom:10px;">🌐</div>
+              <div style="font-weight:700;color:var(--tw);font-size:14px;margin-bottom:8px;">DeFi Today</div>
+              <ul style="list-style:none;padding:0;margin:0;text-align:left;">
+                <li style="font-size:12.5px;color:var(--error);padding:4px 0;border-bottom:1px solid var(--bd-dark);">Dozens of protocols to monitor</li>
+                <li style="font-size:12.5px;color:var(--error);padding:4px 0;border-bottom:1px solid var(--bd-dark);">Constant security risks</li>
+                <li style="font-size:12.5px;color:var(--error);padding:4px 0;border-bottom:1px solid var(--bd-dark);">Steep technical learning curve</li>
+                <li style="font-size:12.5px;color:var(--error);padding:4px 0;">24/7 attention required</li>
+              </ul>
             </div>
-            <div style="font-size:24px;color:var(--t3);">+</div>
-            <div style="background:rgba(255,255,255,0.04);padding:20px;border-radius:var(--r-md);width:160px;text-align:center;">
-              <i class="ph ph-user-check" style="font-size:32px;color:var(--brand-orange);"></i>
-              <br><strong>Validation</strong>
-              <div style="font-size:.8rem;color:var(--t2);">Human Expert</div>
-            </div>
-            <div style="font-size:24px;color:var(--t3);">=</div>
-            <div style="border:1px solid var(--brand-orange);padding:20px;border-radius:var(--r-md);width:160px;text-align:center;">
-              <i class="ph ph-lightning" style="font-size:32px;color:var(--tw);"></i>
-              <br><strong style="color:var(--brand-orange);">Execution</strong>
-              <div style="font-size:.8rem;color:var(--t2);">Safe &amp; Optimal</div>
+            <div style="font-size:28px;color:var(--brand-orange);font-weight:700;">→</div>
+            <div style="padding:20px 16px;background:rgba(255,145,0,.05);border-radius:var(--r-lg);">
+              <div style="font-size:28px;margin-bottom:10px;">⚡</div>
+              <div style="font-weight:700;color:var(--brand-orange);font-size:14px;margin-bottom:8px;">With G12 Labs</div>
+              <ul style="list-style:none;padding:0;margin:0;text-align:left;">
+                <li style="font-size:12.5px;color:var(--success);padding:4px 0;border-bottom:1px solid var(--bd-dark);">One app, all strategies</li>
+                <li style="font-size:12.5px;color:var(--success);padding:4px 0;border-bottom:1px solid var(--bd-dark);">Expert risk management</li>
+                <li style="font-size:12.5px;color:var(--success);padding:4px 0;border-bottom:1px solid var(--bd-dark);">Deposit from $1 USDC</li>
+                <li style="font-size:12.5px;color:var(--success);padding:4px 0;">Withdraw anytime</li>
+              </ul>
             </div>
           </div>
         </div>
-        <ul>
-          <li><strong>Data-driven decisions:</strong> Algorithms analyze market conditions 24/7</li>
-          <li><strong>Human oversight:</strong> Critical decisions validated by experienced team</li>
-          <li><strong>Risk management:</strong> Automated alerts and circuit breakers</li>
-        </ul>
-
-        <h3>Total Alignment of Interests</h3>
-        <p>We employ a <strong>"Skin in the game"</strong> model. The team holds significant positions in the vaults.</p>
-
-        <div class="grid-cards">
-          <div class="info-card">
-            <span class="info-card-title">Management Fee (0.75%)</span>
-            <p style="font-size:.9rem;margin:0;">Covers essential fixed costs to guarantee project longevity.</p>
-          </div>
-          <div class="info-card">
-            <span class="info-card-title">Performance Fee (10%)</span>
-            <p style="font-size:.9rem;margin:0;">Remuneration based on NET profits. We only win if you win.</p>
-          </div>
-          <div class="info-card">
-            <span class="info-card-title">High-Water Mark</span>
-            <p style="font-size:.9rem;margin:0;">In case of loss, no fees until the previous level is recovered.</p>
-          </div>
-        </div>
-
-        <h4>Team Commitment</h4>
-        <ul>
-          <li>Management team is <strong>primary depositor</strong> in all vaults</li>
-          <li>Long-term incentive alignment through token holdings</li>
-          <li><strong>No profit without investor profit</strong></li>
-        </ul>
       </div>
 
-      <!-- ==================== PANEL 5: Architecture & Fees ==================== -->
-      <div class="doc-panel" data-panel="architecture">
-        <h2>5. Architecture &amp; Fees</h2>
-
-        <h3>Vault Architecture</h3>
+      <!-- ==================== PANEL 3: How It Works ==================== -->
+      <div class="doc-panel" data-panel="how-it-works">
+        <h2>3. How It Works</h2>
         <p>
-          G12 Labs operates via decentralized vaults on-chain built on <strong>Enzyme Finance</strong> infrastructure.
-          Each vault emits its own ERC-20 tokens representing your proportional share.
+          G12 Labs operates with vaults. A vault is an automated strategy: you deposit your funds, the vault puts them to work according to pre-defined rules. In exchange, you receive a token that represents your share — its value evolves with the vault's performance.
         </p>
 
-        <div class="callout-success">
-          <strong>Active Vault:</strong> bG12 Token — DeFi Yield Vault (Ethereum)
-        </div>
-
-        <h3>Technology Stack</h3>
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Layer</th>
-                <th>Technology</th>
-                <th>Purpose</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Infrastructure</strong></td>
-                <td>Enzyme Finance v4</td>
-                <td>Vault management and DeFi integration</td>
-              </tr>
-              <tr>
-                <td><strong>Blockchain</strong></td>
-                <td>Arbitrum One, Base</td>
-                <td>Low fees, fast transactions, Ethereum security</td>
-              </tr>
-              <tr>
-                <td><strong>Governance</strong></td>
-                <td>Gnosis Safe</td>
-                <td>Multi-signature wallet for security</td>
-              </tr>
-              <tr>
-                <td><strong>Protocols</strong></td>
-                <td>Uniswap, Aave, others</td>
-                <td>Yield generation strategies</td>
-              </tr>
-              <tr>
-                <td><strong>Automation</strong></td>
-                <td>Custom bots + AI</td>
-                <td>24/7 monitoring and execution</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>Mint &amp; Burn Mechanism</h3>
-        <div class="two-col-grid">
-          <div class="info-card">
-            <i class="ph ph-arrow-circle-down info-card-icon"></i>
-            <span class="info-card-title">Deposit (Mint)</span>
-            <ol style="font-size:.9rem;margin:0;padding-left:1.2rem;">
-              <li>Connect wallet</li>
-              <li>Select Vault</li>
-              <li>Deposit USDC</li>
-              <li>Receive Vault Tokens calculated on NAV (Net Asset Value)</li>
-            </ol>
-          </div>
-          <div class="info-card">
-            <i class="ph ph-arrow-circle-up info-card-icon"></i>
-            <span class="info-card-title">Withdraw (Burn)</span>
-            <ol style="font-size:.9rem;margin:0;padding-left:1.2rem;">
-              <li>Initiate withdrawal request</li>
-              <li><strong>72h cooldown period</strong></li>
-              <li>Tokens burned</li>
-              <li>Receive proportional share of assets + gains in USDC</li>
-            </ol>
-          </div>
-        </div>
-        <p style="font-size:.85rem;color:var(--t3);"><em>Note: A 72h cooldown applies to withdrawals to allow optimized liquidation and prevent bank runs.</em></p>
-
-        <h3>Fee Structure Detail</h3>
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Fee Type</th>
-                <th style="color:var(--tw);">G12 Labs</th>
-                <th>Traditional Funds</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Management Fees</td>
-                <td class="highlight-cell">0.75% / year</td>
-                <td>2% - 3%</td>
-                <td>Covers operational costs</td>
-              </tr>
-              <tr>
-                <td>Protocol Fees</td>
-                <td class="highlight-cell">0.25% / year</td>
-                <td>Hidden</td>
-                <td>Enzyme Finance fee (transparent)</td>
-              </tr>
-              <tr>
-                <td>Performance Fees</td>
-                <td class="highlight-cell">10.00%</td>
-                <td>20% - 30%</td>
-                <td>Only on NET profits above High-Water Mark</td>
-              </tr>
-              <tr>
-                <td>Entry Fee</td>
-                <td class="highlight-cell">0%</td>
-                <td>0% - 2%</td>
-                <td>No cost to enter</td>
-              </tr>
-              <tr>
-                <td>Exit Fee</td>
-                <td class="highlight-cell">0.20%</td>
-                <td>1% - 3%</td>
-                <td>Redistributed to vault holders *</td>
-              </tr>
-              <tr>
-                <td>Transparency</td>
-                <td class="highlight-cell">100% On-Chain</td>
-                <td>Limited / Opaque</td>
-                <td>All transactions visible</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="callout">
-          <strong>Exit Fee Details:</strong>
-          <ul style="margin-bottom:0;">
-            <li>0.2% on withdrawals</li>
-            <li><strong>Not taken by the team</strong> — redistributed back into the vault</li>
-            <li>Benefits long-term holders</li>
-            <li>Covers rebalancing costs</li>
-            <li>Protects against short-term arbitrage</li>
-          </ul>
-        </div>
-
-        <h3>Fee Examples</h3>
-        <div class="grid-cards">
-          <div class="info-card">
-            <span class="info-card-title">Scenario 1: No Profit</span>
-            <p style="font-size:.85rem;margin:0;color:var(--t2);">Deposit $10,000</p>
-            <ul style="font-size:.9rem;margin:10px 0 0 0;">
-              <li>Management Fee: $75/year (0.75%)</li>
-              <li>Performance Fee: <strong>$0</strong> (no profit)</li>
-              <li>Total Annual Cost: $75 (1%)</li>
-            </ul>
-          </div>
-          <div class="info-card">
-            <span class="info-card-title">Scenario 2: +20% Profit</span>
-            <p style="font-size:.85rem;margin:0;color:var(--t2);">Deposit $10,000, profit $2,000</p>
-            <ul style="font-size:.9rem;margin:10px 0 0 0;">
-              <li>Management Fee: $75/year</li>
-              <li>Performance Fee: $200 (10% of $2,000)</li>
-              <li>Total Cost: $275</li>
-              <li style="color:var(--success);"><strong>Net Gain: $1,725 (17.25%)</strong></li>
-            </ul>
-          </div>
-          <div class="info-card">
-            <span class="info-card-title">Scenario 3: -10% Loss</span>
-            <p style="font-size:.85rem;margin:0;color:var(--t2);">Deposit $10,000</p>
-            <ul style="font-size:.9rem;margin:10px 0 0 0;">
-              <li>Management Fee: $75/year</li>
-              <li>Performance Fee: <strong>$0</strong> (no profit = no fee)</li>
-              <li style="color:var(--warning);">High-Water Mark set: Must recover loss before next performance fee</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- ==================== PANEL 6: Risk Management ==================== -->
-      <div class="doc-panel" data-panel="risk-management">
-        <h2>6. Risk Management</h2>
-
-        <div class="callout">
-          <strong>Risk Philosophy</strong><br>
-          "Security is never absolute in DeFi, but we prioritize it above short-term yield. A secure 12% yield is infinitely better than a risky 30%. We prefer to sleep well, and so should you."
-        </div>
-
-        <h4>Risk Hierarchy</h4>
+        <h3>User Journey</h3>
         <div class="step-flow">
           <div class="step-item">
             <div class="step-num">1</div>
-            <div><strong>Capital Preservation</strong> — Protect against total loss</div>
+            <div>Connect your wallet on <strong>app.g12labs.com</strong></div>
           </div>
           <div class="step-item">
             <div class="step-num">2</div>
-            <div><strong>Consistent Returns</strong> — Stable, predictable performance</div>
+            <div>Choose a vault based on your <strong>risk profile</strong></div>
           </div>
           <div class="step-item">
             <div class="step-num">3</div>
-            <div><strong>Yield Optimization</strong> — Maximize returns within risk constraints</div>
-          </div>
-        </div>
-
-        <h3>Security Framework</h3>
-        <p>
-          Security is our absolute priority. We utilize <strong>Enzyme Finance</strong> infrastructure, a battle-tested asset management protocol operating since 2019 with $200M+ TVL and zero major exploits.
-        </p>
-
-        <h3>Smart Contract Risks</h3>
-        <div class="two-col-grid">
-          <div>
-            <h4>Enzyme Infrastructure</h4>
-            <ul class="check-list">
-              <li>Audited by ChainSecurity, OpenZeppelin, Trail of Bits</li>
-              <li>5+ years of battle-testing</li>
-              <li>$200M+ TVL managed without major exploits</li>
-              <li>Open-source and verified contracts</li>
-            </ul>
-          </div>
-          <div>
-            <h4>Our Vaults</h4>
-            <ul class="check-list">
-              <li>Parameters verified before launch</li>
-              <li>Multi-sig validation for critical actions</li>
-              <li>Configuration auditable on-chain</li>
-            </ul>
-          </div>
-        </div>
-
-        <h3>Protocol Risks</h3>
-        <h4>Due Diligence Process</h4>
-        <ul class="check-list">
-          <li>Only use audited protocols with active bug bounties</li>
-          <li>Minimum 6 months operational history</li>
-          <li>Minimum $100M TVL for major allocations</li>
-          <li>Team and governance evaluation</li>
-          <li>Economic analysis (tokenomics, sustainability)</li>
-        </ul>
-
-        <h4>Currently Whitelisted</h4>
-        <ul>
-          <li><strong>Uniswap V3</strong> (DEX) — $4B+ TVL</li>
-          <li><strong>Aave V3</strong> (Lending) — $10B+ TVL</li>
-          <li>Additional protocols reviewed continuously</li>
-        </ul>
-
-        <h3>Liquidation &amp; Leverage Risks</h3>
-        <h4>Leverage Management</h4>
-        <ul>
-          <li>Accurate leverage tracking</li>
-          <li>Continuous monitoring of health factors</li>
-          <li>Automated alerts at multiple thresholds</li>
-          <li>Emergency procedures for rapid deleveraging</li>
-        </ul>
-
-        <h4>Aave V3 Position Management</h4>
-        <div class="table-wrapper">
-          <table>
-            <tr>
-              <td><strong>Health factor target</strong></td>
-              <td>Between 1.4 and 1.6</td>
-            </tr>
-            <tr>
-              <td><strong>Collateralization</strong></td>
-              <td>Conservative ratios</td>
-            </tr>
-            <tr>
-              <td><strong>Monitoring</strong></td>
-              <td>Real-time 24/7</td>
-            </tr>
-            <tr>
-              <td><strong>Dynamic adjustment</strong></td>
-              <td>During volatility: Increase collateral from idle positions<br>During stability: Optimize capital efficiency</td>
-            </tr>
-          </table>
-        </div>
-
-        <h3>Uniswap V3 Specific Risks</h3>
-
-        <h4>Impermanent Loss Management</h4>
-        <ul>
-          <li>Multiple range strategies reduce single-point risk</li>
-          <li>Wide-range positions provide downside protection</li>
-          <li>Tight-range positions maximize fees during stability</li>
-          <li>Dynamic redeployment based on market conditions</li>
-        </ul>
-
-        <h4>Out-of-Range Management</h4>
-        <ul>
-          <li>Automated detection when LP exits range</li>
-          <li><strong>Capital preservation priority:</strong>
-            <ul>
-              <li>If bearish: Consolidate to Aave collateral (boost health factor)</li>
-              <li>If bullish: Maintain positions or redeploy higher</li>
-              <li>If ranging: Adjust ranges to current price</li>
-            </ul>
-          </li>
-          <li>No forced positions in unfavorable ranges</li>
-        </ul>
-
-        <h4>Position Concentration</h4>
-        <ul>
-          <li>No single LP position &gt;50% of vault</li>
-          <li>Multiple range widths deployed simultaneously</li>
-          <li>Fee tier diversification (0.05%, 0.3%, 1%)</li>
-        </ul>
-
-        <div class="schema-box" style="text-align:left;">
-          <h4 style="margin-top:0;color:var(--error);">Example Risk Scenario — BTC Crash</h4>
-          <p><strong>Scenario:</strong> BTC drops from $95K to $85K (-10%)</p>
-
-          <p style="margin-top:20px;"><strong>Automatic Response:</strong></p>
-          <div class="step-flow">
-            <div class="step-item">
-              <div class="step-num">1</div>
-              <div>Tight-range LP exits range → Full WBTC position</div>
-            </div>
-            <div class="step-item">
-              <div class="step-num">2</div>
-              <div>Wide-range LP still active (due to larger range)</div>
-            </div>
-            <div class="step-item">
-              <div class="step-num">3</div>
-              <div>System detects health factor drop</div>
-            </div>
-            <div class="step-item">
-              <div class="step-num">4</div>
-              <div><strong>Emergency action:</strong> Transfer WBTC from exited LP to Aave collateral</div>
-            </div>
-            <div class="step-item">
-              <div class="step-num">5</div>
-              <div>Health factor recovers → Liquidation risk mitigated</div>
-            </div>
-          </div>
-
-          <p style="margin-top:20px;"><strong>When price recovers:</strong></p>
-          <ul style="margin-bottom:0;">
-            <li>Gradually redeploy WBTC to new LP ranges</li>
-            <li>Restore optimal allocation</li>
-            <li>Continue yield generation</li>
-          </ul>
-          <p style="margin-bottom:0;margin-top:15px;font-size:.9rem;color:var(--t3);"><em>This multi-layer approach protects capital during volatility while maintaining yield during favorable conditions.</em></p>
-        </div>
-
-        <h3>Liquidity Risks (72h Cooldown)</h3>
-        <p>The 72h delay between withdrawal request and execution offers critical advantages:</p>
-        <ul>
-          <li><strong>Optimized Liquidation:</strong> Time to dismantle positions without market impact (slippage)</li>
-          <li><strong>Collective Protection:</strong> Prevents bank runs and panic withdrawals</li>
-          <li><strong>Predictability:</strong> Allows the team to anticipate liquidity needs</li>
-          <li><strong>Fair Treatment:</strong> All withdrawals processed at optimal execution prices</li>
-        </ul>
-        <p><strong>Emergency Liquidity:</strong> Ability to liquidate positions within 24h if needed. Diversified positions for easier unwinding.</p>
-
-        <h3>Market Risks</h3>
-        <h4>Volatility Management</h4>
-        <ul>
-          <li>Portfolio volatility target: &lt;50% annualized</li>
-          <li>Dynamic position sizing based on market conditions</li>
-          <li>Risk metrics monitored: Sharpe ratio, maximum drawdown, correlation</li>
-        </ul>
-
-        <h4>Concentration Risk</h4>
-        <ul>
-          <li>Maximum <strong>60% allocation</strong> to single protocol</li>
-          <li>Maximum <strong>50% allocation</strong> to single strategy</li>
-          <li>Asset diversification (currently BTC, USDC focus)</li>
-        </ul>
-      </div>
-
-      <!-- ==================== PANEL 7: Security Infrastructure ==================== -->
-      <div class="doc-panel" data-panel="security">
-        <h2>7. Security Infrastructure</h2>
-
-        <h3>Multi-Layer Security Model</h3>
-        <p>G12 Labs implements a defense-in-depth security strategy:</p>
-
-        <div class="step-flow">
-          <div class="step-item">
-            <div class="step-num">1</div>
-            <div><strong>Layer 1:</strong> Enzyme Finance (Audited Infrastructure)</div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">2</div>
-            <div><strong>Layer 2:</strong> Multi-Signature Governance (2-of-3)</div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">3</div>
-            <div><strong>Layer 3:</strong> Protocol Whitelisting (Blue-chip only)</div>
+            <div>Deposit from <strong>$1 USDC</strong></div>
           </div>
           <div class="step-item">
             <div class="step-num">4</div>
-            <div><strong>Layer 4:</strong> Automated Monitoring (24/7 Alerts)</div>
+            <div>Track performance in real time — from our app or directly on-chain</div>
           </div>
           <div class="step-item">
             <div class="step-num">5</div>
-            <div><strong>Layer 5:</strong> Human Oversight (Expert Review)</div>
+            <div>Withdraw whenever you want</div>
           </div>
         </div>
 
-        <h3>Security Audits</h3>
-        <div class="two-col-grid">
-          <div>
-            <h4>Infrastructure Audits (Enzyme Finance)</h4>
-            <ul class="check-list">
-              <li>ChainSecurity — Full audit (2023)</li>
-              <li>OpenZeppelin — Security review (2023)</li>
-              <li>Trail of Bits — Code audit (2022)</li>
-              <li>5+ years of production testing</li>
-              <li>Bug bounty program active</li>
-            </ul>
+        <h3>What You Do vs. What We Do</h3>
+        <div class="journey-diagram">
+          <div class="journey-col">
+            <div class="journey-col-header you">You</div>
+            <div class="journey-row you">Connect your wallet</div>
+            <div class="journey-row you">Choose a vault</div>
+            <div class="journey-row you">Deposit</div>
+            <div class="journey-row you">Track your yield</div>
           </div>
-          <div>
-            <h4>G12 Labs Specific</h4>
-            <ul>
-              <li><span style="color:var(--warning);">⚠️</span> Third-party audit in progress (TBD)</li>
-              <li><span style="color:var(--success);">✓</span> All configurations verifiable on-chain</li>
-              <li><span style="color:var(--success);">✓</span> Open for community review</li>
-            </ul>
+          <div class="journey-divider">
+            <div class="journey-arrow">→</div>
+            <div class="journey-arrow">→</div>
+            <div class="journey-arrow">→</div>
+            <div class="journey-arrow">→</div>
           </div>
-        </div>
-
-        <h3>Incident Response Plan</h3>
-        <div class="grid-cards">
-          <div class="info-card">
-            <i class="ph ph-eye info-card-icon"></i>
-            <span class="info-card-title">Detection</span>
-            <p style="font-size:.9rem;margin:0;">Real-time alerts for anomalies</p>
-          </div>
-          <div class="info-card">
-            <i class="ph ph-warning info-card-icon"></i>
-            <span class="info-card-title">Response</span>
-            <ul style="font-size:.85rem;margin:0;padding-left:1rem;">
-              <li>Immediate multi-sig meeting</li>
-              <li>Position assessment and risk evaluation</li>
-              <li>Communication to depositors within 24h</li>
-              <li>Emergency procedures if needed</li>
-            </ul>
-          </div>
-          <div class="info-card">
-            <i class="ph ph-first-aid-kit info-card-icon"></i>
-            <span class="info-card-title">Recovery</span>
-            <ul style="font-size:.85rem;margin:0;padding-left:1rem;">
-              <li>Detailed post-mortem analysis</li>
-              <li>Implementation of preventive measures</li>
-              <li>Compensation policy (case-by-case basis)</li>
-              <li>Public disclosure of findings</li>
-            </ul>
+          <div class="journey-col">
+            <div class="journey-col-header g12">G12 Labs</div>
+            <div class="journey-row g12">Selects the best strategies</div>
+            <div class="journey-row g12">Builds and deploys the vaults</div>
+            <div class="journey-row g12">Monitors positions 24/7</div>
+            <div class="journey-row g12">Optimises, rebalances, protects</div>
           </div>
         </div>
 
-        <h3>Insurance &amp; Backstops</h3>
-        <h4>Current Status</h4>
-        <ul>
-          <li>Enzyme Finance has operated 5+ years without major exploits</li>
-          <li>No formal insurance policy (DeFi insurance market immature)</li>
-          <li>Team committed to transparent communication in case of issues</li>
-        </ul>
-
-        <h4>Future Plans</h4>
-        <ul>
-          <li>Exploring Nexus Mutual coverage</li>
-          <li>Building reserve fund from performance fees</li>
-          <li>Partnership discussions with insurance protocols</li>
-        </ul>
+        <div class="callout-success">
+          <strong>Non-custodial by design.</strong> You receive vault tokens directly in your wallet. Your funds are never held by G12 Labs. Even if G12 Labs disappears, you retain full ownership of your tokens.
+        </div>
       </div>
 
-      <!-- ==================== PANEL 8: Smart Contracts ==================== -->
-      <div class="doc-panel" data-panel="smart-contracts">
-        <h2>8. Smart Contracts &amp; Addresses</h2>
+      <!-- ==================== PANEL 4: Our Strategies ==================== -->
+      <div class="doc-panel" data-panel="strategies">
+        <h2>4. Our Strategies</h2>
+        <p>
+          Two vaults are currently live on Ethereum, each designed for a different risk profile. Both share the same principles: full transparency, non-custodial, and security first.
+        </p>
 
-        <div class="info-card" style="margin-bottom:20px;">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <!-- Vault 1 -->
+        <div class="vault-card">
+          <div class="vault-badge">LIVE — Ethereum</div>
+          <div class="vault-card-title">G12 Stable Yield</div>
+          <div class="vault-card-sub">Stable yield on your USDC</div>
+          <p style="font-size:14px;color:var(--t2);margin-bottom:20px;">
+            This vault is designed for users who want to generate yield on their stablecoins (USDC) with a conservative risk profile. USDC is allocated in decentralised lending markets where borrowers pay interest against collateral exceeding their loan.
+          </p>
+          <div class="table-wrapper" style="margin:0;">
+            <table>
+              <tr><td><strong>Indicative yield*</strong></td><td class="highlight-cell">4–8% per year</td></tr>
+              <tr><td><strong>Deposit asset</strong></td><td>USDC (digital dollar)</td></tr>
+              <tr><td><strong>Minimum deposit</strong></td><td>$1</td></tr>
+              <tr><td><strong>Fees</strong></td><td>No management or performance fees</td></tr>
+              <tr><td><strong>Withdrawal</strong></td><td>Instant, at any time</td></tr>
+              <tr><td><strong>Risk profile</strong></td><td>Conservative</td></tr>
+              <tr><td><strong>Token received</strong></td><td><strong>uG12</strong></td></tr>
+            </table>
+          </div>
+          <p style="font-size:11.5px;color:var(--t3);margin-top:14px;margin-bottom:0;"><em>*The yield range is indicative and based on rates historically observed on Morpho Blue markets. It does not in any way constitute a promise or guarantee of future yield. Actual yield may be lower, zero, or even negative in exceptional market conditions.</em></p>
+        </div>
+
+        <!-- Vault 2 -->
+        <div class="vault-card">
+          <div class="vault-badge">LIVE — Ethereum</div>
+          <div class="vault-card-title">G12 BTC Yield</div>
+          <div class="vault-card-sub">Yield on Bitcoin</div>
+          <p style="font-size:14px;color:var(--t2);margin-bottom:20px;">
+            This vault is designed for users who want optimised exposure to Bitcoin with yield generation. The strategy combines several DeFi mechanisms to slightly amplify Bitcoin exposure while generating additional income.
+          </p>
+          <div class="table-wrapper" style="margin:0;">
+            <table>
+              <tr><td><strong>Indicative yield*</strong></td><td class="highlight-cell">10–20% per year</td></tr>
+              <tr><td><strong>Deposit asset</strong></td><td>USDC</td></tr>
+              <tr><td><strong>Minimum deposit</strong></td><td>$1</td></tr>
+              <tr><td><strong>Management fee</strong></td><td>0.75% per year</td></tr>
+              <tr><td><strong>Performance fee</strong></td><td>10% on profits only</td></tr>
+              <tr><td><strong>Withdrawal</strong></td><td>72h delay</td></tr>
+              <tr><td><strong>Risk profile</strong></td><td>Moderate — Bitcoin exposure</td></tr>
+              <tr><td><strong>Token received</strong></td><td><strong>bG12</strong></td></tr>
+            </table>
+          </div>
+          <p style="font-size:11.5px;color:var(--t3);margin-top:14px;margin-bottom:0;"><em>*The yield range is indicative and based on historical strategy performance across different market conditions. It does not constitute a promise or guarantee of future yield. This vault has direct Bitcoin price exposure and yield may be negative.</em></p>
+        </div>
+
+        <h3>Which Vault for Which Profile?</h3>
+        <div class="schema-box" style="padding:0;overflow:hidden;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--bd-dark);">
+            <div style="padding:14px 18px;font-size:12px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;border-right:1px solid var(--bd-dark);"></div>
+            <div style="padding:14px 18px;font-size:13px;font-weight:700;color:var(--tw);border-right:1px solid var(--bd-dark);text-align:center;">G12 Stable Yield</div>
+            <div style="padding:14px 18px;font-size:13px;font-weight:700;color:var(--brand-orange);text-align:center;">G12 BTC Yield</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--bd-dark);">
+            <div style="padding:13px 18px;font-size:13px;font-weight:600;color:var(--t1);border-right:1px solid var(--bd-dark);">Profile</div>
+            <div style="padding:13px 18px;font-size:13px;color:var(--t2);border-right:1px solid var(--bd-dark);text-align:center;">Conservative</div>
+            <div style="padding:13px 18px;font-size:13px;color:var(--t2);text-align:center;">Moderate</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--bd-dark);">
+            <div style="padding:13px 18px;font-size:13px;font-weight:600;color:var(--t1);border-right:1px solid var(--bd-dark);">Risk</div>
+            <div style="padding:13px 18px;font-size:13px;color:var(--success);border-right:1px solid var(--bd-dark);text-align:center;">Low</div>
+            <div style="padding:13px 18px;font-size:13px;color:var(--warning);text-align:center;">Moderate</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--bd-dark);">
+            <div style="padding:13px 18px;font-size:13px;font-weight:600;color:var(--t1);border-right:1px solid var(--bd-dark);">Indicative yield*</div>
+            <div style="padding:13px 18px;font-size:13px;color:var(--t2);border-right:1px solid var(--bd-dark);text-align:center;">4–8% / yr</div>
+            <div style="padding:13px 18px;font-size:13px;color:var(--t2);text-align:center;">10–20% / yr</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;">
+            <div style="padding:13px 18px;font-size:13px;font-weight:600;color:var(--t1);border-right:1px solid var(--bd-dark);">Volatility</div>
+            <div style="padding:13px 18px;font-size:13px;color:var(--t2);border-right:1px solid var(--bd-dark);text-align:center;">Low (USDC)</div>
+            <div style="padding:13px 18px;font-size:13px;color:var(--t2);text-align:center;">Tied to Bitcoin price</div>
+          </div>
+        </div>
+        <p style="font-size:11.5px;color:var(--t3);margin-top:10px;"><em>*Indicative ranges, not guaranteed. See detailed warnings in the Risks section.</em></p>
+
+        <h3>Future Developments</h3>
+        <p>
+          This is just the beginning. Our team continuously works on new strategies and new opportunities. Each new vault goes through our internal validation process before going to production. Future additions will be announced on <a href="https://g12labs.com" target="_blank" style="color:var(--brand-orange);">g12labs.com</a>.
+        </p>
+      </div>
+
+      <!-- ==================== PANEL 5: Fees ==================== -->
+      <div class="doc-panel" data-panel="fees">
+        <h2>5. Fees</h2>
+        <p>Our fees are transparent and entirely visible on-chain.</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Fee</th>
+                <th>G12 Stable Yield</th>
+                <th>G12 BTC Yield</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Management</strong></td>
+                <td class="highlight-cell">0%</td>
+                <td>0.75% / year</td>
+              </tr>
+              <tr>
+                <td><strong>Performance</strong></td>
+                <td class="highlight-cell">0%</td>
+                <td>10% on net profits</td>
+              </tr>
+              <tr>
+                <td><strong>Entry</strong></td>
+                <td class="highlight-cell">0%</td>
+                <td class="highlight-cell">0%</td>
+              </tr>
+              <tr>
+                <td><strong>Exit</strong></td>
+                <td class="highlight-cell">0%</td>
+                <td>0.20%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout">
+          The G12 Labs team also deposits in its own vaults. <strong>When you win, we win. When you lose, we lose too.</strong> This is the only incentive structure that seems honest to us.
+        </div>
+
+        <h3>Fee Examples — BTC Yield Vault</h3>
+        <div class="grid-cards">
+          <div class="info-card">
+            <span class="info-card-title">Scenario 1: No Profit</span>
+            <p style="font-size:.85rem;margin:0 0 10px;color:var(--t2);">Deposit $10,000 — flat year</p>
+            <ul style="font-size:.9rem;margin:0;">
+              <li>Management fee: $75 / yr (0.75%)</li>
+              <li>Performance fee: <strong>$0</strong></li>
+              <li>Total annual cost: $75</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <span class="info-card-title">Scenario 2: +20% Year</span>
+            <p style="font-size:.85rem;margin:0 0 10px;color:var(--t2);">Deposit $10,000, profit $2,000</p>
+            <ul style="font-size:.9rem;margin:0;">
+              <li>Management fee: $75 / yr</li>
+              <li>Performance fee: $200 (10% of $2,000)</li>
+              <li>Total cost: $275</li>
+              <li style="color:var(--success);"><strong>Net gain: $1,725 (17.25%)</strong></li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <span class="info-card-title">Scenario 3: -10% Year</span>
+            <p style="font-size:.85rem;margin:0 0 10px;color:var(--t2);">Deposit $10,000 — loss year</p>
+            <ul style="font-size:.9rem;margin:0;">
+              <li>Management fee: $75 / yr</li>
+              <li>Performance fee: <strong>$0</strong> (no profit)</li>
+              <li style="color:var(--warning);">High-water mark applies — must recover before next performance fee</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== PANEL 6: Security ==================== -->
+      <div class="doc-panel" data-panel="security">
+        <h2>6. Security</h2>
+        <p>
+          We take no shortcuts on security. Each vault is built on protocols audited by the best firms in the sector, governed by multi-signatures, and continuously monitored. <strong>Zero risk does not exist in DeFi — but we do everything to minimise it.</strong>
+        </p>
+
+        <div class="security-grid">
+          <div class="security-item">
+            <div class="security-item-icon"><i class="ph ph-lock-key"></i></div>
+            <div class="security-item-title">Non-Custodial</div>
+            <p class="security-item-desc">Your funds remain in your wallet. We can never access them. Even if G12 Labs disappears, you keep your tokens.</p>
+          </div>
+          <div class="security-item">
+            <div class="security-item-icon"><i class="ph ph-users-three"></i></div>
+            <div class="security-item-title">Multi-Signature</div>
+            <p class="security-item-desc">No critical operation can be performed by a single person. Multiple signatures are always required.</p>
+          </div>
+          <div class="security-item">
+            <div class="security-item-icon"><i class="ph ph-certificate"></i></div>
+            <div class="security-item-title">Audited Protocols</div>
+            <p class="security-item-desc">We only use protocols verified by the world's best security firms (ChainSecurity, OpenZeppelin, Trail of Bits).</p>
+          </div>
+          <div class="security-item">
+            <div class="security-item-icon"><i class="ph ph-clock-countdown"></i></div>
+            <div class="security-item-title">Security Delay</div>
+            <p class="security-item-desc">Any major change is announced in advance. You have time to withdraw your funds if you disagree.</p>
+          </div>
+          <div class="security-item">
+            <div class="security-item-icon"><i class="ph ph-monitor"></i></div>
+            <div class="security-item-title">24/7 Monitoring</div>
+            <p class="security-item-desc">Our systems continuously monitor positions and alert the team if a problem is detected.</p>
+          </div>
+          <div class="security-item">
+            <div class="security-item-icon"><i class="ph ph-magnifying-glass"></i></div>
+            <div class="security-item-title">Full Transparency</div>
+            <p class="security-item-desc">Everything is publicly verifiable. Every transaction, every position, every fee.</p>
+          </div>
+        </div>
+
+        <h3>Multi-Layer Architecture</h3>
+        <div class="step-flow">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div><strong>Enzyme Finance</strong> — Audited vault infrastructure (5+ years, $200M+ TVL, zero major exploits)</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div><strong>Multi-Signature (2-of-3)</strong> — All critical actions require at least 2 out of 3 signatories</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div><strong>Whitelisted Protocols Only</strong> — Morpho, Aave V3, Uniswap V3. No unvetted integrations.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div><strong>Automated Monitoring</strong> — Real-time alerts, health factor tracking, LP range monitoring</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div><strong>Human Oversight</strong> — All significant decisions validated by the team before execution</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== PANEL 7: Transparency ==================== -->
+      <div class="doc-panel" data-panel="transparency">
+        <h2>7. Transparency</h2>
+
+        <div class="callout">
+          <em>Everything we do is publicly verifiable. If we make a mistake, you will see it. This is the constraint we impose on ourselves.</em>
+        </div>
+
+        <p>You can track the status of your investments in real time from multiple sources:</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Where to check</th>
+                <th>What you will find</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>app.g12labs.com</strong></td>
+                <td>Your personal dashboard — all your vaults, yields and positions</td>
+              </tr>
+              <tr>
+                <td><strong>etherscan.io</strong></td>
+                <td>All transactions on the blockchain</td>
+              </tr>
+              <tr>
+                <td><strong>Enzyme Finance</strong></td>
+                <td>Vault configuration, holdings, performance, and fees</td>
+              </tr>
+              <tr>
+                <td><strong>Safe (Gnosis)</strong></td>
+                <td>Multi-signature governance actions and history</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>What You Can Verify</h3>
+        <div class="two-col-grid">
+          <ul class="check-list">
+            <li>Every deposit and withdrawal</li>
+            <li>Every rebalancing transaction</li>
+            <li>Every protocol interaction</li>
+            <li>Fee collections</li>
+          </ul>
+          <ul class="check-list">
+            <li>Share price evolution</li>
+            <li>NAV (Net Asset Value)</li>
+            <li>Vault configuration and policies</li>
+            <li>Multi-sig governance history</li>
+          </ul>
+        </div>
+
+        <div class="callout-success">
+          <strong>Open Review:</strong> All configurations are auditable by anyone. Community members can analyse strategies. Findings and suggestions are welcome at <a href="mailto:info@g12labs.com" style="color:var(--brand-orange);">info@g12labs.com</a>
+        </div>
+      </div>
+
+      <!-- ==================== PANEL 8: Contract Addresses ==================== -->
+      <div class="doc-panel" data-panel="contracts">
+        <h2>8. Contract Addresses</h2>
+        <p>For those who want to verify themselves:</p>
+
+        <div class="info-card" style="margin-bottom:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;">
             <div>
-              <span class="info-card-title">bG12 Token — BTC Yield Vault</span>
-              <p style="font-size:.9rem;margin-bottom:4px;">Symbol: <strong>bG12</strong> | Network: <strong>Ethereum</strong> | Type: ERC-20 (Enzyme Vault Share) | Decimals: 18</p>
+              <span class="info-card-title">G12 Stable Yield</span>
+              <p style="font-size:.9rem;margin-bottom:4px;color:var(--t2);">Symbol: <strong>uG12</strong> | Network: <strong>Ethereum</strong></p>
             </div>
             <span class="meta-tag">LIVE</span>
           </div>
           <div class="address-box">
-            <span id="addr-bg12">0x22B46549f9906c384436C60983ACcC5b191205cf</span>
+            <span>0xD3CfFB7B62bae7abF6618cC5c1F160Dfa826110C</span>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('0xD3CfFB7B62bae7abF6618cC5c1F160Dfa826110C')"><i class="ph ph-copy"></i></button>
+          </div>
+          <p style="font-size:.85rem;margin-top:10px;margin-bottom:0;"><a href="https://etherscan.io/address/0xD3CfFB7B62bae7abF6618cC5c1F160Dfa826110C" target="_blank" style="color:var(--brand-orange);">View on Etherscan →</a></p>
+        </div>
+
+        <div class="info-card" style="margin-bottom:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;">
+            <div>
+              <span class="info-card-title">G12 BTC Yield</span>
+              <p style="font-size:.9rem;margin-bottom:4px;color:var(--t2);">Symbol: <strong>bG12</strong> | Network: <strong>Ethereum</strong></p>
+            </div>
+            <span class="meta-tag">LIVE</span>
+          </div>
+          <div class="address-box">
+            <span>0x22B46549f9906c384436C60983ACcC5b191205cf</span>
             <button class="copy-btn" onclick="navigator.clipboard.writeText('0x22B46549f9906c384436C60983ACcC5b191205cf')"><i class="ph ph-copy"></i></button>
           </div>
           <p style="font-size:.85rem;margin-top:10px;margin-bottom:0;"><a href="https://etherscan.io/address/0x22B46549f9906c384436C60983ACcC5b191205cf" target="_blank" style="color:var(--brand-orange);">View on Etherscan →</a></p>
         </div>
 
-        <div class="info-card" style="margin-bottom:20px;">
-          <span class="info-card-title">Manager Address (Multi-Sig)</span>
-          <p style="font-size:.9rem;margin-bottom:4px;">Type: <strong>Gnosis Safe 2-of-3</strong> | Network: <strong>Ethereum</strong></p>
+        <div class="info-card" style="margin-bottom:16px;">
+          <span class="info-card-title">Multi-Sig (Gnosis Safe)</span>
+          <p style="font-size:.9rem;margin-bottom:4px;color:var(--t2);">Type: <strong>2-of-3</strong> | Network: <strong>Ethereum</strong></p>
           <div class="address-box">
-            <span id="addr-manager">0x4ce70dcd34c283f890c37ee1185924e264bfd14e</span>
+            <span>0x4ce70dcd34c283f890c37ee1185924e264bfd14e</span>
             <button class="copy-btn" onclick="navigator.clipboard.writeText('0x4ce70dcd34c283f890c37ee1185924e264bfd14e')"><i class="ph ph-copy"></i></button>
           </div>
           <p style="font-size:.85rem;margin-top:10px;margin-bottom:0;"><a href="https://etherscan.io/address/0x4ce70dcd34c283f890c37ee1185924e264bfd14e" target="_blank" style="color:var(--brand-orange);">View on Etherscan →</a></p>
         </div>
 
-        <h4>Key Integrated Protocols</h4>
-        <ul>
-          <li>Uniswap V3 Router (Arbitrum)</li>
-          <li>Aave V3 Pool (Arbitrum)</li>
-          <li>Additional integrations via Enzyme adapters</li>
-        </ul>
-
-        <h3>Denomination Asset</h3>
-        <div class="info-card">
-          <span class="info-card-title">Accounting Currency: USDC (USD Coin)</span>
-          <p style="font-size:.9rem;margin-bottom:4px;">Address: <code style="background:var(--d0);padding:2px 6px;border-radius:4px;">0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48</code> (Ethereum)</p>
-          <p style="font-size:.9rem;margin:0;color:var(--t2);"><strong>Reason:</strong> Stablecoin ensures clear performance tracking. All vault performance and share prices are calculated in USDC.</p>
+        <div class="callout">
+          <strong>How to verify:</strong> On Etherscan, check the "Contract" tab to see verified source code. On the Enzyme vault page, check "Policies", "Fees", and "Portfolio" tabs for real-time strategy data.
         </div>
       </div>
 
-      <!-- ==================== PANEL 9: Governance ==================== -->
-      <div class="doc-panel" data-panel="governance">
-        <h2>9. Governance &amp; Multi-Signature</h2>
+      <!-- ==================== PANEL 9: Risks ==================== -->
+      <div class="doc-panel" data-panel="risks">
+        <h2>9. Risks</h2>
+        <p>
+          Investing in crypto involves risks. We take them very seriously and do everything to minimise them, but zero risk does not exist.
+        </p>
 
-        <h3>Multi-Signature Configuration</h3>
-        <div class="schema-box" style="text-align:center;">
-          <div style="font-size:3rem;font-weight:800;color:var(--brand-orange);">2-of-3</div>
-          <p style="margin:10px 0 0 0;color:var(--t2);">Gnosis Safe v1.4.1 | 2 signatures required | 3 total owners</p>
-        </div>
-
-        <h4>Why 2-of-3?</h4>
-        <ul class="check-list">
-          <li><strong>Security:</strong> Requires compromise of 2 wallets (not just 1)</li>
-          <li><strong>Redundancy:</strong> Can operate if 1 signer temporarily unavailable</li>
-          <li><strong>Best Practice:</strong> Standard configuration for small teams</li>
-          <li><strong>Flexibility:</strong> Balance between security and operational efficiency</li>
-        </ul>
-
-        <h3>Governance Scope</h3>
-        <div class="two-col-grid">
-          <div>
-            <h4 style="color:var(--warning);">Actions Requiring Multi-Sig Approval</h4>
-            <ul style="display:grid;gap:8px;">
-              <li><i class="ph ph-check-circle" style="color:var(--brand-orange);"></i> Vault configuration changes</li>
-              <li><i class="ph ph-check-circle" style="color:var(--brand-orange);"></i> Adding new protocol integrations</li>
-              <li><i class="ph ph-check-circle" style="color:var(--brand-orange);"></i> Modifying fee structure</li>
-              <li><i class="ph ph-check-circle" style="color:var(--brand-orange);"></i> Emergency pause/unpause</li>
-              <li><i class="ph ph-check-circle" style="color:var(--brand-orange);"></i> Upgrading vault infrastructure</li>
-              <li><i class="ph ph-check-circle" style="color:var(--brand-orange);"></i> Large rebalancing operations</li>
-              <li><i class="ph ph-check-circle" style="color:var(--brand-orange);"></i> Changing manager address</li>
-            </ul>
-          </div>
-          <div>
-            <h4 style="color:var(--success);">Automated Actions (No Multi-Sig)</h4>
-            <ul>
-              <li>Regular rebalancing within approved protocols</li>
-              <li>Yield harvesting and compounding</li>
-              <li>Position monitoring and alerts</li>
-              <li>Fee collection</li>
-              <li>Share minting/burning (user-initiated)</li>
-            </ul>
-          </div>
-        </div>
-
-        <h3>Decision-Making Process</h3>
-        <h4>Standard Operations</h4>
-        <ol>
-          <li>Strategy team proposes action</li>
-          <li>Multi-sig signatories review proposal</li>
-          <li>2 signatures required to execute</li>
-          <li>Transaction executed on-chain</li>
-          <li>Community notification (if material)</li>
-        </ol>
-
-        <h4>Emergency Procedures</h4>
         <div class="table-wrapper">
           <table>
-            <tr>
-              <td><strong>Critical security issues</strong></td>
-              <td>&lt;4h response time</td>
-            </tr>
-            <tr>
-              <td><strong>Material protocol risks</strong></td>
-              <td>&lt;24h response time</td>
-            </tr>
-            <tr>
-              <td><strong>Routine operations</strong></td>
-              <td>1-3 days review period</td>
-            </tr>
+            <thead>
+              <tr>
+                <th>Risk</th>
+                <th>Plain explanation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Market risk</strong></td>
+                <td>Crypto prices can vary significantly. The BTC vault is directly impacted. The Stable Yield vault has low exposure.</td>
+              </tr>
+              <tr>
+                <td><strong>Technical risk</strong></td>
+                <td>The protocols we use could have a bug, even though they are audited by the best firms.</td>
+              </tr>
+              <tr>
+                <td><strong>Yield risk</strong></td>
+                <td>The yields shown are targets, not guarantees. They vary depending on market conditions.</td>
+              </tr>
+              <tr>
+                <td><strong>Liquidity risk</strong></td>
+                <td>Temporary inability to withdraw funds (72h delay for BTC vault). In exceptional cases, positions may take longer to unwind.</td>
+              </tr>
+              <tr>
+                <td><strong>Regulatory risk</strong></td>
+                <td>Laws around crypto can evolve and impact the services available.</td>
+              </tr>
+              <tr>
+                <td><strong>USDC depeg risk</strong></td>
+                <td>USDC could temporarily lose its parity with the US dollar.</td>
+              </tr>
+            </tbody>
           </table>
         </div>
 
-        <h3>Transparency Commitments</h3>
-        <div class="two-col-grid">
-          <div class="info-card">
-            <span class="info-card-title" style="color:var(--success);">What's Public</span>
-            <ul style="font-size:.9rem;margin:10px 0 0 0;">
-              <li>All multi-sig transactions on Etherscan</li>
-              <li>Vault configuration on Enzyme</li>
-              <li>Holdings and positions (real-time)</li>
-              <li>Performance metrics</li>
-              <li>Fee calculations</li>
-            </ul>
-          </div>
-          <div class="info-card">
-            <span class="info-card-title" style="color:var(--neutral);">What's Private</span>
-            <ul style="font-size:.9rem;margin:10px 0 0 0;">
-              <li>Identity of individual signatories (security reasons)</li>
-              <li>Internal strategy discussions</li>
-              <li>Proprietary trading algorithms</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- ==================== PANEL 10: Transparency ==================== -->
-      <div class="doc-panel" data-panel="transparency">
-        <h2>10. Transparency &amp; Verification</h2>
-        <p>Don't trust, verify. Here is how you can check everything yourself:</p>
-
-        <h3>How to Verify Everything</h3>
-        <div class="step-flow">
-          <div class="step-item">
-            <div class="step-num">1</div>
-            <div>
-              <strong>Verify Smart Contracts:</strong><br>
-              Visit Etherscan, check the "Contract" tab to see verified code matching Enzyme Finance GlobalConfigProxy. Check contract creation date.
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">2</div>
-            <div>
-              <strong>Verify Multi-Sig Configuration:</strong><br>
-              Visit Safe Interface, check "Settings" to see 2-of-3 configuration. Review transaction history. Verify all critical actions require multiple signatures.
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">3</div>
-            <div>
-              <strong>Verify Vault Configuration:</strong><br>
-              Visit Enzyme Vault, check "Policies" tab (Deposit minimum: 1 USDC, Redemption asset: USDC only, Lock-up period: 3 days). Check "Fees" tab (Management: 1%, Performance: 20% with HWM, Exit: 0.2%).
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">4</div>
-            <div>
-              <strong>Verify Current Holdings:</strong><br>
-              Same Enzyme vault page, check "Portfolio" tab. See real-time allocation: Token balances, Uniswap V3 positions, Aave V3 positions. Verify against claimed strategy.
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">5</div>
-            <div>
-              <strong>Verify Performance:</strong><br>
-              Check "Financials" tab on Enzyme. Review: Share price history, Returns (inception-to-date), Sharpe ratio, Volatility metrics.
-            </div>
-          </div>
-        </div>
-
-        <h3>Real-Time Monitoring</h3>
-        <h4>Public Dashboards</h4>
-        <ul>
-          <li><strong>Enzyme Vault Interface</strong> — most comprehensive</li>
-          <li><strong>Etherscan</strong> — transaction history</li>
-          <li><strong>Safe Interface</strong> — governance actions</li>
-        </ul>
-
-        <h4>What You Can Track</h4>
-        <ul class="check-list">
-          <li>Every deposit and withdrawal</li>
-          <li>Every rebalancing transaction</li>
-          <li>Every protocol interaction</li>
-          <li>Fee collections</li>
-          <li>Share price evolution</li>
-          <li>NAV (Net Asset Value)</li>
-        </ul>
-
-        <h3>Data Export</h3>
-        <h4>Available Data</h4>
-        <ul>
-          <li>Historical transactions (CSV export via Etherscan)</li>
-          <li>Performance metrics (API via Enzyme)</li>
-          <li>Holdings evolution (snapshot via Enzyme)</li>
-          <li>Fee calculations (on-chain data)</li>
-        </ul>
-
-        <h3>Community Verification</h3>
-        <p>
-          <strong>Open Review:</strong> All code is verifiable on-chain. Configuration is auditable by anyone. Community members can analyze strategies. Findings and suggestions welcome at <a href="mailto:info@g12labs.com" style="color:var(--brand-orange);">info@g12labs.com</a>
-        </p>
-      </div>
-
-      <!-- ==================== PANEL 11: Legal & Disclaimer ==================== -->
-      <div class="doc-panel" data-panel="legal">
-        <h2>11. Legal &amp; Disclaimer</h2>
-
-        <h3>Non-Custodial Service</h3>
-        <p>G12 Labs operates a <strong>100% non-custodial model</strong>:</p>
-        <ul class="check-list">
-          <li>You keep total control of your funds</li>
-          <li>Your funds remain in your wallet (via Vault Tokens)</li>
-          <li>We never access your private keys</li>
-          <li>We do NOT act as a custodian</li>
-          <li>You can verify everything on-chain</li>
-        </ul>
-        <p>
-          <strong>What This Means:</strong> Your G12 tokens are ERC-20 tokens in YOUR wallet. You control when to redeem. Even if G12 Labs disappears, you own your vault shares.
-        </p>
-
-        <h3>Investment Risks</h3>
         <div class="callout-warning">
-          <strong>⚠️ Warning:</strong> Cryptocurrencies and DeFi involve significant risks. You could lose all or part of your capital.
+          <strong>The yield ranges mentioned in this document (4–8% for the Stable Yield vault, 10–20% for the BTC Yield vault) are purely indicative</strong>, based on historical observations, and do not in any way constitute a promise, forecast, or guarantee of future yield. Actual yield may be lower, zero, or negative.
         </div>
 
-        <h4>Key Risks</h4>
+        <div class="callout">
+          <em>Security is never absolute. We prioritise it above yield. Only invest what you can afford to lose.</em>
+        </div>
+      </div>
+
+      <!-- ==================== PANEL 10: Legal & Disclaimers ==================== -->
+      <div class="doc-panel" data-panel="legal">
+        <h2>10. Legal &amp; Disclaimers</h2>
+
+        <h3>Regulatory Status</h3>
+        <p>
+          G12 Labs is not a regulated financial institution. G12 Labs holds no licence, approval, or authorisation under applicable financial regulation, including but not limited to: the status of Digital Asset Service Provider (DASP/PSAN) in France, authorisation under the European MiCA regulation (Markets in Crypto-Assets), or any equivalent licence in other jurisdictions.
+        </p>
+        <p>
+          The uG12 and bG12 tokens are not financial instruments within the meaning of applicable regulations. They represent shares in decentralised protocols operating on the Ethereum blockchain. These tokens are not covered by any deposit guarantee or investor compensation scheme.
+        </p>
+
+        <h3>Nature of the Service</h3>
+        <p>
+          G12 Labs provides a technical interface enabling interaction with third-party decentralised protocols (Morpho, Enzyme Finance, Aave, Uniswap). G12 Labs never holds custody of user funds (non-custodial service). The user interacts directly with smart contracts via their own wallet.
+        </p>
+        <div class="callout-success">
+          <strong>Your bG12 and uG12 tokens are in YOUR wallet. You fully control when to withdraw them.</strong>
+        </div>
+
+        <h3>Risk Warning</h3>
+        <p><strong>Using the protocols described in this document involves significant risks, including but not limited to:</strong></p>
         <ul class="risk-list">
-          <li><strong>Market Risk:</strong> Crypto prices are extremely volatile (+/- 50% or more in 24h)</li>
-          <li><strong>Smart Contract Risk:</strong> Bugs in smart contracts can lead to loss of funds</li>
-          <li><strong>Protocol Risk:</strong> Third-party protocols (Aave, Uniswap) could be exploited</li>
-          <li><strong>Liquidation Risk:</strong> Leveraged positions could be liquidated in market downturns</li>
-          <li><strong>Impermanent Loss:</strong> Liquidity provision can result in losses vs holding</li>
-          <li><strong>Regulatory Risk:</strong> Laws may change and affect DeFi operations</li>
-          <li><strong>Operational Risk:</strong> Human errors or system failures</li>
-          <li><strong>Liquidity Risk:</strong> May not be able to exit quickly (72h cooldown)</li>
+          <li>Total or partial loss of deposited capital</li>
+          <li>Risks related to smart contracts (bugs, exploits, vulnerabilities)</li>
+          <li>Risks related to digital asset volatility</li>
+          <li>Risks related to third-party protocols used (Morpho, Enzyme, Aave, Uniswap)</li>
+          <li>Regulatory risks related to the evolution of legislation</li>
+          <li>Liquidity risks (temporary inability to withdraw funds)</li>
+          <li>USDC depeg risk (loss of parity with the US dollar)</li>
         </ul>
 
-        <h4>Risk Mitigation</h4>
-        <ul class="check-list">
-          <li>Blue-chip protocols only</li>
-          <li>Multi-signature governance</li>
-          <li>Moderate leverage (&lt;2x)</li>
-          <li>24/7 monitoring</li>
-          <li>Transparent operations</li>
-        </ul>
-        <p><strong>Important:</strong> Past performance is not indicative of future results.</p>
-
-        <h3>Not Financial Advice</h3>
-        <p>This document is for <strong>informational purposes only</strong>. It does not constitute:</p>
-        <ul>
-          <li>Investment advice</li>
-          <li>Tax advice</li>
-          <li>Legal advice</li>
-          <li>Financial planning advice</li>
-        </ul>
-
-        <h4>Before Investing</h4>
+        <h3>No Financial Advice</h3>
+        <p>This document is provided for purely informational and educational purposes. It does not in any way constitute: investment advice, tax or legal advice, an offer or solicitation to buy or sell digital assets, or a personalised recommendation.</p>
+        <h4>Before any decision:</h4>
         <ul class="check-list">
           <li>Do your own research (DYOR)</li>
-          <li>Consult qualified professionals</li>
-          <li>Only invest what you can afford to lose</li>
-          <li>Understand the risks completely</li>
-          <li>Verify all information independently</li>
+          <li>Consult a qualified financial, tax, or legal adviser</li>
+          <li>Only invest amounts whose loss would not compromise your financial situation</li>
+          <li>Ensure you fully understand the risks described above</li>
         </ul>
 
-        <h3>Jurisdiction &amp; Access</h3>
+        <h3>Geographic Restrictions</h3>
         <p>
-          <strong>Geographic Restrictions:</strong> G12 Labs services may not be available in certain jurisdictions due to local regulations. It is your responsibility to verify legality in your country.
-        </p>
-        <p>
-          <strong>No KYC Required:</strong> We do not collect personal information. Fully decentralized and permissionless. Responsibility on users to comply with local laws.
+          The services described in this document may not be authorised in certain jurisdictions. It is each user's responsibility to verify the compliance of their participation with the laws and regulations applicable in their country of residence. G12 Labs accepts no responsibility for use of the service in violation of local laws.
         </p>
 
-        <h3>Service Terms</h3>
-        <h4>No Guarantees</h4>
-        <ul>
-          <li>We do not guarantee any specific returns</li>
-          <li>We do not guarantee uninterrupted service</li>
-          <li>We do not guarantee error-free operations</li>
-          <li>Smart contracts may contain bugs</li>
-        </ul>
+        <h3>Limitation of Liability</h3>
+        <p>
+          G12 Labs, its founders, contributors and affiliates cannot be held responsible for any financial loss resulting from the use of the services described in this document. The user assumes full responsibility for their investment decisions.
+        </p>
 
-        <h4>Liability Limitation</h4>
-        <ul>
-          <li>Use at your own risk</li>
-          <li>We are not liable for losses</li>
-          <li>No insurance or compensation guarantees</li>
-          <li>Non-custodial = you bear the risk</li>
-        </ul>
-
-        <h4>Service Changes</h4>
-        <ul>
-          <li>We may modify strategies</li>
-          <li>We may add/remove protocols</li>
-          <li>We may adjust fees (with notice)</li>
-          <li>We may discontinue service</li>
-        </ul>
-
-        <h3>Contact &amp; Support</h3>
-        <div class="two-col-grid">
-          <div class="info-card">
-            <i class="ph ph-envelope info-card-icon"></i>
-            <span class="info-card-title">General Inquiries</span>
-            <p style="font-size:.9rem;margin:0;">
-              Email: <a href="mailto:info@g12labs.com" style="color:var(--brand-orange);">info@g12labs.com</a><br>
-              Website: <a href="https://g12labs.com" target="_blank" style="color:var(--brand-orange);">https://g12labs.com</a>
-            </p>
-          </div>
-          <div class="info-card">
-            <i class="ph ph-wrench info-card-icon"></i>
-            <span class="info-card-title">Technical Issues</span>
-            <p style="font-size:.9rem;margin:0;">
-              Report via email with transaction details.<br>
-              Include wallet address and timestamp.<br>
-              We aim to respond within 48h.
-            </p>
-          </div>
+        <h3>Contact</h3>
+        <div class="table-wrapper">
+          <table>
+            <tr><td><strong>Website</strong></td><td><a href="https://g12labs.com" target="_blank" style="color:var(--brand-orange);">g12labs.com</a></td></tr>
+            <tr><td><strong>Application</strong></td><td><a href="https://app.g12labs.com" target="_blank" style="color:var(--brand-orange);">app.g12labs.com</a></td></tr>
+            <tr><td><strong>Email</strong></td><td><a href="mailto:info@g12labs.com" style="color:var(--brand-orange);">info@g12labs.com</a></td></tr>
+          </table>
         </div>
 
-        <div style="margin-top:3rem;border-top:1px solid var(--bd-dark);padding-top:1.5rem;">
-          <p style="font-size:.85rem;color:var(--t3);margin-bottom:.5rem;">
-            <strong>Document Information</strong>
-          </p>
-          <p style="font-size:.85rem;color:var(--t3);margin-bottom:0;">
-            Version: 2.0 | Last Updated: January 28, 2026 | Status: Live / Production | Network: Ethereum
-          </p>
-          <p style="font-size:.8rem;color:var(--t3);margin-top:1rem;">
-            © 2026 G12 Labs. All rights reserved.<br>
-            This litepaper is subject to updates as the protocol evolves. Always refer to the latest version at <a href="https://g12labs.com/docs" style="color:var(--brand-orange);">https://g12labs.com/docs</a>
-          </p>
-          <p style="font-size:.8rem;color:var(--t3);">
-            For questions, suggestions, or partnership inquiries: <a href="mailto:info@g12labs.com" style="color:var(--brand-orange);">info@g12labs.com</a>
-          </p>
+        <div style="margin-top:2.5rem;border-top:1px solid var(--bd-dark);padding-top:1.5rem;">
+          <p style="font-size:.85rem;color:var(--t3);margin-bottom:.5rem;">Version 3.0 | March 2026 | Live</p>
+          <p style="font-size:.8rem;color:var(--t3);">© 2026 G12 Labs. All rights reserved.<br>Always check the most recent version at <a href="https://g12labs.com/docs" style="color:var(--brand-orange);">g12labs.com/docs</a></p>
+        </div>
+
+        <div class="callout-warning" style="margin-top:2rem;">
+          <strong>IMPORTANT NOTICE:</strong> This document is provided for purely informational and educational purposes. It does not constitute an offer, solicitation, investment advice, or recommendation to buy or sell digital assets. G12 Labs is not a regulated financial institution and holds no DASP licence or MiCA approval. Use of the protocols described involves significant risks, including total loss of capital. Consult a qualified financial adviser before making any decision.
         </div>
       </div>
 
@@ -1800,7 +1286,7 @@
         <button class="doc-nav-btn doc-nav-btn--next" id="nextBtn">
           <span class="doc-nav-label">
             <span class="doc-nav-hint">Next</span>
-            <span class="doc-nav-title" id="nextTitle">Vision &amp; Mission</span>
+            <span class="doc-nav-title" id="nextTitle">The Problem We Solve</span>
           </span>
           <i class="ph-bold ph-arrow-right"></i>
         </button>
@@ -1832,7 +1318,7 @@
           <p class="footer-col-h">Resources</p>
           <ul class="footer-links">
             <li><a href="/blog">Blog</a></li>
-            <li><a href="/docs">Lite paper</a></li>
+            <li><a href="/docs">Litepaper</a></li>
             <li><a href="/#faq">FAQ</a></li>
             <li><a href="https://app.g12labs.com">Dashboard</a></li>
           </ul>
@@ -1876,47 +1362,40 @@
 
     // Section navigation
     const sections = [
-      { id:'executive-summary',    title:'Executive Summary',      mobLabel:'01 · Executive Summary' },
-      { id:'vision-mission',       title:'Vision & Mission',       mobLabel:'02 · Vision & Mission' },
-      { id:'investment-strategy',  title:'Investment Strategy',    mobLabel:'03 · Investment Strategy' },
-      { id:'competitive-advantage',title:'Competitive Advantage',  mobLabel:'04 · Competitive Advantage' },
-      { id:'architecture',         title:'Architecture & Fees',    mobLabel:'05 · Architecture & Fees' },
-      { id:'risk-management',      title:'Risk Management',        mobLabel:'06 · Risk Management' },
-      { id:'security',             title:'Security Infrastructure',mobLabel:'07 · Security Infrastructure' },
-      { id:'smart-contracts',      title:'Smart Contracts',        mobLabel:'08 · Smart Contracts' },
-      { id:'governance',           title:'Governance',             mobLabel:'09 · Governance' },
-      { id:'transparency',         title:'Transparency',           mobLabel:'10 · Transparency' },
-      { id:'legal',                title:'Legal & Disclaimer',     mobLabel:'11 · Legal & Disclaimer' },
+      { id:'about',         title:'G12 Labs',               mobLabel:'01 · G12 Labs' },
+      { id:'problem',       title:'The Problem We Solve',   mobLabel:'02 · The Problem We Solve' },
+      { id:'how-it-works',  title:'How It Works',           mobLabel:'03 · How It Works' },
+      { id:'strategies',    title:'Our Strategies',         mobLabel:'04 · Our Strategies' },
+      { id:'fees',          title:'Fees',                   mobLabel:'05 · Fees' },
+      { id:'security',      title:'Security',               mobLabel:'06 · Security' },
+      { id:'transparency',  title:'Transparency',           mobLabel:'07 · Transparency' },
+      { id:'contracts',     title:'Contract Addresses',     mobLabel:'08 · Contract Addresses' },
+      { id:'risks',         title:'Risks',                  mobLabel:'09 · Risks' },
+      { id:'legal',         title:'Legal & Disclaimers',    mobLabel:'10 · Legal & Disclaimers' },
     ];
 
     let current = 0;
 
     function goTo(index) {
-      // hide all panels
       document.querySelectorAll('.doc-panel').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
 
-      // show target
       document.querySelector(`.doc-panel[data-panel="${sections[index].id}"]`).classList.add('active');
       document.querySelector(`.sidebar-link[data-section="${sections[index].id}"]`).classList.add('active');
 
-      // update prev/next
       const prevBtn = document.getElementById('prevBtn');
       const nextBtn = document.getElementById('nextBtn');
       const prevTitle = document.getElementById('prevTitle');
       const nextTitle = document.getElementById('nextTitle');
 
-      // hide prev on first section, hide next on last
       prevBtn.classList.toggle('hidden', index === 0);
       nextBtn.classList.toggle('hidden', index === sections.length - 1);
       prevTitle.textContent = index > 0 ? sections[index-1].title : '';
       nextTitle.textContent = index < sections.length-1 ? sections[index+1].title : '';
 
-      // show doc-header only on first section
       const header = document.getElementById('doc-header');
       if (header) header.style.display = index === 0 ? 'block' : 'none';
 
-      // sync mobile dropdown
       const label = document.getElementById('mobDropdownLabel');
       if (label) label.textContent = sections[index].mobLabel || sections[index].title;
       document.querySelectorAll('.mob-dropdown-item').forEach((item, i) => {
@@ -1924,7 +1403,6 @@
       });
 
       current = index;
-      // scroll to top — works with or without Lenis
       if (window.lenis) { window.lenis.scrollTo(0, { immediate: true }); }
       else { window.scrollTo(0, 0); }
     }
@@ -1959,12 +1437,12 @@
     // init
     goTo(0);
   </script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-<script>
-window.lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
-function raf(time) { window.lenis.raf(time); requestAnimationFrame(raf); }
-requestAnimationFrame(raf);
-</script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script>
+    window.lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    function raf(time) { window.lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  </script>
 
 </body>
 </html>
