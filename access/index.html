@@ -112,7 +112,7 @@
 
     /* --- RESET & BASE --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    html { scroll-padding-top: 100px; }
     
     body {
       font-family: 'inter', 'sans serif';
@@ -307,25 +307,26 @@
     }
     /* Burger */
     .nav-toggle {
-      border: none; background: none; padding: 0.35rem; border-radius: var(--radius-pill);
-      cursor: pointer; position: relative; width: 1.6rem; height: 1.1rem; display: inline-block;
+      width:22px; height:16px; position:relative; flex-shrink:0;
+      border:none; background:none; cursor:pointer; padding:0;
     }
     .nav-toggle span {
-      position: absolute; left: 0; right: 0; height: 2px; border-radius: 999px;
-      background: white; transform-origin: center; transition: all var(--dur-fast) var(--ease-standard);
+      position:absolute; left:0; width:22px; height:2px;
+      background:#fff; border-radius:2px; transform-origin:center;
+      will-change:transform; transform:translate3d(0,0,0);
+      transition:transform .4s var(--ease-standard), opacity .2s, width .3s var(--ease-standard);
     }
-    .nav-toggle span:nth-child(1) { top: 0; }
-    .nav-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
-    .nav-toggle span:nth-child(3) { bottom: 0; }
-    
-    .nav-toggle[aria-expanded='true'] span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
-    .nav-toggle[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
-    .nav-toggle[aria-expanded='true'] span:nth-child(3) { bottom: auto; top: 50%; transform: translateY(-50%) rotate(-45deg); }
+    .nav-toggle span:nth-child(1) { top:0; }
+    .nav-toggle span:nth-child(2) { top:7px; }
+    .nav-toggle span:nth-child(3) { top:14px; }
+    /* open state */
+    .nav-toggle[aria-expanded='true'] span:nth-child(1) { transform:translate3d(0,7px,0) rotate(45deg); }
+    .nav-toggle[aria-expanded='true'] span:nth-child(2) { opacity:0; width:0; }
+    .nav-toggle[aria-expanded='true'] span:nth-child(3) { transform:translate3d(0,-7px,0) rotate(-45deg); }
 
     @media (min-width: 64rem) {
       .nav-links {
         display: flex;
-        /* C'est ici que la magie opère pour le centrage absolu */
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -334,35 +335,47 @@
       .nav-toggle { display: none; }
     }
 
-    /* Menu mobile plein écran */
+    /* Burger gets more room on mobile */
+    @media(max-width:1024px){ .nav-inner { padding-right:16px; } }
+
+    /* ── Mobile menu ── */
     .nav-menu {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 50;
-      opacity: 0; pointer-events: none; background: rgba(3, 7, 12, 0.35);
-      backdrop-filter: blur(0px); transition: all 0.33s var(--ease-standard);
-      overflow: hidden; touch-action: none;
+      position:fixed; inset:0; z-index:50;
+      background:#0A0A0A;
+      display:flex; flex-direction:column;
+      padding:calc(var(--nav-height) + 40px) clamp(24px,6vw,48px) 48px;
+      opacity:0; pointer-events:none;
+      transition:opacity .3s var(--ease-standard);
     }
-    .nav-menu::before {
-      content: ""; position: absolute; inset: 0;
-      background: radial-gradient(circle at top, rgba(68, 83, 80, 0.2), transparent 60%), rgba(21, 23, 26, 0.95);
+    .nav-menu::after {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:300px; pointer-events:none;
+      background:radial-gradient(ellipse 120% 80% at 50% 120%, rgba(229,26,0,.13) 0%, transparent 70%);
     }
-    .nav-menu.open { opacity: 1; pointer-events: auto; backdrop-filter: blur(22px); }
-    
-    .nav-menu-content {
-      position: absolute; top: var(--nav-height); left: 0; right: 0; bottom: 0;
-      padding: 1.5rem var(--page-padding-x) 2.5rem;
-      display: flex; flex-direction: column; justify-content: flex-start;
-      overflow: hidden;
+    .nav-menu.open { opacity:1; pointer-events:auto; }
+    .nav-mob-links { display:flex; flex-direction:column; }
+    .nav-mob-links a {
+      font-size:clamp(1.1rem,5vw,1.4rem); font-weight:600; letter-spacing:-.02em;
+      color:rgba(149,149,147,1); padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.07);
+      display:flex; justify-content:space-between; align-items:center;
+      transition:color .2s, padding-left .25s var(--ease-standard);
     }
-    .nav-menu-content > a {
-      display: block; width: 100%; font-size: 1.1rem; font-weight: 500; color: white;
-      padding: 1.2rem 0; border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    .nav-mob-links a:first-child { border-top:1px solid rgba(255,255,255,0.07); }
+    .nav-mob-links a::after { content:'→'; font-size:.85rem; font-weight:400; opacity:0; transition:opacity .2s; }
+    .nav-mob-links a:hover { color:#fff; padding-left:6px; }
+    .nav-mob-links a:hover::after { opacity:1; }
+    .nav-mob-links a.active { color:#fff; }
+    .nav-mob-links a.active::after { opacity:.35; }
+    /* Launch App link — différencié */
+    .nav-mob-links a.mob-launch {
+      margin-top:8px; border-top:none; border-bottom:none;
+      background:linear-gradient(135deg,#FF9100,#E51A00);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      font-weight:700;
     }
-    .nav-menu-content > a:first-of-type { border-top: 2px solid rgba(255, 255, 255, 0.1); }
-    
-    .nav-menu-content .nav-menu-secondary {
-      margin-top: 1.8rem; padding-top: 1.2rem; display: flex;
-      justify-content: space-between; align-items: center; gap: 1rem;
-    }
+    .nav-mob-links a.mob-launch::before { display:none; }
+    .nav-mob-links a.mob-launch::after { content:'↗'; -webkit-text-fill-color:#FF9100; opacity:.6; }
+    .nav-mob-links a.mob-launch:hover { padding-left:6px; }
+    .nav-mob-links a.mob-launch:hover::after { opacity:1; }
     body.menu-open { overflow: hidden; }
     @media (min-width: 64rem) { .nav-menu { display: none !important; } }
 
@@ -606,14 +619,14 @@
         </button>
 
       </div> </div> <div class="nav-menu" id="navMenu">
-      <div class="nav-menu-content">
+      <nav class="nav-mob-links">
         <a href="/strategies">Strategies</a>
+        <a href="/#steps">How it works</a>
         <a href="/blog">Blog</a>
-        <a href="/docs" target="_blank">Lite paper</a>
-        <div style="margin-top: 20px;">
-           <a href="https://app.g12labs.com" class="btn-magma-outline" style="width: 100%;">Launch App</a>
-        </div>
-      </div>
+        <a href="/docs">Docs</a>
+        <a href="/contact">Contact</a>
+        <a href="https://app.g12labs.com" class="mob-launch" target="_blank" rel="noopener">Launch App</a>
+      </nav>
     </div>
   </header>
 
@@ -726,14 +739,21 @@
 
       // Close menu on link click
       navMenu.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => {
-            navToggle.setAttribute('aria-expanded', 'false');
-            navMenu.classList.remove('open');
-            document.body.style.overflow = '';
+        link.addEventListener('click', (e) => {
+          if (link.classList.contains('active')) e.preventDefault();
+          navToggle.setAttribute('aria-expanded', 'false');
+          navMenu.classList.remove('open');
+          document.body.style.overflow = '';
         });
       });
     })();
   </script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script>
+const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+requestAnimationFrame(raf);
+</script>
 
 </body>
 </html>

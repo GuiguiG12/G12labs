@@ -3,2080 +3,1603 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>G12 Labs — Institutional-grade DeFi Yield</title>
-<meta name="description" content="G12 Labs offers systematic, data-driven DeFi strategies. Access automated yield vaults on Arbitrum and Base with strict risk management. Capital preservation first.">
-<meta name="keywords" content="DeFi, Yield Farming, Arbitrum, Base, Crypto Vaults, Systematic Trading, G12 Labs">
-<link rel="icon" type="image/jpeg" href="/favicon.jpg" />
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-  
+  <title>G12 Labs — Professional DeFi Vaults</title>
+  <meta name="description" content="G12 Labs manages your capital in the best Web3 opportunities. Expert team, non-custodial, fully transparent.">
+  <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
   <style>
-    /* =========================================================
-       DESIGN TOKENS (COMBINED MAGMA + INDEX NAVBAR)
-       ========================================================= */
     :root {
-      /* =========================================
-         1. BRAND COLORS (L'ADN G12)
-         ========================================= */
-      --magma-core: #E85A04;        /* Orange Principal */
-      --magma-light: #FF9E66;       /* Orange Clair (Highlights) */
-      --magma-dark: #4A1500;        /* Orange Sombre (Ombres) */
-      --magma-dim: rgba(232, 90, 4, 0.1); /* Fond Orange Transparent (Badges) */
+      --brand-orange: #FF9100;
+      --brand-mid:    #FF4D00;
+      --brand-red:    #E51A00;
+      --brand-glow:   rgba(229,26,0,0.20);
+      --grad:         linear-gradient(135deg,#FF9100 0%,#E51A00 100%);
 
-      /* =========================================
-         2. NETWORK & DATA COLORS (Tes demandes)
-         ========================================= */
-      --base-blue: #0052FF;         /* Le Bleu "Base" officiel */
-      --base-dim: rgba(0, 82, 255, 0.1); /* Fond Bleu Transparent */
-      
-      --arb-blue: #2D374B;          /* Bleu Gris "Arbitrum" (Optionnel) */
-      
-      /* Couleurs Financières (Exactement celles de strategies.html) */
-      --success: #10B981;           /* VERT Performance / Profit */
-      --success-dim: rgba(16, 185, 129, 0.1);
-      
-      --error: #EF4444;             /* ROUGE Perte / Erreur */
-      --error-dim: rgba(239, 68, 68, 0.1);
-      
-      --warning: #F59E0B;           /* JAUNE Attention / Timelock */
-      --neutral: #6B7280;           /* GRIS Neutre / Secondaire */
+      /* Dark neutrals — zero blue tint */
+      --d0: #0A0A0A;
+      --d1: #111111;
+      --d2: #181818;
+      --d3: #202020;
+      --d4: #2A2A2A;
 
-      /* =========================================
-         3. DARK THEME PALETTE (Index, Access, Docs)
-         ========================================= */
-      --carbon-base: #05070b;       /* Fond : Noir Profond */
-      --carbon-surface: #0e1116;    /* Fond : Carte Sombre */
-      --carbon-border: #1f2329;     /* Bordure Sombre */
-      --carbon-text-main: #ffffff;
-      --carbon-text-muted: #9aa4b2;
+      /* Light neutrals — warm white */
+      --l0: #F7F7F5;
+      --l1: #EDEDEB;
+      --l2: #E0E0DE;
+      --l3: #C8C8C6;
 
-      /* =========================================
-         4. LIGHT THEME PALETTE (Strategies)
-         ========================================= */
-      --light-bg: #F9FAFB;          /* Fond : Gris très clair */
-      --light-card-bg: #FFFFFF;     /* Fond : Blanc pur */
-      --light-border: #E5E7EB;      /* Bordure Claire */
-      --light-text-main: #111827;   /* Texte : Noir Encre */
-      --light-text-muted: #6B7280;  /* Texte : Gris Moyen */
+      /* Borders */
+      --bd-dark:  rgba(255,255,255,0.07);
+      --bd-dark2: rgba(255,255,255,0.12);
+      --bd-light: #E2E2E0;
+      --bd-light2:#D0D0CE;
 
-      /* =========================================
-         5. COMPATIBILITÉ UNIFIÉE (Le "Bridge")
-         ========================================= */
-      /* Alias pour que 'access.html' utilise le thème Magma sans tout casser */
-      --accent: var(--magma-core);
-      --accent-secondary: var(--magma-light);
-      --accent-dim: var(--magma-dim);
-      
-      /* Valeurs par défaut (Mode Dark) - Surchargées localement si besoin */
-      --bg-app: var(--carbon-base);
-      --bg-card: var(--carbon-surface);
-      --bg-input: #0a0d12;
-      --border-color: var(--carbon-border);
-      --border-highlight: #2d333b;
-      --text-main: var(--carbon-text-main);
-      --text-muted: var(--carbon-text-muted);
+      /* Text on dark */
+      --tw:  #FFFFFF;
+      --t1:  #D8D8D6;
+      --t2:  #959593;
+      --t3:  #555553;
+      /* Text on light */
+      --lw:  #111111;
+      --l-t1:#3A3A38;
+      --l-t2:#6A6A68;
+      --l-t3:#A0A09E;
 
-      /* =========================================
-         6. GRADIENTS & EFFECTS
-         ========================================= */
-      --grad-text-magma: linear-gradient(135deg, #FFFFFF 10%, #E85A04 60%, #853200 100%);
-      --grad-btn-magma: linear-gradient(135deg, #FF9E66 0%, #E85A04 50%, #B33600 100%);
-      --grad-glow: radial-gradient(circle, rgba(232, 90, 4, 0.15) 0%, transparent 70%);
-
-      /* =========================================
-         7. LAYOUT & SPACING (Anti-Saut)
-         ========================================= */
-      --container-max: 1280px;      /* Largeur Max Standard */
-      --container-width: 1280px;    /* Alias */
-      --page-padding-x: 1.25rem;
-      
-      /* NAVBAR HARMONISÉE */
-      --nav-height: 5rem;           /* 80px FIXE POUR TOUT LE MONDE */
-      --nav-bg: rgba(5, 7, 11, 0.8);
-      --nav-bg-scrolled: rgba(36, 36, 37, 0.811);
-
-      /* =========================================
-         8. COMPONENT SPECS
-         ========================================= */
-      --radius-sm: 6px;
-      --radius-md: 12px;
-      --radius-lg: 24px;
-      --radius-pill: 999px;
-      
-      --dur-fast: 0.15s;
-      --dur-normal: 0.25s;
-      --ease-standard: cubic-bezier(0.2, 0.6, 0.2, 1);
+      --green: #22C55E;
+      --r-sm: 8px; --r-md: 14px; --r-lg: 20px; --r-xl: 28px; --r-pill: 999px;
+      --nav-h: 76px;
+      --wrap: 1440px;
+      --ease: cubic-bezier(0.22,1,0.36,1);
     }
 
-    /* --- RESET & BASE --- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--carbon-base);
-      color: #ffffff;
-      line-height: 1.6;
-      overflow-x: hidden;
-      opacity: 0; /* Pour le fade-in */
-      transition: opacity 0.25s ease-out;
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-padding-top:var(--nav-h); }
+    body { font-family:'Montserrat',sans-serif; font-weight:400; background:var(--d0); color:var(--t1); line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    a { text-decoration:none; color:inherit; }
+    img, svg { display:block; }
+    button { font-family:inherit; cursor:pointer; border:none; background:none; }
+
+    .wrap { width:100%; max-width:var(--wrap); margin:0 auto; padding:0 clamp(20px,4.5vw,80px); position:relative; z-index:2; }
+
+
+    /* ─── REVEAL ─── */
+    .r { opacity:0; transform:translateY(24px); transition:opacity .75s var(--ease), transform .75s var(--ease); }
+    .r.in { opacity:1; transform:none; }
+    .r.d1{transition-delay:.08s} .r.d2{transition-delay:.16s} .r.d3{transition-delay:.24s} .r.d4{transition-delay:.32s}
+
+    /* ─── TYPE helpers ─── */
+    .label {
+      font-family:'JetBrains Mono',monospace;
+      font-size:10.5px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:var(--t2);
+      display:inline-flex; align-items:center; gap:8px;
     }
-    
-    body.is-loaded {
-      opacity: 1;
+    .label::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--brand-mid); flex-shrink:0; }
+    .label--light { color:var(--l-t2); }
+    .label--light::before { background:var(--brand-mid); }
+
+    /* Default grad-text (used outside hero) */
+    .grad-text { background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    /* Hero variant: white → brand, angle matches Launch App, white exits fast */
+    .grad-text--hero {
+      background:linear-gradient(135deg, #ffffff 0%, #ffffff 8%, #FF9100 32%, #FF4D00 62%, #E51A00 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
     }
 
-    /* Grain texture overlay */
-    body::before {
-        content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-        opacity: 0.4; mix-blend-mode: overlay;
+    /* ─── BUTTONS ─── */
+    .btn-main {
+      display:inline-flex; align-items:center; gap:9px;
+      padding:13px 28px; background:var(--grad); color:#fff;
+      font-weight:600; font-size:13.5px; border-radius:var(--r-pill);
+      box-shadow:0 4px 24px var(--brand-glow);
+      transition:opacity .2s, transform .2s, box-shadow .2s;
     }
+    .btn-main:hover { opacity:.9; transform:translateY(-2px); box-shadow:0 10px 36px var(--brand-glow); }
 
-    h1, h2, h3 { line-height: 1.1; letter-spacing: -0.03em; font-weight: 700; }
-    a { text-decoration: none; color: inherit; transition: 0.3s; }
-    
-    .container { max-width: var(--container-width); margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
-    .mono { font-family: 'JetBrains Mono', monospace; }
-
-    /* --- UTILS --- */
-    .text-magma {
-        background: var(--grad-text-magma);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        background-clip: text; color: transparent;
+    .btn-line {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:12px 24px; border:1px solid var(--bd-dark2);
+      color:var(--t1); font-weight:500; font-size:13.5px; border-radius:var(--r-pill);
+      transition:border-color .2s, color .2s;
     }
-    
-    .section-kicker {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
-        color: var(--magma-core); margin-bottom: 16px; display: block;
-        display: flex; align-items: center; gap: 8px;
-    }
-    .section-kicker::before { content:''; width: 8px; height: 8px; background: var(--magma-core); display: block; }
+    .btn-line:hover { border-color:rgba(255,255,255,.25); color:var(--tw); }
 
-    /* =========================================
-       NAVBAR STYLES (EXACT COPY FROM INDEX)
-       ========================================= */
-    .site-header {
-      position: fixed;
-      inset-inline: 0;
-      top: 0;
-      height: var(--nav-height);
-      z-index: 1000; /* Z-index élevé pour passer au dessus du Hero */
+    .btn-line--dark {
+      border-color:var(--bd-light2); color:var(--l-t1);
     }
+    .btn-line--dark:hover { border-color:var(--lw); color:var(--lw); }
 
-    .nav-shell {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
+    /* ─── Hero-specific buttons ─── */
+    .btn-hero-primary {
+      display:inline-flex; align-items:center; gap:10px;
+      padding:13px 28px; background:#fff; color:#111;
+      font-weight:600; font-size:13.5px; border-radius:var(--r-pill);
+      transition:gap .25s var(--ease), box-shadow .25s;
     }
+    .btn-hero-primary:hover { gap:16px; box-shadow:0 6px 28px rgba(0,0,0,.25); }
+    .btn-hero-primary .arr { transition:transform .28s var(--ease); }
+    .btn-hero-primary:hover .arr { transform:translateX(5px); }
 
-    .nav-inner {
-      width: 100%;
-      max-width: var(--container-max);
-      padding-inline: var(--page-padding-x);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-radius: 999px;
-      background: var(--nav-bg);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      margin-block: 1.8rem;
-      padding-block: 0.4rem;
-      transition:
-        background var(--dur-normal) var(--ease-standard),
-        border-color var(--dur-normal) var(--ease-standard),
-        transform var(--dur-normal) var(--ease-standard);
-      pointer-events: auto;
-      box-shadow: 0 5px 15px rgba(10, 10, 10, 0.536);
-      position: relative;
-      z-index: 200;
+    .btn-hero-ghost {
+      display:inline-flex; align-items:center; gap:9px;
+      padding:12px 24px;
+      background:rgba(18,18,18,.80); border:1px solid rgba(255,255,255,.14);
+      backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+      color:rgba(255,255,255,.88); font-weight:500; font-size:13.5px; border-radius:var(--r-pill);
+      transition:background .2s, border-color .2s, gap .25s var(--ease);
     }
+    .btn-hero-ghost:hover { background:rgba(30,30,30,.90); border-color:rgba(255,255,255,.22); gap:14px; }
+    .btn-hero-ghost .arr { transition:transform .3s var(--ease); }
+    .btn-hero-ghost:hover .arr { transform:translateY(5px); }
 
-    @media (max-width: 63.99rem) {
-      .nav-inner {
-        padding-inline: 1.2rem;
-        margin-inline: 0.9rem;
-      }
+    /* ══════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════ */
+    .nav { position:fixed; inset-inline:0; top:0; height:var(--nav-h); z-index:1000; }
+    .nav-shell { height:100%; display:flex; align-items:center; justify-content:center; pointer-events:none; }
+    .nav-pill {
+      width:100%; max-width:var(--wrap);
+      display:flex; align-items:center; justify-content:space-between;
+      background:rgba(10,10,10,.72); backdrop-filter:blur(24px);
+      border:1px solid var(--bd-dark); border-radius:var(--r-pill);
+      margin:14px clamp(14px,3vw,48px);
+      padding: 4px 4px 4px clamp(18px,2.5vw,40px);
+      pointer-events:auto;
+      box-shadow:0 4px 24px rgba(0,0,0,.45);
+      transition:background .3s, border-color .3s, transform .3s var(--ease);
     }
-
-    .site-header.scrolled .nav-inner {
-      background: var(--nav-bg-scrolled);
-      border-color: rgba(255, 255, 255, 0.088);
-      transform: translateY(-0.35rem);
-    }
-
-    .nav-brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      font-size: 0.9rem;
-    }
-
-    .nav-brand-logo {
-      height: 2rem;
-      width: auto;
-    }
-
+    .nav.s .nav-pill { background:rgba(14,14,14,.92); border-color:var(--bd-dark2); transform:translateY(-3px); }
+    .nav-logo { height:32px; width:auto; }
     .nav-links {
-      display: none;
-      align-items: center;
-      gap: 5rem;
-      font-size: 0.9rem;
+      display:none; align-items:center; gap:2.8rem;
+      position:absolute; left:50%; transform:translateX(-50%);
     }
+    .nav-links a { font-size:.84rem; font-weight:500; color:var(--t1); transition:color .2s; position:relative; padding-block:4px; }
+    .nav-links a::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; background:var(--t1); transition:width .2s; }
+    .nav-links a:hover { color:var(--tw); }
+    .nav-links a:hover::after { width:100%; }
+    .nav-links a.active { color:var(--tw); }
+    .nav-links a.active::after { width:100%; }
+    .nav-right { display:none; }
+    .btn-nav-cta {
+      padding:10px 24px; background:var(--grad); color:#fff;
+      font-weight:600; font-size:.83rem; border-radius:var(--r-pill);
+      transition:opacity .2s; white-space:nowrap;
+    }
+    .btn-nav-cta:hover { opacity:.88; }
+    .nav-burger {
+      width:22px; height:16px; position:relative; flex-shrink:0;
+    }
+    .nav-burger span {
+      position:absolute; left:0; width:22px; height:2px;
+      background:var(--t1); border-radius:2px; transform-origin:center;
+      will-change:transform; transform:translate3d(0,0,0);
+      transition:transform .4s var(--ease), opacity .2s, width .3s var(--ease);
+    }
+    .nav-burger span:nth-child(1) { top:0; }
+    .nav-burger span:nth-child(2) { top:7px; }
+    .nav-burger span:nth-child(3) { top:14px; }
+    /* open state */
+    .nav-burger[aria-expanded="true"] span:nth-child(1) { transform:translate3d(0,7px,0) rotate(45deg); }
+    .nav-burger[aria-expanded="true"] span:nth-child(2) { opacity:0; width:0; }
+    .nav-burger[aria-expanded="true"] span:nth-child(3) { transform:translate3d(0,-7px,0) rotate(-45deg); }
 
-    .nav-links a {
-      position: relative;
-      padding-block: 0.25rem;
-      color: rgba(255, 255, 255, 0.907);
-      transition: color var(--dur-fast) var(--ease-standard);
-    }
+    /* Burger gets more room on mobile */
+    @media(max-width:1024px){ .nav-pill { padding-right:16px; } }
 
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -0.2rem;
-      width: 0;
-      height: 2px;
-      background: var(--magma-core);
-      transition: width var(--dur-fast) var(--ease-standard);
+    /* ── Mobile menu ── */
+    .nav-mob {
+      position:fixed; inset:0; z-index:50;
+      background:var(--d0);
+      display:flex; flex-direction:column;
+      padding:calc(var(--nav-h) + 40px) clamp(24px,6vw,48px) 48px;
+      opacity:0; pointer-events:none;
+      transition:opacity .3s var(--ease);
     }
+    .nav-mob::after {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:300px; pointer-events:none;
+      background:radial-gradient(ellipse 120% 80% at 50% 120%, rgba(229,26,0,.13) 0%, transparent 70%);
+    }
+    .nav-mob.open { opacity:1; pointer-events:auto; }
+    .nav-mob-links { display:flex; flex-direction:column; }
+    .nav-mob-links a {
+      font-size:clamp(1.1rem,5vw,1.4rem); font-weight:600; letter-spacing:-.02em;
+      color:var(--t2); padding:16px 0; border-bottom:1px solid var(--bd-dark);
+      display:flex; justify-content:space-between; align-items:center;
+      transition:color .2s, padding-left .25s var(--ease);
+    }
+    .nav-mob-links a:first-child { border-top:1px solid var(--bd-dark); }
+    .nav-mob-links a::after { content:'→'; font-size:.85rem; font-weight:400; opacity:0; transition:opacity .2s; }
+    .nav-mob-links a:hover { color:var(--tw); padding-left:6px; }
+    .nav-mob-links a:hover::after { opacity:1; }
+    .nav-mob-links a.active { color:var(--tw); }
+    .nav-mob-links a.active::after { opacity:.35; }
+    /* Launch App link — différencié */
+    .nav-mob-links a.mob-launch {
+      margin-top:8px; border-top:none; border-bottom:none;
+      background:linear-gradient(135deg,#FF9100,#E51A00);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      font-weight:700;
+    }
+    .nav-mob-links a.mob-launch::before { display:none; }
+    .nav-mob-links a.mob-launch::after { content:'↗'; -webkit-text-fill-color:var(--brand-orange); opacity:.6; }
+    .nav-mob-links a.mob-launch:hover { padding-left:6px; }
+    .nav-mob-links a.mob-launch:hover::after { opacity:1; }
+    @media(min-width:1024px){ .nav-links{display:flex} .nav-right{display:flex} .nav-burger{display:none} .nav-mob{display:none!important} }
 
-    .nav-links a:hover {
-      color: white;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-cta {
-      display: none;
-      align-items: center;
-      gap: 0.75rem;
-      margin-left: 1.5rem;
-    }
-
-    .lang-switch {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.5);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.1rem;
-    }
-    .lang-switch span.active { color: white; opacity: 1; font-weight: 500; }
-
-    /* Nouveau Bouton : Fond transparent, Bordure Dégradée */
-    .btn-magma-outline {
-      position: relative;
-      background: transparent;
-      border: 1px solid var(--magma-core); /* Bordure simple orange */
-      border-radius: var(--radius-pill);
-      color: #fff;
-      padding: 0.5rem 1.1rem; 
-      font-size: 0.85rem; 
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex; align-items: center; justify-content: center;
-      overflow: hidden; /* Important pour l'effet de slide */
-      transition: all 0.3s ease;
-      z-index: 1;
-    }
-
-    /* L'élément qui va glisser (le fond caché) */
-    .btn-magma-outline::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--grad-btn-magma);
-      z-index: -1;
-      transform: scaleX(0); /* Caché par défaut (largeur 0) */
-      transform-origin: left;
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .btn-magma-outline:hover {
-      border-color: transparent;
-      color: #05070b; /* Texte noir au survol */
-      box-shadow: 0 4px 15px rgba(232, 90, 4, 0.3);
-    }
-
-    .btn-magma-outline:hover::before {
-      transform: scaleX(1); /* Remplissage complet */
-    }
-    /* Burger */
-    .nav-toggle {
-      border: none; background: none; padding: 0.35rem; border-radius: var(--radius-pill);
-      cursor: pointer; position: relative; width: 1.6rem; height: 1.1rem; display: inline-block;
-    }
-    .nav-toggle span {
-      position: absolute; left: 0; right: 0; height: 2px; border-radius: 999px;
-      background: white; transform-origin: center; transition: all var(--dur-fast) var(--ease-standard);
-    }
-    .nav-toggle span:nth-child(1) { top: 0; }
-    .nav-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
-    .nav-toggle span:nth-child(3) { bottom: 0; }
-    
-    .nav-toggle[aria-expanded='true'] span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
-    .nav-toggle[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
-    .nav-toggle[aria-expanded='true'] span:nth-child(3) { bottom: auto; top: 50%; transform: translateY(-50%) rotate(-45deg); }
-
-    @media (min-width: 64rem) {
-      .nav-links {
-        display: flex;
-        /* C'est ici que la magie opère pour le centrage absolu */
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      .nav-cta { display: flex; }
-      .nav-toggle { display: none; }
-    }
-
-    /* Menu mobile plein écran */
-    .nav-menu {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 50;
-      opacity: 0; pointer-events: none; background: rgba(3, 7, 12, 0.35);
-      backdrop-filter: blur(0px); transition: all 0.33s var(--ease-standard);
-      overflow: hidden; touch-action: none;
-    }
-    .nav-menu::before {
-      content: ""; position: absolute; inset: 0;
-      background: radial-gradient(circle at top, rgba(68, 83, 80, 0.2), transparent 60%), rgba(21, 23, 26, 0.95);
-    }
-    .nav-menu.open { opacity: 1; pointer-events: auto; backdrop-filter: blur(22px); }
-    
-    .nav-menu-content {
-      position: absolute; top: var(--nav-height); left: 0; right: 0; bottom: 0;
-      padding: 1.5rem var(--page-padding-x) 2.5rem;
-      display: flex; flex-direction: column; justify-content: flex-start;
-      overflow: hidden;
-    }
-    .nav-menu-content > a {
-      display: block; width: 100%; font-size: 1.1rem; font-weight: 500; color: white;
-      padding: 1.2rem 0; border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-    }
-    .nav-menu-content > a:first-of-type { border-top: 2px solid rgba(255, 255, 255, 0.1); }
-    
-    .nav-menu-content .nav-menu-secondary {
-      margin-top: 1.8rem; padding-top: 1.2rem; display: flex;
-      justify-content: space-between; align-items: center; gap: 1rem;
-    }
-    body.menu-open { overflow: hidden; }
-    @media (min-width: 64rem) { .nav-menu { display: none !important; } }
-
-
-    /* =========================================
-       HERO SECTION (From Test Colour)
-       ========================================= */
+    /* ══════════════════════════════════════════
+       HERO — dotted glow canvas bg
+    ══════════════════════════════════════════ */
+    /* Hero is sticky — stays fixed while the next section slides over it */
     .hero {
-        padding-top: 180px; padding-bottom: 120px;
-        position: relative; overflow: hidden;
+      position:sticky; top:0; overflow:hidden; z-index:1;
+      min-height:100svh; display:flex; align-items:center; justify-content:center;
+      padding-top:var(--nav-h); background:var(--d0);
     }
-    
-    .hero::after {
-        content: ''; position: absolute; top: -20%; right: -10%; width: 800px; height: 800px;
-        background: radial-gradient(circle, rgba(232, 90, 4, 0.12) 0%, transparent 60%);
-        pointer-events: none; z-index: 1;
+    #heroCanvas { position:absolute; inset:0; width:100%; height:100%; z-index:0; }
+
+    .hero .wrap { display:flex; justify-content:center; align-items:center; }
+    .hero-content {
+      position:relative; z-index:2; text-align:center;
+      max-width:820px; margin:0 auto;
+      padding-block:clamp(80px,10vh,130px);
     }
-
-    .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 60px; }
-    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
-
+    /* Dark scrim behind text — keeps it readable even when red orbs drift underneath */
+    .hero-content::before {
+      content:''; position:absolute;
+      top:-15%; left:-18%; width:136%; height:130%;
+      background:radial-gradient(ellipse at 50% 40%, rgba(0,0,0,.52) 0%, rgba(0,0,0,.18) 52%, transparent 72%);
+      z-index:-1; pointer-events:none;
+    }
     .hero-h1 {
-        font-size: clamp(48px, 5vw, 76px); margin-bottom: 24px;
-        background: linear-gradient(180deg, #FFFFFF 20%, #888 100%);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-
-    .hero-p { font-size: 18px; color: #888; margin-bottom: 48px; max-width: 500px; }
-
-    /* Bouton "View Strategies" */
-    .btn-primary {
-        padding: 16px 32px; background: var(--grad-btn-magma); color: black;
-        font-weight: 700; border-radius: 4px; display: inline-flex; align-items: center; gap: 10px;
-        box-shadow: 0 10px 30px rgba(232, 90, 4, 0.25);
-        transition: transform 0.2s;
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(232, 90, 4, 0.4); }
-
-    /* --- 3D STRATA ANIMATION --- */
-    .hero-strata {
-        position: relative; width: 100%; height: 500px;
-        display: flex; align-items: center; justify-content: center;
-        perspective: 1200px;
-        z-index: 10; /* Important pour être sous la navbar mais au dessus du fond */
-    }
-
-    .strata-stack {
-        position: relative; width: 300px; height: 300px;
-        transform: rotateX(60deg) rotateZ(-45deg);
-        transform-style: preserve-3d;
-    }
-
-    .layer {
-        position: absolute; inset: 0; border-radius: 32px;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(232, 90, 4, 0.05) 100%);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(4px);
-        transition: transform 0.3s;
-    }
-
-    .layer::after {
-        content: ''; position: absolute; inset: 0; border-radius: 32px;
-        border: 1px solid rgba(255,255,255,0.3); opacity: 0.5;
-    }
-
-    .layer-1 { transform: translateZ(0px); animation: float 6s ease-in-out infinite; }
-    .layer-2 { transform: translateZ(40px); animation: float 6s ease-in-out infinite 0.2s; }
-    .layer-3 { transform: translateZ(80px); animation: float 6s ease-in-out infinite 0.4s; }
-    .layer-4 { 
-        transform: translateZ(120px); animation: float 6s ease-in-out infinite 0.6s; 
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(232, 90, 4, 0.1) 100%);
-        border-color: rgba(232, 90, 4, 0.5);
-    }
-    
-    .layer-core {
-        position: absolute; top: 50%; left: 50%; width: 12px; height: 12px; border-radius: 50%;
-        background: #fff;
-        box-shadow: 0 0 50px 20px rgba(232, 90, 4, 0.8);
-        transform: translate(-50%, -50%) translateZ(140px);
-        animation: pulse 3s ease-in-out infinite;
-    }
-
-    @keyframes float { 0%, 100% { transform: translateZ(var(--z)); } 50% { transform: translateZ(calc(var(--z) + 20px)); } }
-    .layer-1 { --z: 0px; } .layer-2 { --z: 40px; } .layer-3 { --z: 80px; } .layer-4 { --z: 120px; }
-    @keyframes pulse { 0%, 100% { opacity: 0.6; scale: 1; } 50% { opacity: 1; scale: 1.5; } }
-
-    /* Mobile Responsive Strata */
-    @media (max-width: 900px) {
-        .hero-strata { height: 350px; }
-        .strata-stack { transform: rotateX(60deg) rotateZ(-45deg) scale(0.7); }
-    }
-
-    /* =========================================
-       HERO PARTNERS (STATIC & DISCREET)
-       ========================================= */
-    .hero-partners {
-        margin-top: 3rem; /* Espace sous le bouton */
-        /* border-top supprimé pour enlever la ligne grise */
-        display: flex;
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-
-    .partners-label {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.75rem; /* Un poil plus lisible */
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: #666; 
-        margin: 0;
-        opacity: 0.8;
-    }
-
-    .partners-grid {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem; /* Espacement entre les logos */
-        flex-wrap: wrap; 
-    }
-
-    .partners-grid img {
-        height: 24px; /* Taille ajustée */
-        width: auto;
-        
-        /* Monochrome gris par défaut */
-        filter: grayscale(100%) opacity(0.5); 
-        transition: all 0.3s ease;
-    }
-
-    /* Au survol, on les rend visibles */
-    .partners-grid img:hover {
-        filter: grayscale(0%) opacity(1);
-    }
-
-    /* Responsive Mobile */
-    @media (max-width: 900px) {
-        .hero-partners {
-            align-items: center; /* Centré sur mobile */
-            text-align: center;
-            margin-top: 2.5rem;
-        }
-        .partners-grid {
-            justify-content: center;
-            gap: 1.2rem;
-        }
-    }
-
-    /* Section Setup */
-    .section-light {
-        background-color: #F9FAFB;
-        color: #111;
-        padding: 120px 0;
-    }
-
-    /* ZIG-ZAG LAYOUT */
-    .zigzag-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 140px; /* Espace vertical entre les lignes */
-    }
-
-    .zigzag-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr; /* 50% - 50% */
-        gap: 80px; /* RÉDUIT de 120px à 60px pour rapprocher gauche/droite */
-        align-items: center;
-    }
-
-    /* --- GESTION DE L'INVERSION --- */
-    /* Pour les lignes paires (reverse) */
-    .zigzag-row.reverse .zigzag-text { order: 1; }
-    .zigzag-row.reverse .zigzag-visual { order: 2; }
-
-    /* --- TEXT SIDE --- */
-    .zigzag-text {
-        max-width: 480px;
-        /* Par défaut (Ligne 1 & 3) : le texte est à droite, donc on le laisse à gauche de sa colonne */
-        margin-right: auto; 
-    }
-
-    /* CAS SPÉCIAL : QUAND LE TEXTE EST À GAUCHE (Reverse) */
-    .zigzag-row.reverse .zigzag-text {
-        /* On pousse le bloc texte vers la droite pour qu'il "colle" à l'image */
-        margin-left: auto; 
-        margin-right: 0;
-        /* Optionnel : si tu veux aussi aligner les titres à droite, décommente la ligne dessous */
-        /* text-align: right; */ 
-    }
-    
-    .icon-box {
-        width: 48px; height: 48px;
-        background: rgba(232, 90, 4, 0.1);
-        color: var(--magma-core);
-        border-radius: 12px;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 24px;
-        margin-bottom: 24px;
-    }
-    /* Si tu alignes le texte à droite en reverse, il faut aussi bouger l'icone */
-    /* .zigzag-row.reverse .icon-box { margin-left: auto; } */ 
-
-    .zigzag-text h3 {
-        font-size: 32px;
-        color: #111;
-        margin-bottom: 16px;
-    }
-    .zigzag-text p {
-        font-size: 17px;
-        color: #555;
-        line-height: 1.6;
-    }
-
-    /* --- VISUAL SIDE (TECH CARDS) --- */
-    .zigzag-visual {
-        display: flex;
-        /* Par défaut (Image à Gauche) : On la pousse vers la DROITE (vers le centre) */
-        justify-content: flex-end; 
-    }
-
-    /* CAS SPÉCIAL : QUAND L'IMAGE EST À DROITE (Reverse) */
-    .zigzag-row.reverse .zigzag-visual {
-        /* On la pousse vers la GAUCHE (vers le centre) */
-        justify-content: flex-start;
-    }
-
-    .tech-card {
-        width: 100%;
-        max-width: 420px; /* Taille fixe de la carte */
-        background: #FFFFFF;
-        border: 1px solid #E5E7EB;
-        border-radius: 16px;
-        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
-        overflow: hidden;
-        transition: transform 0.3s ease;
-    }
-
-    .zigzag-row:hover .tech-card {
-        transform: translateY(-5px);
-        box-shadow: 0 30px 60px -15px rgba(232, 90, 4, 0.15);
-        border-color: rgba(232, 90, 4, 0.3);
-    }
-    
-    /* ... (Le reste des styles tech-header, tech-body etc ne change pas) ... */
-    .tech-header { background: #F3F4F6; padding: 12px 20px; border-bottom: 1px solid #E5E7EB; display: flex; align-items: center; justify-content: space-between; }
-    .tech-title { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #666; font-weight: 600; }
-    .tech-body { padding: 24px; }
-
-    .badge-safe {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 10px;
-        font-weight: 700;
-        padding: 4px 8px;
-        border-radius: 6px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        line-height: 1;
-        display: inline-block;
-    }
-
-    /* --- STYLES SPÉCIFIQUES AUX CARTES (CODE & TABLE) --- */
-
-    /* 1. Carte "Code Editor" (Première carte) */
-    .code-style {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 13px;
-        color: #333;
-        line-height: 1.6;
-    }
-    .code-line { margin-bottom: 2px; }
-    .indent { padding-left: 20px; }
-    
-    /* Couleurs syntaxiques */
-    .c-purple { color: #9333EA; font-weight: 600; } /* Mots clés (if, else) */
-    .c-orange { color: #D97706; } /* Strings ("BUY") */
-    .c-comment { color: #9CA3AF; font-style: italic; } /* Commentaires */
-
-    /* Les petits points mac (rouge/jaune/vert) dans le header */
-    .dot {
-        display: inline-block;
-        width: 10px; height: 10px;
-        border-radius: 50%;
-        margin-right: 6px;
-    }
-    .dot.red { background: #EF4444; }
-    .dot.yellow { background: #F59E0B; }
-    .dot.green { background: #10B981; }
-
-    /* 2. Carte "Live Reporting" (Dernière carte) */
-    .table-style {
-        display: flex;
-        flex-direction: column;
-    }
-    .t-row {
-        display: flex;
-        justify-content: space-between;
-        padding: 12px 0;
-        border-bottom: 1px solid #F3F4F6;
-        font-size: 14px;
-        color: #111;
-        font-family: 'JetBrains Mono', monospace;
-    }
-    .t-row:last-child { border-bottom: none; }
-    
-    /* En-têtes du tableau */
-    .t-row.head {
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: #999;
-        font-weight: 600;
-        font-family: 'Inter', sans-serif; /* Plus lisible pour les headers */
-        padding-bottom: 8px;
-    }
-    
-    /* Texte vert (Performance) */
-    .c-green {
-        color: #10B981;
-        font-weight: 700;
-        background: rgba(16, 185, 129, 0.1);
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-size: 12px;
-    }
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-        .zigzag-row, .zigzag-row.reverse {
-            grid-template-columns: 1fr; /* Une seule colonne */
-            text-align: left; /* Ou center selon ton goût */
-            gap: 40px;
-        }
-        
-        /* On remet les images au centre sur mobile */
-        .zigzag-visual, .zigzag-row.reverse .zigzag-visual { 
-            justify-content: center; 
-        }
-        
-        /* On annule le décalage du texte sur mobile */
-        .zigzag-text, .zigzag-row.reverse .zigzag-text {
-            margin: 0 auto; 
-            max-width: 100%;
-        }
-
-        /* Ordre d'affichage Mobile */
-        .zigzag-row .zigzag-visual, .zigzag-row.reverse .zigzag-visual { order: 1; }
-        .zigzag-row .zigzag-text, .zigzag-row.reverse .zigzag-text { order: 2; }
-        
-        .icon-box { margin-bottom: 16px; }
-    }
-
-    /* Layout Global de la section */
-    .phase-section {
-        background: radial-gradient(circle at 100% 0%, rgba(232, 90, 4, 0.08), transparent 40%), #F9FAFB;
-        border-top: 1px solid #E5E7EB;
-        border-bottom: 1px solid #E5E7EB;
-    }
-
-    .launch-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        gap: 80px;
-        align-items: center;
-    }
-
-    /* TYPO GAUCHE */
-    .launch-title {
-        font-size: 42px;
-        line-height: 1.1;
-        color: #111;
-        margin-bottom: 24px;
-    }
-    .launch-lead {
-        font-size: 18px;
-        color: #555;
-        margin-bottom: 40px;
-        line-height: 1.6;
-        max-width: 550px;
-    }
-
-    /* LISTE A PUCES STYLISÉE */
-    .launch-points {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-    .launch-points li {
-        position: relative;
-        padding-left: 24px;
-        font-size: 16px;
-        color: #444;
-        line-height: 1.5;
-    }
-    .launch-points li::before {
-        content: '';
-        position: absolute; left: 0; top: 8px;
-        width: 8px; height: 8px;
-        background: var(--magma-core);
-        border-radius: 50%;
-        box-shadow: 0 0 0 4px rgba(232, 90, 4, 0.15);
-    }
-    .launch-points strong {
-        color: #111;
-        font-weight: 600;
-    }
-
-    /* COLONNE DROITE : LA CARTE VIP (CORRIGÉE : DROITE ET STABLE) */
-    .launch-card-container {
-        position: relative;
-    }
-
-    .vip-card {
-        background: #05070b;
-        border: 1px solid #1f2329;
-        border-radius: 24px;
-        padding: 40px;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 30px 60px -10px rgba(0,0,0,0.3);
-        /* Suppression des rotations/transformations */
-        transform: none; 
-        transition: border-color 0.3s ease; /* On anime juste la couleur */
-    }
-    
-    .vip-card:hover {
-        /* Plus de mouvement, juste la bordure qui s'allume */
-        border-color: var(--magma-core);
-    }
-
-    /* Glow Effect */
-    .vip-glow {
-        position: absolute;
-        top: -50px; right: -50px;
-        width: 200px; height: 200px;
-        background: var(--magma-core);
-        filter: blur(80px);
-        opacity: 0.15;
-        pointer-events: none;
-    }
-
-    .vip-header {
-        display: flex; justify-content: space-between; align-items: center;
-        margin-bottom: 24px;
-        border-bottom: 1px solid #222;
-        padding-bottom: 20px;
-    }
-    .vip-label {
-        color: var(--magma-core);
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 11px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        font-weight: 700;
-    }
-
-    .vip-heading {
-        color: white;
-        font-size: 28px;
-        margin-bottom: 12px;
-    }
-    .vip-desc {
-        color: #999;
-        font-size: 15px;
-        margin-bottom: 32px;
-        line-height: 1.5;
-    }
-
-    /* BENEFIT BOX */
-    .benefit-box {
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 12px;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-    .benefit-item {
-        display: flex; align-items: center; gap: 12px;
-        color: #ddd;
-        font-weight: 500;
-        font-size: 15px;
-    }
-    .benefit-item i {
-        color: var(--magma-core);
-        font-size: 18px;
-        background: rgba(232, 90, 4, 0.15);
-        padding: 6px;
-        border-radius: 6px;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-        .launch-grid {
-            grid-template-columns: 1fr;
-            gap: 50px;
-        }
-        .vip-card {
-            padding: 30px;
-        }
-    }
-
-    /* =========================================
-       SECTION: ROADMAP
-       ========================================= */
-    .roadmap-section { 
-        padding: 100px 0; 
-        background-color: var(--carbon-base); /* Fond sombre pour contraster avec la section précédente */
-        border-top: 1px solid var(--carbon-border); 
-    }
-
-    .roadmap-grid {
-        display: grid; 
-        grid-template-columns: 1fr 1fr; 
-        gap: 60px;
-    }
-
-    .roadmap-intro {
-        position: sticky; /* Le titre reste accroché si on scrolle (optionnel) */
-        top: 120px;
-        height: fit-content;
-    }
-
-    .timeline {
-        position: relative; 
-        margin-top: 20px; 
-        padding-left: 40px;
-        border-left: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .timeline-item { 
-        position: relative; 
-        margin-bottom: 60px; 
-    }
-    .timeline-item:last-child { margin-bottom: 0; }
-
-    /* Le point (Dot) - Orange Magma */
-    .t-dot {
-        position: absolute; left: -46px; top: 0;
-        width: 12px; height: 12px; border-radius: 50%;
-        background: var(--carbon-base);
-        border: 2px solid #555;
-        transition: 0.3s;
-    }
-    
-    /* Active State (Points allumés) */
-    .timeline-item.active .t-dot {
-        background: var(--magma-core);
-        border-color: var(--magma-light);
-        box-shadow: 0 0 15px var(--magma-core);
-    }
-
-    .t-phase { 
-        font-family: 'JetBrains Mono'; font-size: 12px; text-transform: uppercase; 
-        color: #666; margin-bottom: 8px; display: block; 
-    }
-    .timeline-item.active .t-phase { color: var(--magma-core); }
-
-    .t-title { font-size: 20px; font-weight: 600; color: white; margin-bottom: 8px; }
-    .t-desc { color: #888; max-width: 600px; font-size: 15px; line-height: 1.5; }
-
-    /* RESPONSIVE ROADMAP */
-    @media (max-width: 900px) {
-        .roadmap-grid {
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-        .roadmap-intro {
-            position: static;
-        }
-    }
-
-    /* =========================================
-       SECTION: NEWSLETTER
-       ========================================= */
-    .newsletter-section {
-        background-color: #F3F4F6; /* Gris très clair (Quartz) */
-        border-top: 1px solid #E5E7EB;
-        padding: 140px 0; /* Grand espacement vertical */
-    }
-
-    .newsletter-grid {
-        display: grid;
-        grid-template-columns: 1fr 1.2fr; /* Formulaire un peu plus large */
-        gap: 80px;
-        align-items: center;
-    }
-
-    /* TYPOGRAPHIE */
-    .newsletter-title {
-        font-size: 48px;
-        font-weight: 700;
-        color: #111; /* Noir pur */
-        line-height: 1.1;
-        margin-bottom: 24px;
-        letter-spacing: -1px;
-    }
-
-    .newsletter-desc {
-        font-size: 18px;
-        color: #555; /* Gris moyen */
-        line-height: 1.6;
-        max-width: 450px;
-    }
-
-    /* Kicker Spécifique (Surcharge le style global orange) */
-    .newsletter-content .section-kicker::before {
-        background: #999; /* Carré gris au lieu d'orange */
-    }
-
-    /* FORMULAIRE */
-    .newsletter-form-wrapper {
-        background: #FFFFFF;
-        padding: 40px;
-        border-radius: 16px;
-        border: 1px solid #E5E7EB;
-        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);
-    }
-
-    .newsletter-form {
-        display: flex;
-        gap: 16px;
-    }
-
-    /* Input Style "Tech" (Fond sombre, texte clair) */
-    .n-input {
-        flex: 1;
-        background: #0e1116; /* Fond très sombre */
-        border: 1px solid #333;
-        color: white;
-        padding: 16px 20px;
-        border-radius: 8px;
-        font-size: 16px;
-        font-family: 'Inter', sans-serif;
-        outline: none;
-        transition: border-color 0.3s;
-    }
-    .n-input::placeholder { color: #666; }
-    .n-input:focus { border-color: var(--magma-core); }
-
-    /* Bouton (Seule touche de couleur) */
-    .n-btn {
-        background: var(--grad-btn-magma);
-        color: #05070b;
-        font-weight: 700;
-        border: none;
-        padding: 0 32px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 15px;
-        white-space: nowrap; /* Empêche le texte de passer à la ligne */
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .n-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(232, 90, 4, 0.2);
-    }
-
-    /* Consentement */
-    .n-consent {
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        margin-top: 20px;
-        font-size: 13px;
-        color: #888;
-        line-height: 1.5;
-    }
-    .n-consent input {
-        margin-top: 3px;
-        accent-color: var(--magma-core); /* Checkbox orange */
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-        .newsletter-grid {
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-        .newsletter-form {
-            flex-direction: column;
-        }
-        .n-btn {
-            width: 100%;
-            padding: 16px;
-        }
-        .newsletter-form-wrapper {
-            padding: 24px;
-        }
-    }
-
-    /* =========================================
-       SECTION: FAQ (DARK)
-       ========================================= */
-    .faq-section {
-        background-color: var(--carbon-base); /* Fond Noir */
-        border-top: 1px solid var(--carbon-border);
-        padding: 120px 0;
-    }
-
-    .faq-header {
-        text-align: center;
-        max-width: 600px;
-        margin: 0 auto 60px;
-    }
-
-    /* CORRECTION TAILLE TITRE : 42px */
-    .faq-title {
-        font-size: 42px; 
-        color: white;
-        margin-top: 16px;
-        margin-bottom: 24px;
-        line-height: 1.1;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-    }
-
-    /* LISTE ACCORDÉON */
-    .faq-list {
-        max-width: 800px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    .faq-item {
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    /* Le Bouton (Question) */
-    .faq-toggle {
-        width: 100%;
-        background: none;
-        border: none;
-        padding: 24px 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        cursor: pointer;
-        text-align: left;
-        transition: color 0.3s;
-    }
-
-    .faq-question {
-        font-size: 20px;
-        font-weight: 500;
-        color: #ddd;
-        font-family: 'Inter', sans-serif;
-    }
-
-    .faq-item.active .faq-question {
-        color: var(--magma-core); /* Devient orange quand ouvert */
-    }
-
-    .faq-icon {
-        color: #666;
-        font-size: 20px;
-        transition: transform 0.3s ease;
-    }
-
-    /* Rotation de l'icône quand ouvert */
-    .faq-item.active .faq-icon {
-        transform: rotate(45deg);
-        color: white;
-    }
-
-    /* Le Contenu (Réponse) - Animation Volet */
-    .faq-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-out; /* L'effet volet fluide */
-    }
-
-    .faq-text {
-        padding-bottom: 32px;
-        color: #999;
-        font-size: 16px;
-        line-height: 1.6;
-    }
-    
-    .faq-text p { margin-bottom: 16px; }
-    .faq-text p:last-child { margin-bottom: 0; }
-    
-    /* Responsive Mobile */
-    @media (max-width: 768px) {
-        .faq-title {
-            font-size: 32px; /* Un peu plus petit sur mobile */
-        }
-    }
-
-    /* =========================================
-       FOOTER (ADAPTÉ MAGMA)
-       ========================================= */
-    .site-footer {
-        background-color: #000000; /* Fond noir pur pour finir la page */
-        padding: 80px 0 40px;
-        border-top: 1px solid var(--carbon-border);
-        overflow: hidden; /* Important pour le logo qui dépasse */
-        position: relative;
-    }
-
-    /* COLONNES */
-    .footer-columns {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
-        margin-bottom: 80px;
-    }
-
-    .footer-heading {
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: #666;
-        margin-bottom: 20px;
-        font-family: 'JetBrains Mono', monospace;
-    }
-
-    .footer-links-list {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .footer-links-list a {
-        color: #999;
-        font-size: 15px;
-        transition: color 0.2s, transform 0.2s;
-        display: inline-block;
-    }
-
-    .footer-links-list a:hover {
-        color: white;
-        transform: translateX(2px);
-    }
-
-    /* SECTION PRINCIPALE (TAGLINE + GHOST LOGO) */
-    .footer-main {
-        position: relative;
-        padding: 60px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        margin-bottom: 40px;
-    }
-
-    .footer-tagline-main {
-        font-size: clamp(3rem, 6vw, 5rem); /* Responsive typography */
-        font-weight: 800;
-        letter-spacing: -0.03em;
-        line-height: 1;
-        color: white;
-        position: relative;
-        z-index: 2; /* Devant le logo */
-        margin: 0;
-    }
-
-    /* Le logo fantôme en arrière-plan */
-    .footer-main-logo-img {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        height: 200%; /* Très grand */
-        width: auto;
-        opacity: 0.15; /* Discret */
-        filter: grayscale(100%);
-        pointer-events: none;
-        z-index: 1;
-    }
-
-    /* BAS DE FOOTER */
-    .footer-bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 13px;
-        color: #555;
-    }
-
-    .footer-back-top {
-        color: #888;
-        font-family: 'JetBrains Mono', monospace;
-        transition: color 0.2s;
-    }
-    .footer-back-top:hover { color: var(--magma-core); }
-
-    .footer-bottom-right {
-        display: flex;
-        gap: 15px;
-    }
-    
-    .footer-bottom-right a { color: #888; }
-    .footer-bottom-right a:hover { color: white; }
-    .sep { color: #333; }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-        .footer-columns {
-            grid-template-columns: 1fr; /* 1 seule colonne sur mobile */
-            gap: 40px;
-        }
-        
-        .footer-main-logo-img {
-            height: 100%;
-            right: -20%;
-            opacity: 0.1;
-        }
-        
-        .footer-bottom {
-            flex-direction: column;
-            gap: 20px;
-        }
-    }
+      font-size:clamp(38px,5.5vw,80px); font-weight:600; line-height:1.06;
+      letter-spacing:-.035em; color:var(--tw); margin-bottom:20px;
+      text-shadow:0 2px 24px rgba(0,0,0,.55);
+    }
+    .hero-p {
+      font-size:clamp(15px,1.4vw,18px); font-weight:400; color:rgba(255,255,255,.68);
+      line-height:1.75; max-width:540px; margin:0 auto 40px;
+      text-shadow:0 1px 10px rgba(0,0,0,.65);
+    }
+    .hero-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+    .hero-partners { margin-top:48px; padding-top:0; }
+    .hero-partners .label { justify-content:center; margin-bottom:16px; }
+    .logos-row { display:flex; align-items:center; justify-content:center; gap:32px; flex-wrap:wrap; }
+    .logos-row img { height:20px; filter:grayscale(1) brightness(10) opacity(.40); transition:filter .3s; }
+    .logos-row img:hover { filter:grayscale(1) brightness(10) opacity(.75); }
+
+    /* ══════════════════════════════════════════
+       WHAT WE DO — LIGHT, 2-col
+    ══════════════════════════════════════════ */
+    /* Slides over the sticky hero */
+    .what {
+      background:#fff; padding:clamp(80px,10vw,140px) 0;
+      display:flex; align-items:center;
+      position:relative; z-index:10;
+      box-shadow:0 -16px 60px rgba(0,0,0,.22), 0 -2px 0 rgba(0,0,0,.06);
+    }
+    .what > .wrap { width:100%; }
+
+    .what-body {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:clamp(48px,6vw,100px); align-items:center;
+    }
+    @media(max-width:860px){ .what-body{grid-template-columns:1fr; gap:48px} }
+
+    .what-kicker { display:block; margin-bottom:18px; }
+    .what-h {
+      font-size:clamp(32px,3.8vw,58px); font-weight:600; line-height:1.06;
+      letter-spacing:-.04em; color:var(--lw); margin-bottom:18px;
+    }
+    .what-h em { font-style:normal; color:var(--l-t2); font-weight:400; }
+    .what-sub { font-size:14.5px; color:var(--l-t2); line-height:1.75; max-width:380px; }
+
+    .what-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    @media(max-width:480px){ .what-grid{grid-template-columns:1fr} }
+
+    .wg {
+      background:var(--l0); border:1px solid var(--bd-light); border-radius:var(--r-lg);
+      padding:24px 20px;
+      transition:border-color .3s var(--ease), transform .3s var(--ease), background .3s;
+    }
+    .wg:hover { border-color:var(--l-t3); background:#fff; transform:translateY(-3px); }
+    .wg-ico {
+      width:40px; height:40px; border-radius:12px;
+      background:var(--grad); border:none;
+      display:flex; align-items:center; justify-content:center;
+      font-size:20px; margin-bottom:16px; color:#fff;
+      box-shadow:0 3px 12px var(--brand-glow);
+      transition:transform .25s var(--ease), box-shadow .25s;
+    }
+    .wg:hover .wg-ico { transform:scale(1.08); box-shadow:0 6px 20px var(--brand-glow); }
+    .wg-h { font-size:13px; font-weight:600; color:var(--lw); margin-bottom:6px; line-height:1.3; }
+    .wg-p { font-size:12px; color:var(--l-t2); line-height:1.6; }
+
+    /* ══════════════════════════════════════════
+       VAULTS — intriguing, dark, no metrics
+    ══════════════════════════════════════════ */
+    .vaults { background:#fff; padding:clamp(100px,11vw,160px) 0 0; min-height:100svh; position:relative; z-index:10; transition:background-color .08s linear; }
+
+    .vaults-intro { max-width:680px; margin-bottom:clamp(56px,6vw,80px); }
+    .vaults-intro .label--light { margin-bottom:14px; display:block; }
+    .vaults-intro h2 { font-size:clamp(28px,3.2vw,50px); font-weight:600; letter-spacing:-.03em; color:var(--lw); line-height:1.1; margin-bottom:14px; }
+    .vaults-intro p { font-size:15px; color:var(--l-t2); line-height:1.75; max-width:520px; }
+
+    .vault-list { display:flex; flex-direction:column; gap:20px; }
+
+    /* Vault card */
+    .vault-card {
+      position:relative; overflow:hidden;
+      border-radius:var(--r-xl); border:1px solid var(--bd-light);
+      background:#fff;
+      transition:border-color .35s var(--ease), box-shadow .35s var(--ease);
+    }
+    .vault-card:hover { border-color:var(--bd-light2); box-shadow:0 16px 56px rgba(0,0,0,.09); }
+
+    /* Dot grid */
+    .vault-card::before {
+      content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+      background-image:radial-gradient(circle, rgba(0,0,0,0.09) 1.3px, transparent 1.3px);
+      background-size:18px 18px;
+    }
+
+    /* Per-vault color wash — gray dots → vault accent color */
+    .vault-card--btc::after {
+      content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+      background:linear-gradient(135deg, rgba(255,255,255,.90) 15%, rgba(255,145,0,.14) 60%, rgba(255,80,0,.22) 100%);
+    }
+    .vault-card--eth::after {
+      content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+      background:linear-gradient(135deg, rgba(255,255,255,.90) 15%, rgba(98,126,234,.16) 65%, rgba(98,126,234,.26) 100%);
+    }
+
+    /* Inner content above pseudo-elements */
+    .vault-card-inner {
+      position:relative; z-index:2;
+      padding:clamp(32px,4vw,56px) clamp(28px,3.5vw,52px);
+      display:grid; grid-template-columns:1fr auto;
+      gap:40px; align-items:center;
+    }
+    @media(max-width:600px){ .vault-card-inner{grid-template-columns:1fr} }
+
+    .vault-row-num { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--l-t3); letter-spacing:2px; text-transform:uppercase; margin-bottom:10px; display:block; }
+    .vault-row-name { font-size:clamp(20px,2.2vw,30px); font-weight:600; color:var(--lw); margin-bottom:8px; letter-spacing:-.02em; }
+    .vault-row-desc { font-size:14px; color:var(--l-t2); line-height:1.65; max-width:500px; }
+
+    /* Stats row */
+    .vault-stats { display:flex; gap:clamp(24px,4vw,52px); margin-top:28px; flex-wrap:wrap; align-items:flex-end; }
+    .vs { display:flex; flex-direction:column; gap:5px; }
+    .vs-label {
+      font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:1.8px;
+      text-transform:uppercase; color:var(--l-t3);
+    }
+    .vs-val { font-size:16px; font-weight:600; color:var(--lw); letter-spacing:-.02em; }
+    .vs-denom { display:flex; align-items:center; gap:7px; }
+    .vs-denom img { width:20px; height:20px; border-radius:50%; }
+    .vs-denom span { font-size:16px; font-weight:600; color:var(--lw); }
+
+    /* Overlapping token logos */
+    .token-stack { display:inline-flex; align-items:center; height:26px; }
+    .token-stack img {
+      width:24px; height:24px; border-radius:50%;
+      border:2px solid #fff; background:#fff;
+      margin-left:-7px; flex-shrink:0;
+    }
+    .token-stack img:first-child { margin-left:0; }
+
+    /* Explore CTA */
+    .vault-explore {
+      display:inline-flex; align-items:center; gap:9px;
+      padding:13px 26px; border:1px solid var(--bd-light2);
+      color:var(--l-t1); font-weight:500; font-size:13px;
+      border-radius:var(--r-pill); white-space:nowrap;
+      transition:border-color .2s, color .2s, gap .25s var(--ease);
+      flex-shrink:0;
+    }
+    .vault-explore .arr { transition:transform .25s var(--ease); }
+    .vault-card:hover .vault-explore { border-color:var(--lw); color:var(--lw); gap:14px; }
+    .vault-card:hover .vault-explore .arr { transform:translateX(4px); }
+
+    .vaults-footer { margin-top:44px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    .vaults-footer p { font-size:14px; color:var(--l-t2); }
+
+    /* ══════════════════════════════════════════
+       BENTO — LIGHT, 5 cards, SVG as art
+    ══════════════════════════════════════════ */
+    .bento { padding:clamp(180px,20vw,280px) 0 clamp(80px,9vw,120px); min-height:100svh; }
+
+    .sec-hd { margin-bottom:clamp(44px,5vw,64px); }
+    .sec-hd .label { margin-bottom:12px; display:block; }
+    .sec-h { font-size:clamp(26px,3vw,46px); font-weight:600; letter-spacing:-.03em; color:var(--tw); margin-bottom:10px; }
+    .sec-sub { font-size:14.5px; color:var(--t2); max-width:520px; }
+
+    .bento-grid {
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:14px;
+    }
+    @media(max-width:900px){ .bento-grid{grid-template-columns:repeat(2,1fr)} }
+    @media(max-width:540px){ .bento-grid{grid-template-columns:1fr} }
+
+    .bc {
+      background:transparent; border:1px solid transparent; border-radius:var(--r-xl);
+      overflow:hidden; position:relative;
+    }
+    .bc:hover { box-shadow:0 8px 40px rgba(0,0,0,.35); }
+    .bc-grad { background:transparent; }
+    .bc-inner { opacity:0; }
+    .bc-art   { opacity:0; }
+    .bc-h { color:var(--lw); }
+    .bc-p { color:var(--l-t2); }
+    .bc .label { color:var(--l-t3); }
+
+    /* Text at bottom, illustration fills card */
+    .bc-inner {
+      position:absolute; bottom:0; left:0; right:0;
+      padding:16px 26px 26px; z-index:2;
+    }
+    .bc-inner {
+      background:linear-gradient(to top, #181818 0%, rgba(24,24,24,.85) 45%, transparent 100%);
+    }
+    .bc-art {
+      position:absolute; inset:0; z-index:0;
+      display:flex; align-items:center; justify-content:center;
+      pointer-events:none; overflow:hidden;
+    }
+    .bc-art svg { display:block; width:90%; height:auto; max-height:85%; }
+    /* Curation (bc-b) — large, shifted right */
+    .bc-b .bc-art { justify-content:flex-end; padding-right:8%; }
+    .bc-b .bc-art svg { width:auto; height:120%; max-height:none; }
+    /* Venn (bc-grad) — large, shifted right */
+    .bc-grad .bc-art { justify-content:flex-end; padding-right:8%; }
+    .bc-grad .bc-art svg { width:auto; height:120%; max-height:none; }
+    /* Philosophy — shield pushed higher */
+    .bc-a .bc-art { align-items:flex-start; padding-top:2%; }
+    /* Security (now in bc-c) — oversized lock anchored bottom-right, shackle cropped at top */
+    .bc-c .bc-art { align-items:flex-end; justify-content:flex-end; padding:0 6% 0 0; }
+    .bc-c .bc-art svg { width:auto; height:118%; max-height:none; }
+
+    /* Win-win card */
+    .bc-grad:hover { box-shadow:none; }
+    .bc-grad .bc-h { font-size:clamp(22px,2.2vw,30px); }
+
+    /* Layout — explicit positions for clean square shape */
+    .bc-a    { grid-column:1 / 6;  grid-row:1 / 3; min-height:490px; --bc-fade:#181818; }
+    .bc-grad { grid-column:6 / 13; grid-row:1;      min-height:235px; }
+    .bc-b    { grid-column:6 / 13; grid-row:2;      min-height:235px; --bc-fade:#111111; }
+    .bc-c    { grid-column:1 / 5;  grid-row:3;      min-height:235px; --bc-fade:#181818; }
+    .bc-d    { grid-column:5 / 9;  grid-row:3;      min-height:235px; --bc-fade:#181818; }
+    .bc-e    { grid-column:9 / 13; grid-row:3;      min-height:235px; --bc-fade:#202020; }
+
+    @media(max-width:900px){
+      .bc-a,.bc-grad,.bc-b,.bc-c,.bc-d,.bc-e { grid-column:span 1; grid-row:span 1; min-height:220px; }
+      .bc-a { grid-column:span 2; }
+    }
+    @media(max-width:540px){ .bc-a,.bc-grad,.bc-b,.bc-c,.bc-d,.bc-e { grid-column:span 1; } }
+
+    .bc .label { margin-bottom:10px; display:block; }
+    .bc-h { font-size:clamp(16px,1.6vw,20px); font-weight:600; color:var(--tw); line-height:1.2; margin-bottom:10px; }
+    .bc-p { font-size:13px; color:var(--t2); line-height:1.7; }
+
+    /* ══════════════════════════════════════════
+       STEPS — DARK, zigzag
+    ══════════════════════════════════════════ */
+    .steps { background:var(--d1); padding:clamp(100px,11vw,160px) 0; position:relative; z-index:10; }
+    .steps .sec-h { color:var(--tw); }
+    .steps .sec-sub { color:var(--t2); }
+
+    .step-list { margin-top:clamp(56px,6vw,80px); }
+
+    .step-row {
+      display:grid; grid-template-columns:1fr 72px 1fr;
+      align-items:center; padding:clamp(48px,5vw,72px) 0;
+      position:relative;
+    }
+    .step-row+.step-row { border-top:1px solid var(--bd-dark); }
+    @media(max-width:768px){ .step-row{grid-template-columns:1fr; gap:20px; padding:36px 0;} .step-spine{display:none!important} }
+
+    /* Center spine */
+    .step-spine { display:flex; align-items:center; justify-content:center; flex-direction:column; position:relative; align-self:stretch; }
+    .step-spine::before { content:''; position:absolute; top:0; bottom:0; left:50%; width:1px; background:var(--bd-dark); transform:translateX(-50%); }
+    .step-n {
+      width:42px; height:42px; border-radius:50%;
+      background:var(--d1); border:1px solid var(--bd-dark2);
+      display:flex; align-items:center; justify-content:center;
+      font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; color:var(--t2);
+      position:relative; z-index:1;
+      transition:border-color .4s, color .4s, background .4s;
+    }
+    .step-row.step-active .step-n { border-color:rgba(229,26,0,.4); color:var(--brand-mid); background:rgba(229,26,0,.06); }
+
+    .step-txt { padding:0 clamp(16px,3vw,52px); }
+    .step-tag { display:block; margin-bottom:14px; }
+    .step-h { font-size:clamp(20px,2.2vw,32px); font-weight:600; color:var(--tw); line-height:1.15; margin-bottom:12px; letter-spacing:-.025em; }
+    .step-p { font-size:14px; color:var(--t2); line-height:1.75; max-width:380px; }
+
+    /* Even rows flip */
+    .step-row:nth-child(even) .step-txt { order:3; }
+    .step-row:nth-child(even) .step-vis { order:1; }
+    @media(max-width:768px){
+      .step-row:nth-child(even) .step-txt,.step-row:nth-child(even) .step-vis{order:unset}
+      .step-txt { padding:0; }
+      .step-vis { padding:0; }
+      .step-card { max-width:none; }
+      .step-p { max-width:none; }
+    }
+
+    /* Visual card */
+    .step-vis { padding:0 clamp(16px,3vw,40px); display:flex; align-items:center; justify-content:center; }
+    .step-card {
+      width:100%; max-width:320px;
+      background:var(--d2); border:1px solid var(--bd-dark);
+      border-radius:var(--r-xl); overflow:hidden;
+      box-shadow:0 16px 40px rgba(0,0,0,.4);
+      transition:transform .6s var(--ease), box-shadow .6s var(--ease), border-color .4s;
+      transform:translateY(14px);
+      opacity:.5;
+    }
+    .step-row.step-active .step-card { transform:translateY(0); opacity:1; border-color:var(--bd-dark2); box-shadow:0 24px 56px rgba(0,0,0,.5); }
+
+    .sc-top { padding:12px 18px; background:var(--d3); border-bottom:1px solid var(--bd-dark); display:flex; justify-content:space-between; align-items:center; }
+    .sc-top-l { font-size:11px; font-weight:500; color:var(--t2); }
+    .sc-top-r { font-size:10px; font-weight:500; color:var(--t3); }
+    .sc-body { padding:24px; }
+
+    /* ══════════════════════════════════════════
+       ROADMAP — LIGHT
+    ══════════════════════════════════════════ */
+    .road { background:var(--l0); padding:0; position:relative; z-index:11; overflow:hidden;
+      box-shadow:0 -20px 60px rgba(0,0,0,.30), 0 -1px 0 rgba(0,0,0,.08);
+      transition:background-color .08s linear; }
+    .road > .wrap { width:100%; min-height:100svh; display:flex; align-items:center;
+      padding:clamp(120px,13vw,180px) 0 clamp(80px,9vw,120px); }
+
+    .road-layout { display:grid; grid-template-columns:1fr 1.5fr; gap:clamp(48px,5vw,96px); align-items:start; }
+    @media(max-width:768px){
+      .road-layout{grid-template-columns:1fr}
+      .road > .wrap { padding:80px clamp(20px,4.5vw,40px) 60px; min-height:unset; }
+    }
+    .road-sticky { position:sticky; top:92px; }
+    @media(max-width:768px){ .road-sticky{position:static} }
+    .road-h { font-size:clamp(26px,3vw,44px); font-weight:600; line-height:1.1; letter-spacing:-.03em; color:var(--lw); margin-bottom:12px; }
+    .road-p { font-size:14px; color:var(--l-t2); line-height:1.75; margin-bottom:28px; }
+
+    .tl { border-left:1px solid var(--bd-light2); padding-left:32px; display:flex; flex-direction:column; gap:40px; }
+    .tl-item { position:relative; }
+    .tl-dot {
+      position:absolute; left:-40px; top:4px;
+      width:16px; height:16px; border-radius:50%;
+      background:var(--l0); border:1.5px solid var(--l-t3);
+      display:flex; align-items:center; justify-content:center;
+      transition:.3s;
+    }
+    .tl-item.done .tl-dot { background:var(--green); border-color:#16A34A; }
+    .tl-item.done .tl-dot::after {
+      content:''; display:block;
+      width:5px; height:3px;
+      border-left:1.5px solid #fff; border-bottom:1.5px solid #fff;
+      transform:rotate(-45deg) translate(1px,-1px);
+    }
+    .tl-item.now .tl-dot { background:var(--brand-red); border-color:var(--brand-orange); animation:dot-p 2.5s ease-in-out infinite; }
+    @keyframes dot-p { 0%,100%{box-shadow:0 0 0 3px rgba(229,26,0,.15)} 50%{box-shadow:0 0 0 7px rgba(229,26,0,.06)} }
+
+    .tl-tag { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--l-t3); display:block; margin-bottom:5px; }
+    .tl-item.done .tl-tag { color:var(--green); }
+    .tl-item.now .tl-tag { color:var(--brand-mid); }
+    .tl-title { font-size:16px; font-weight:600; color:var(--lw); margin-bottom:5px; }
+    .tl-desc { font-size:13px; color:var(--l-t2); line-height:1.7; }
+
+    /* ══════════════════════════════════════════
+       FAQ — DARK
+    ══════════════════════════════════════════ */
+    .faq { background:transparent; padding:clamp(100px,11vw,160px) 0; }
+    .faq .sec-h { color:var(--tw); }
+    .faq-layout { display:grid; grid-template-columns:1fr 1.8fr; gap:clamp(48px,6vw,96px); align-items:start; }
+    @media(max-width:768px){ .faq-layout{ grid-template-columns:1fr; } }
+    .faq-list { max-width:none; margin:0; }
+    .faq-item { border-bottom:1px solid var(--bd-dark); }
+    .faq-btn { width:100%; padding:22px 0; display:flex; justify-content:space-between; align-items:center; gap:24px; text-align:left; }
+    .faq-q { font-size:15.5px; font-weight:500; color:var(--t1); line-height:1.4; transition:color .2s; }
+    .faq-item.open .faq-q { color:var(--tw); }
+    .faq-ico { flex-shrink:0; width:26px; height:26px; border-radius:50%; border:1px solid var(--bd-dark2); color:var(--t2); display:flex; align-items:center; justify-content:center; font-size:13px; transition:transform .3s var(--ease), border-color .3s, color .3s; }
+    .faq-item.open .faq-ico { transform:rotate(45deg); border-color:var(--brand-mid); color:var(--brand-mid); }
+    .faq-body { max-height:0; overflow:hidden; transition:max-height .4s var(--ease); }
+    .faq-a { padding-bottom:22px; font-size:14px; color:var(--t2); line-height:1.8; }
+    .faq-a p+p { margin-top:10px; }
+
+    /* ══════════════════════════════════════════
+       NEWSLETTER — DARK, same tone as CTA
+    ══════════════════════════════════════════ */
+    .nl { background:var(--d1); padding:clamp(80px,9vw,130px) 0; position:relative; z-index:10; }
+    .nl-layout { display:grid; grid-template-columns:1fr 1.2fr; gap:clamp(32px,5vw,80px); align-items:center; }
+    @media(max-width:680px){ .nl-layout{grid-template-columns:1fr} }
+    .nl-h { font-size:clamp(22px,2.5vw,36px); font-weight:600; color:var(--tw); letter-spacing:-.025em; margin-bottom:8px; }
+    .nl-p { font-size:13.5px; color:var(--t2); line-height:1.7; }
+
+    /* ══════════════════════════════════════════
+       CTA — dark, strong glow, just before footer
+    ══════════════════════════════════════════ */
+    .cta {
+      position:relative;
+      padding:clamp(100px,12vw,170px) 0 clamp(120px,14vw,200px);
+      overflow:hidden;
+    }
+    /* Sunrise at the horizon — contained glow rising from the bottom */
+    .cta::before {
+      content:''; position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 110% 65% at 50% 105%, rgba(255,170,40,.52) 0%, rgba(255,70,0,.36) 22%, rgba(190,10,0,.18) 48%, transparent 68%),
+        radial-gradient(ellipse 70% 38% at 50% 108%, rgba(255,220,90,.28) 0%, rgba(255,110,0,.16) 30%, transparent 60%);
+      pointer-events:none;
+    }
+    .cta::after { display:none; }
+    .cta-inner { max-width:640px; margin:0 auto; text-align:center; position:relative; z-index:2; }
+    .cta-h { font-size:clamp(30px,4vw,60px); font-weight:600; letter-spacing:-.035em; color:var(--tw); line-height:1.05; margin-bottom:16px; }
+    .cta-p { font-size:15px; color:var(--t2); line-height:1.75; margin-bottom:36px; }
+    .cta-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    .footer { background:#000; padding:clamp(56px,7vw,88px) 0 36px; position:relative; z-index:10; }
+    .footer-top { display:grid; grid-template-columns:1.4fr repeat(3,1fr); gap:clamp(28px,4vw,56px); margin-bottom:52px; }
+    @media(max-width:860px){ .footer-top{grid-template-columns:1fr 1fr} }
+    @media(max-width:480px){ .footer-top{grid-template-columns:1fr} }
+    .footer-logo { height:26px; margin-bottom:12px; }
+    .footer-tagline { font-size:12.5px; color:#555; line-height:1.65; max-width:230px; }
+    .footer-col-h { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase; color:#444; margin-bottom:14px; }
+    .footer-links { list-style:none; display:flex; flex-direction:column; gap:9px; }
+    .footer-links a { font-size:12.5px; color:#555; transition:color .2s; }
+    .footer-links a:hover { color:#999; }
+    .footer-bot { border-top:1px solid rgba(255,255,255,.05); padding-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    .footer-copy { font-size:11.5px; color:#444; }
+    .footer-leg { display:flex; gap:16px; }
+    .footer-leg a { font-size:11.5px; color:#444; transition:color .2s; }
+    .footer-leg a:hover { color:#777; }
   </style>
 </head>
 <body>
 
-  <header class="site-header" id="siteHeader">
-    <div class="nav-shell">
-      <div class="nav-inner">
-        <a href="/" class="nav-brand">
-          <img src="/logo_g12.svg" alt="G12 Labs" class="nav-brand-logo" />
-        </a>
-
-        <nav class="nav-links" aria-label="Main navigation">
-          <a href="/strategies">Strategies</a>
-          <a href="/blog">Blog</a>
-          <a href="/docs" target="_blank">Lite paper</a>
-        </nav>
-
-        <div class="nav-cta">
-          <a href="https://app.g12labs.com" class="btn-magma-outline">
-            Launch App
-          </a>
-        </div>
-
-        <button class="nav-toggle" id="navToggle" aria-label="Open navigation" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-
-      </div> </div> <div class="nav-menu" id="navMenu">
-      <div class="nav-menu-content">
+<!-- ═══ NAV ═══════════════════════════════════════════════ -->
+<header class="nav" id="nav">
+  <div class="nav-shell">
+    <div class="nav-pill">
+      <a href="/"><img src="/logo_g12.svg" alt="G12 Labs" class="nav-logo" /></a>
+      <nav class="nav-links">
         <a href="/strategies">Strategies</a>
+        <a href="#steps">How it works</a>
         <a href="/blog">Blog</a>
-        <a href="/docs" target="_blank">Lite paper</a>
-        <div style="margin-top: 20px;">
-           <a href="https://app.g12labs.com" class="btn-magma-outline" style="width: 100%;">Launch App</a>
-        </div>
+        <a href="/docs">Docs</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <a href="https://app.g12labs.com" class="btn-nav-cta">Launch App</a>
       </div>
+      <button class="nav-burger" id="navBurger" aria-expanded="false" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </header>
-  <section class="hero" id="home">
-    <div class="container">
-      <div class="hero-grid">
-        
-        <div>
-          <span class="section-kicker">SYSTEMATIC DEFI</span>
-          <h1 class="hero-h1">
-            Build Wealth on<br>
-            <span class="text-magma">Solid Ground.</span>
-          </h1>
-          <p class="hero-p">
-            An experimental lab running data-driven strategies. 
-            We replace narrative with arithmetic, ensuring capital preservation through volatility.
-          </p>
-          
-          <div style="display: flex; gap: 16px;">
-            <a href="/strategies" class="btn-primary">
-               View Strategies
-            </a>
-          </div>
-
-          <div class="hero-partners">
-             <p class="partners-label">Built on leading infrastructure</p>
-             <div class="partners-grid">
-                <img src="/arbitrum.svg" alt="Arbitrum" />
-                <img src="/enzyme.svg" alt="Enzyme" />
-                <img src="/base.svg" alt="Base" />
-                <img src="/supabase.svg" alt="Supabase" />
-             </div>
-          </div>
-
-        </div>
-
-        <div class="hero-strata">
-          <div class="strata-stack">
-            <div class="layer layer-1"></div>
-            <div class="layer layer-2"></div>
-            <div class="layer layer-3"></div>
-            <div class="layer layer-4"></div>
-            <div class="layer-core"></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="section-light" id="what-we-do">
-    <div class="container">
-      
-      <div style="max-width: 700px; margin: 0 auto 100px; text-align: center;">
-        <span class="section-kicker" style="justify-content: center; color: var(--magma-core)">OUR PROCESS</span>
-        <h2 style="font-size: 42px; line-height: 1.1; color: #111; margin-bottom: 24px;">
-           Replacing narrative<br>with arithmetic.
-        </h2>
-        <p style="font-size: 18px; color: #666;">
-          We treat strategies as industrial products: defined rules, measurable behavior, and rigorous stress-testing.
-        </p>
-      </div>
-
-      <div class="zigzag-wrapper">
-
-        <div class="zigzag-row">
-          
-          <div class="zigzag-visual">
-             <div class="tech-card">
-                <div class="tech-header">
-                  <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                  <span class="tech-title">strategy_core.py</span>
-                </div>
-                <div class="tech-body code-style">
-   <div class="code-line c-comment"># G12 Labs — Market Analysis Engine</div>
-   <div class="code-line"><span class="c-purple">import</span> ccxt, pandas <span class="c-purple">as</span> pd, numpy <span class="c-purple">as</span> np</div>
-   <div class="code-line"><span class="c-purple">from</span> ta.momentum <span class="c-purple">import</span> RSIIndicator</div>
-   <div class="code-line"><span class="c-purple">from</span> ta.volatility <span class="c-purple">import</span> BollingerBands</div>
-   <div class="code-line"></div>
-   <div class="code-line">exchange = ccxt.binance()</div>
-   <div class="code-line">ohlcv = exchange.fetch_ohlcv(<span class="c-orange">"BTC/USDT"</span>, <span class="c-orange">"1h"</span>)</div>
-   <div class="code-line">df = pd.DataFrame(ohlcv, columns=[<span class="c-orange">"ts"</span>, <span class="c-orange">"o"</span>, <span class="c-orange">"h"</span>, <span class="c-orange">"l"</span>, <span class="c-orange">"c"</span>, <span class="c-orange">"v"</span>])</div>
-   <div class="code-line">df[<span class="c-orange">"rsi"</span>] = RSIIndicator(df[<span class="c-orange">"c"</span>]).rsi()</div>
+  </div>
+</header>
+<div class="nav-mob" id="navMob">
+  <nav class="nav-mob-links">
+    <a href="/strategies">Strategies</a>
+    <a href="/#steps">How it works</a>
+    <a href="/blog">Blog</a>
+    <a href="/docs">Docs</a>
+    <a href="/contact">Contact</a>
+    <a href="https://app.g12labs.com" class="mob-launch" target="_blank" rel="noopener">Launch App</a>
+  </nav>
 </div>
-             </div>
-          </div>
 
-          <div class="zigzag-text">
-            <div class="icon-box"><i class="ph ph-code"></i></div>
-            <h3>Systematic strategy design</h3>
-            <p>We build rule-based systems driven by data. No gut feelings. We code clear entry, exit, and risk parameters based on historical probabilities.</p>
-          </div>
-        </div>
-
-        <div class="zigzag-row reverse">
-          
-          <div class="zigzag-visual">
-             <div class="tech-card">
-                <div class="tech-header">
-                   <span class="tech-title">wbtc_usdc_position</span>
-                   <span class="badge-safe" style="background: #ECFDF5; color: #059669;">IN RANGE</span>
-                </div>
-                
-                <div class="tech-body">
-                   
-                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                      <span style="font-size: 11px; color: #666; font-weight: 600; text-transform: uppercase;">Current Price</span>
-                      <div style="font-family: 'JetBrains Mono'; font-size: 14px; font-weight: 700; color: #111;">
-                         96,450.20 <span style="color: #999; font-size: 11px;">USDC</span>
-                      </div>
-                   </div>
-
-                   <div style="position: relative; height: 140px; background: #0b0e14; border-radius: 12px; overflow: hidden; border: 1px solid #1f2937; margin-bottom: 20px;">
-                      
-                      <div style="display: flex; align-items: flex-end; justify-content: space-between; height: 100%; padding: 0 4px; opacity: 0.8;">
-                         <div style="width: 4%; background: #1f2937; height: 10%;"></div>
-                         <div style="width: 4%; background: #1f2937; height: 25%;"></div>
-                         <div style="width: 4%; background: #1f2937; height: 15%;"></div>
-                         
-                         <div style="width: 4%; background: #3b82f6; height: 30%;"></div>
-                         <div style="width: 4%; background: #3b82f6; height: 45%;"></div>
-                         <div style="width: 4%; background: #3b82f6; height: 60%;"></div>
-                         <div style="width: 4%; background: #3b82f6; height: 80%;"></div>
-                         <div style="width: 4%; background: #3b82f6; height: 65%;"></div>
-                         <div style="width: 4%; background: #3b82f6; height: 90%;"></div> <div style="width: 4%; background: #3b82f6; height: 70%;"></div>
-                         <div style="width: 4%; background: #3b82f6; height: 55%;"></div>
-                         <div style="width: 4%; background: #3b82f6; height: 40%;"></div>
-                         <div style="width: 4%; background: #3b82f6; height: 35%;"></div>
-                         <div style="width: 4%; background: #1f2937; height: 20%;"></div>
-                         <div style="width: 4%; background: #1f2937; height: 10%;"></div>
-                         <div style="width: 4%; background: #1f2937; height: 5%;"></div>
-                      </div>
-
-                      <div style="position: absolute; top: 0; bottom: 0; left: 18%; right: 18%; border-left: 2px solid var(--magma-core); border-right: 2px solid var(--magma-core); background: rgba(232, 90, 4, 0.1); pointer-events: none;">
-                         <div style="position: absolute; top: 0; left: -2px; width: 8px; height: 16px; background: var(--magma-core); border-bottom-right-radius: 4px;"></div>
-                         <div style="position: absolute; top: 0; right: -2px; width: 8px; height: 16px; background: var(--magma-core); border-bottom-left-radius: 4px;"></div>
-                      </div>
-
-                      <div style="position: absolute; top: 15%; bottom: 0; left: 52%; width: 2px; background: #fff; box-shadow: 0 0 10px rgba(255,255,255,0.5);">
-                         <div style="position: absolute; top: -6px; left: -4px; width: 10px; height: 10px; background: #fff; border-radius: 50%;"></div>
-                      </div>
-
-                   </div>
-
-                   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                      <div style="border: 1px solid #E5E7EB; border-radius: 8px; padding: 10px;">
-                         <div style="font-size: 10px; color: #888; margin-bottom: 4px;">Min Price</div>
-                         <div style="font-family: 'JetBrains Mono'; font-weight: 700; color: #111;">91,200</div>
-                         <div style="font-size: 10px; color: #10B981; margin-top: 2px;">-5.5% Buffer</div>
-                      </div>
-                      
-                      <div style="border: 1px solid #E5E7EB; border-radius: 8px; padding: 10px; text-align: right;">
-                         <div style="font-size: 10px; color: #888; margin-bottom: 4px;">Max Price</div>
-                         <div style="font-family: 'JetBrains Mono'; font-weight: 700; color: #111;">102,500</div>
-                         <div style="font-size: 10px; color: #10B981; margin-top: 2px;">+6.2% Buffer</div>
-                      </div>
-                   </div>
-
-                </div>
-             </div>
-          </div>
-
-          <div class="zigzag-text">
-            <div class="icon-box"><i class="ph ph-shield-check"></i></div>
-            <h3>Risk-Adjusted Execution</h3>
-            <p>Sizing and leverage are constrained by strict risk budgets. Protecting capital is the first design requirement before seeking yield.</p>
-          </div>
-        </div>
-
-        <div class="zigzag-row">
-          
-          <div class="zigzag-visual">
-             <div class="tech-card">
-                <div class="tech-header">
-                   <span class="tech-title">stress_test_results.json</span>
-                   <span class="badge-safe" style="background: #ECFDF5; color: #059669;">PASSED</span>
-                </div>
-                
-                <div class="tech-body">
-                   
-                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 10px; border: 1px solid #F3F4F6; border-radius: 8px;">
-                      <div style="display: flex; align-items: center; gap: 10px;">
-                         <div style="width: 32px; height: 32px; background: #FEF2F2; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
-                            <i class="ph ph-trend-down" style="color: #EF4444;"></i>
-                         </div>
-                         <div>
-                            <div style="font-size: 12px; font-weight: 700; color: #111;">Bear Market Sim</div>
-                            <div style="font-size: 10px; color: #888;">2025 Data Replay</div>
-                         </div>
-                      </div>
-                      <div style="text-align: right;">
-                         <span style="font-size: 11px; font-weight: 700; color: #10B981;">PROFITABLE</span>
-                         <i class="ph ph-check-circle" style="color: #10B981; font-size: 14px; vertical-align: middle; margin-left: 4px;"></i>
-                      </div>
-                   </div>
-
-                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 10px; border: 1px solid #F3F4F6; border-radius: 8px;">
-                      <div style="display: flex; align-items: center; gap: 10px;">
-                         <div style="width: 32px; height: 32px; background: #FFF7ED; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
-                            <i class="ph ph-lightning" style="color: #F59E0B;"></i>
-                         </div>
-                         <div>
-                            <div style="font-size: 12px; font-weight: 700; color: #111;">Flash Crash</div>
-                            <div style="font-size: 10px; color: #888;">-20% in 1 hour</div>
-                         </div>
-                      </div>
-                      <div style="text-align: right;">
-                         <span style="font-size: 11px; font-weight: 700; color: #10B981;">PROTECTED</span>
-                         <i class="ph ph-check-circle" style="color: #10B981; font-size: 14px; vertical-align: middle; margin-left: 4px;"></i>
-                      </div>
-                   </div>
-
-                   <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border: 1px solid #F3F4F6; border-radius: 8px;">
-                      <div style="display: flex; align-items: center; gap: 10px;">
-                         <div style="width: 32px; height: 32px; background: #F0F9FF; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
-                            <i class="ph ph-waves" style="color: #0EA5E9;"></i>
-                         </div>
-                         <div>
-                            <div style="font-size: 12px; font-weight: 700; color: #111;">Extreme Volatility</div>
-                            
-                         </div>
-                      </div>
-                      <div style="text-align: right;">
-                         <span style="font-size: 11px; font-weight: 700; color: #10B981;">NO LIQUIDATION</span>
-                         <i class="ph ph-check-circle" style="color: #10B981; font-size: 14px; vertical-align: middle; margin-left: 4px;"></i>
-                      </div>
-                   </div>
-
-                </div>
-             </div>
-          </div>
-
-          <div class="zigzag-text">
-            <div class="icon-box"><i class="ph ph-infinity"></i></div>
-            <h3>Continuous Testing</h3>
-            <p>Strategies run live over months, across different volatility environments (Bull, Bear, Crab), before any scale-up is considered.</p>
-          </div>
-        </div>
-
-        <div class="zigzag-row reverse">
-          
-          <div class="zigzag-visual">
-             <div class="tech-card">
-                <div class="tech-header">
-                   <span class="tech-title">Live Reporting</span>
-                   <i class="ph ph-broadcast" style="color:var(--magma-core)"></i>
-                </div>
-                <div class="tech-body table-style">
-                   <div class="t-row head"><span>Metric</span><span>Value</span></div>
-                   <div class="t-row"><span>Total Assets</span><span>$1.215,50</span></div>
-                   <div class="t-row"><span>Net APY</span><span class="c-green">+11.4%</span></div>
-                   <div class="t-row"><span>Sharpe</span><span>2.85</span></div>
-                   <div class="t-row"><span>Status</span><span class="c-green">Active</span></div>
-                </div>
-             </div>
-          </div>
-
-          <div class="zigzag-text">
-            <div class="icon-box"><i class="ph ph-eye"></i></div>
-            <h3>Total Transparency</h3>
-            <p>We don't hide losses. Aggregated performance, drawdowns, and live allocations are shared openly on our dashboard.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="section-light phase-section" id="live-access">
-    <div class="container">
-      
-      <div class="launch-grid">
-        
-        <div class="launch-text">
-          <span class="section-kicker" style="color: var(--magma-core)">NOW LIVE</span>
-          
-          <h2 class="launch-title">
-            Live Launch of the strategies.
-          </h2>
-          
-          <p class="launch-lead">
-            G12 Labs is now live, offering various strategies that have been validated through our internal process. Everyone can now join this exciting new journey with us.
-          </p>
-
-          <ul class="launch-points">
-            <li>
-              <strong>Capital protection first</strong>, with strict risk budgets and monitored exposure.
-            </li>
-            <li>
-              <strong>Transparent tracking</strong>, with off-chain reporting and aggregated metrics shared on our dashboard.
-            </li>
-            <li>
-              <strong>Continuous improvement</strong>, as strategies are adjusted across different volatility cycles.
-            </li>
-          </ul>
-        </div>
-
-        <div class="launch-card-container">
-           <div class="vip-card">
-              <div class="vip-glow"></div>
-              
-              <div class="vip-header">
-                 <span class="vip-label">FOUNDING MEMBER STATUS</span>
-                 <i class="ph ph-crown-simple" style="color: var(--magma-core); font-size: 24px;"></i>
-              </div>
-
-              <h3 class="vip-heading">Early Joiners Benefits</h3>
-              
-              <p class="vip-desc">
-                Join during the launch phase to lock in preferential terms for the lifetime of your deposit.
-              </p>
-
-              <div class="benefit-box">
-                 <div class="benefit-item">
-                    <i class="ph ph-trend-down"></i>
-                    <span>Reduced Management Fees</span>
-                 </div>
-                 <div class="benefit-item">
-                    <i class="ph ph-percent"></i>
-                    <span>Lower Performance Fees</span>
-                 </div>
-              </div>
-
-              <div style="margin-top: 32px;">
-                <a href="https://app.g12labs.com" class="btn-primary" style="width: 100%; justify-content: center;">
-                   Deploy Capital Now
-                </a>
-              </div>
-           </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-<section class="roadmap-section" id="roadmap">
-      <div class="container">
-          <div class="roadmap-grid">
-              
-              <div class="roadmap-intro">
-                  <span class="section-kicker">THE PLAN</span>
-                  <h2 style="font-size: 42px; margin-bottom: 24px; color: white;">
-                      Built in phases.<br>
-                      <span class="text-magma">Deliberate constraints.</span>
-                  </h2>
-                  <p style="color: #888; font-size: 16px; line-height: 1.6;">
-                      We don't rush. Each phase validates the risk models before expanding capital limits.
-                  </p>
-              </div>
-
-              <div class="timeline">
-                  
-                  <div class="timeline-item active">
-                      <div class="t-dot"></div>
-                      <span class="t-phase">PHASE 1 — COMPLETED</span>
-                      <h3 class="t-title">Foundations & Research</h3>
-                      <p class="t-desc">Building the core structure of the vaults: rule-based strategies, risk budgets, datasets, and early simulations. Defining the system architecture and establishing the theoretical backbone.</p>
-                  </div>
-                  
-                  <div class="timeline-item active">
-                      <div class="t-dot"></div>
-                      <span class="t-phase">PHASE 2 — COMPLETED</span>
-                      <h3 class="t-title">Infrastructure Build-out</h3>
-                      <p class="t-desc">Developing the strategy suite and execution bots.</p>
-                  </div>
-                  
-                  <div class="timeline-item active">
-                      <div class="t-dot"></div>
-                      <span class="t-phase" style="color: var(--magma-core);">PHASE 3 — CURRENT</span>
-                      <h3 class="t-title">Launching phase</h3>
-                      <p class="t-desc">Running the system with various monitored vaults in real market conditions. Refining models, enforcing capital protection rules, and maintaining transparent tracking</p>
-                  </div>
-                  
-                  <div class="timeline-item">
-                      <div class="t-dot"></div>
-                      <span class="t-phase">PHASE 4 — PLANNED</span>
-                      <h3 class="t-title">Scaled deployment</h3>
-                      <p class="t-desc">Increasing capacity, formalising onboarding mechanisms, and expanding automated reporting. Structuring the strategies for disciplined scale-up and sustainable growth</p>
-                  </div>
-
-              </div>
-          </div>
-      </div>
-  </section>
-  <section class="newsletter-section">
-      <div class="container">
-          <div class="newsletter-grid">
-              
-              <div class="newsletter-content">
-                  <span class="section-kicker" style="color: #666; border-color: #999;">MONTHLY LAB UPDATE</span>
-                  
-                  <h2 class="newsletter-title">
-                      Essential insights.<br>No noise.
-                  </h2>
-                  
-                  <p class="newsletter-desc">
-                      A short recap of pilot results, strategy changes, and operational updates — written for partners and close observers.
-                  </p>
-              </div>
-
-              <div class="newsletter-form-wrapper">
-                  <form class="newsletter-form">
-                      <input type="email" placeholder="you@example.com" class="n-input" required />
-                      
-                      <button type="submit" class="n-btn">
-                          Join the lab update
-                      </button>
-                  </form>
-                  
-                  <div class="n-consent">
-                      <input type="checkbox" id="n-check" required>
-                      <label for="n-check">
-                          I agree to receive information from G12 Labs and confirm that I have read and accepted the terms & conditions.
-                      </label>
-                  </div>
-              </div>
-
-          </div>
-      </div>
-  </section>
- <section class="faq-section" id="faq">
-      <div class="container">
-          <div class="faq-header">
-              <span class="section-kicker">FAQ</span>
-              <h2 class="faq-title">Frequently Asked Questions.</h2>
-          </div>
-
-          <div class="faq-list">
-              
-              <div class="faq-item">
-                  <button class="faq-toggle">
-                      <span class="faq-question">What exactly is G12 Labs?</span>
-                      <span class="faq-icon"><i class="ph ph-plus"></i></span>
-                  </button>
-                  <div class="faq-content">
-                      <div class="faq-text">
-                          <p>
-                              G12 Labs is an experimental crypto lab executing systematic, data-driven investment strategies. 
-                              Unlike traditional funds driven by human intuition, we use algorithms to manage capital based on defined rules and historical probabilities. 
-                              We offer a controlled environment for partners to deploy liquidity into these strategies, prioritizing capital preservation and transparent tracking.
-                          </p>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="faq-item">
-                  <button class="faq-toggle">
-                      <span class="faq-question">How does the strategy actually generate returns?</span>
-                      <span class="faq-icon"><i class="ph ph-plus"></i></span>
-                  </button>
-                  <div class="faq-content">
-                      <div class="faq-text">
-                          <p>
-                              We run multiple rule-based strategies that focus on repeatable edges: funding-rate capture, directional or market-neutral systems, and liquidity-providing setups.
-                          </p>
-                          <p>
-                              Everything is tracked over time so we can see how they behave across different market regimes. Depending on the market condition, we adapt our strategies to optimize risk-adjusted returns.
-                          </p>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="faq-item">
-                  <button class="faq-toggle">
-                      <span class="faq-question">Is G12 Labs safe? How do you manage risk?</span>
-                      <span class="faq-icon"><i class="ph ph-plus"></i></span>
-                  </button>
-                  <div class="faq-content">
-                      <div class="faq-text">
-                          <p>
-                              All investments carry inherent risks: capital can decrease as well as increase. We mitigate these through defined rules, strict drawdown thresholds, diversification, and a primary focus on capital preservation over performance.
-                          </p>
-                          <p>
-                              Blockchain-specific risks—such as hacks, smart contract vulnerabilities, or exploits—are addressed through robust security measures, including multi-signature wallets, audited code, and cold storage protocols, though no system offers absolute protection.
-                          </p>
-                      </div>
-                  </div>
-              </div>
-
-          </div>
-      </div>
-  </section>
-  <footer class="site-footer">
-    <div class="container">
-      
-      <div class="footer-columns">
-        <div class="footer-column">
-          <h3 class="footer-heading">Platform</h3>
-          <ul class="footer-links-list">
-            <li><a href="/">Home</a></li>
-            <li><a href="/strategies">Strategies</a></li>
-            <li><a href="/#live-access">Live Launch</a></li>
-            <li><a href="/#roadmap">Roadmap</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h3 class="footer-heading">Resources</h3>
-          <ul class="footer-links-list">
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="https://app.g12labs.com">Access</a></li>
-            <li><a href="/#faq">FAQ</a></li>
-            <li><a href="/docs" target="_blank">Lite paper</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h3 class="footer-heading">Contact</h3>
-          <ul class="footer-links-list">
-            <li><a href="mailto:info@g12labs.com">info@g12labs.com</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-main" style="border: none; padding: 20px 0;">
-        <img src="fulllogo_transparent_nobuffer.png" alt="" class="footer-main-logo-img" />
-      </div>
-
-      <div class="footer-bottom" style="border: none;">
-        <a href="#" class="footer-back-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
-          <span>↑ Back to top</span>
+<!-- ═══ HERO ═══════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="wrap">
+    <div class="hero-content">
+      <h1 class="hero-h1 r">
+        We manage your capital<br>
+        in <span class="grad-text--hero">the best of Web3.</span>
+      </h1>
+      <p class="hero-p r d1">
+        G12 Labs is a team of financial experts who identify, manage, and monitor high-quality DeFi vaults — so you don't need to understand blockchain to benefit from it.
+      </p>
+      <div class="hero-btns r d2">
+        <a href="/strategies" class="btn-hero-primary">
+          View Vaults <i class="ph-bold ph-arrow-right arr"></i>
         </a>
+        <a href="#what" class="btn-hero-ghost" id="heroScrollBtn">
+          View more <i class="ph-bold ph-arrow-down arr"></i>
+        </a>
+      </div>
+      <div class="hero-partners r d3">
+        <span class="label">Built on</span>
+        <div class="logos-row">
+          <img src="/enzyme.svg" alt="Enzyme" />
+          <img src="../Morpho-logo-horizontal-darkmode.svg" alt="Morpho" />
+          <img src="/supabase.svg" alt="Supabase" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="footer-bottom-right">
-          <span>© 2026 G12 Labs</span>
-          <span class="sep">·</span>
-          <a href="/legal">Terms</a>
-          <span class="sep">·</span>
-          <a href="/privacy">Privacy</a>
+<!-- ═══ WHAT WE DO — LIGHT, 2-col ════════════════════════ -->
+<section class="what" id="what">
+  <div class="wrap">
+    <div class="what-body">
+      <!-- Left: statement -->
+      <div>
+        <span class="label label--light what-kicker r">What we do</span>
+        <h2 class="what-h r d1">
+          We do the work.<br>
+          <em>You collect the yield.</em>
+        </h2>
+        <p class="what-sub r d2">Finding the right opportunities in Web3, building the infrastructure to access them safely, and managing them actively — that's on us.</p>
+      </div>
+      <!-- Right: 2×2 feature cards -->
+      <div class="what-grid r d2">
+        <div class="wg">
+          <div class="wg-ico"><i class="ph-bold ph-magnifying-glass"></i></div>
+          <div class="wg-h">We research the opportunities</div>
+          <p class="wg-p">Our team continuously screens DeFi protocols — evaluating risk, liquidity, and yield quality before anything reaches a vault.</p>
+        </div>
+        <div class="wg">
+          <div class="wg-ico"><i class="ph-bold ph-cpu"></i></div>
+          <div class="wg-h">We build the infrastructure</div>
+          <p class="wg-p">Every vault is built on audited smart contracts. We handle the technical complexity so you never have to.</p>
+        </div>
+        <div class="wg">
+          <div class="wg-ico"><i class="ph-bold ph-brain"></i></div>
+          <div class="wg-h">We actively manage</div>
+          <p class="wg-p">Positions are monitored and adjusted daily. If a strategy weakens, we act — we don't wait for an algorithm to react.</p>
+        </div>
+        <div class="wg">
+          <div class="wg-ico"><i class="ph-bold ph-wallet"></i></div>
+          <div class="wg-h">You just deposit</div>
+          <p class="wg-p">Connect a wallet, choose a vault, deposit. That's it. No DeFi knowledge needed — your only job is deciding how much to invest.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VAULTS — DARK, intriguing ════════════════════════ -->
+<section class="vaults" id="vaults">
+  <div class="wrap">
+    <div class="vaults-intro r">
+      <span class="label label--light" style="margin-bottom:14px;display:block;">Active vaults</span>
+      <h2 style="color:var(--lw)">Two vaults.<br>Each one built to last.</h2>
+      <p>Stress-tested before opening. Continuously monitored. We open a vault when we believe in it — not when it's convenient.</p>
+    </div>
+    <div class="vault-list">
+
+      <!-- Vault 01 — BTC -->
+      <div class="vault-card vault-card--btc r">
+        <div class="vault-card-inner">
+          <div>
+            <span class="vault-row-num">Vault 01</span>
+            <div class="vault-row-name">G12 BTC Yield Pro</div>
+            <p class="vault-row-desc">A Bitcoin-focused yield strategy designed around capital preservation. Conservative positioning, active monitoring, strict drawdown limits.</p>
+            <div class="vault-stats">
+              <div class="vs">
+                <span class="vs-label">TVL</span>
+                <span class="vs-val">$2.4M</span>
+              </div>
+              <div class="vs">
+                <span class="vs-label">Depositors</span>
+                <span class="vs-val">147</span>
+              </div>
+              <div class="vs">
+                <span class="vs-label">Denomination</span>
+                <div class="vs-denom"><img src="/usd-coin-usdc-logo.png" alt="USDC"><span>USDC</span></div>
+              </div>
+              <div class="vs">
+                <span class="vs-label">Exposure</span>
+                <div class="token-stack">
+                  <img src="/wrapped-bitcoin-wbtc-icon.svg" alt="WBTC">
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="/strategies" class="vault-explore">Explore <i class="ph-bold ph-arrow-right arr"></i></a>
+        </div>
+      </div>
+
+      <!-- Vault 02 — Stable / ETH exposure -->
+      <div class="vault-card vault-card--eth r">
+        <div class="vault-card-inner">
+          <div>
+            <span class="vault-row-num">Vault 02</span>
+            <div class="vault-row-name">G12 ETH Staking Plus</div>
+            <p class="vault-row-desc">Ethereum liquid staking amplified through Morpho Protocol. Higher yield potential within a framework designed to avoid liquidation risk.</p>
+            <div class="vault-stats">
+              <div class="vs">
+                <span class="vs-label">TVL</span>
+                <span class="vs-val">$1.8M</span>
+              </div>
+              <div class="vs">
+                <span class="vs-label">Depositors</span>
+                <span class="vs-val">203</span>
+              </div>
+              <div class="vs">
+                <span class="vs-label">Denomination</span>
+                <div class="vs-denom"><img src="/usd-coin-usdc-logo.png" alt="USDC"><span>USDC</span></div>
+              </div>
+              <div class="vs">
+                <span class="vs-label">Exposure</span>
+                <div class="token-stack">
+                  <img src="/stETH_ug10fg.svg" alt="stETH">
+                  <img src="/weth-logotic.png" alt="WETH">
+                  <img src="/wrapped-bitcoin-wbtc-icon.svg" alt="WBTC">
+                  <img src="/cbbtc.png" alt="cbBTC">
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="/strategies" class="vault-explore">Explore <i class="ph-bold ph-arrow-right arr"></i></a>
         </div>
       </div>
 
     </div>
-  </footer>
-  <script>
-    (function () {
-      // Fade-in
-      window.addEventListener('DOMContentLoaded', () => {
-        document.body.classList.add('is-loaded');
-      });
+    <div class="vaults-footer r">
+      <p>More vaults coming as we grow. Quality over quantity.</p>
+      <a href="/strategies" class="btn-line btn-line--dark">View all strategies <i class="ph-bold ph-arrow-right"></i></a>
+    </div>
+  </div>
 
-      // Navbar Logic
-      const header = document.getElementById('siteHeader');
-      const navToggle = document.getElementById('navToggle');
-      const navMenu = document.getElementById('navMenu');
+  <!-- ═══ BENTO — fusionné dans .vaults pour transition fluide ═══ -->
+  <div class="bento" id="why">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="label r" style="margin-bottom:12px;display:block;color:var(--l-t3);">Why G12 Labs</span>
+      <h2 class="sec-h r d1" style="color:var(--lw);">Not your average DeFi platform.</h2>
+      <p class="sec-sub r d2" style="color:var(--l-t2);">We built what we wish existed when we first entered Web3.</p>
+    </div>
 
-      function onScroll() {
-        if (window.scrollY > 8) {
-          header.classList.add('scrolled');
+    <div class="bento-grid">
+
+      <!-- A — Shield: Capital preservation -->
+      <div class="bc bc-a">
+        <div class="bc-art">
+          <svg viewBox="0 0 300 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="glA1" cx="50%" cy="58%" r="54%">
+                <stop offset="0%" stop-color="#2563EB" stop-opacity=".42"/>
+                <stop offset="100%" stop-color="#1E40AF" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="glA2" cx="50%" cy="60%" r="18%">
+                <stop offset="0%" stop-color="#60A5FA" stop-opacity=".50"/>
+                <stop offset="100%" stop-color="#60A5FA" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <ellipse cx="150" cy="175" rx="170" ry="148" fill="url(#glA1)"/>
+            <ellipse cx="150" cy="175" rx="52" ry="50" fill="url(#glA2)"/>
+            <!-- Shield outer — bold shape -->
+            <path d="M150 40 L244 86 L244 186 C244 244 150 278 150 278 C150 278 56 244 56 186 L56 86 Z"
+              fill="rgba(37,99,235,.12)" stroke="rgba(96,165,250,.90)" stroke-width="2.5" stroke-linejoin="round"/>
+            <!-- Shield inner border -->
+            <path d="M150 68 L216 106 L216 178 C216 222 150 250 150 250 C150 250 84 222 84 178 L84 106 Z"
+              fill="none" stroke="rgba(96,165,250,.20)" stroke-width="1" stroke-linejoin="round"/>
+            <!-- Heraldic cross (vertical + horizontal dividers) -->
+            <line x1="150" y1="106" x2="150" y2="250" stroke="rgba(96,165,250,.14)" stroke-width="1"/>
+            <line x1="84"  y1="178" x2="216" y2="178" stroke="rgba(96,165,250,.14)" stroke-width="1"/>
+            <!-- Shield boss -->
+            <circle cx="150" cy="175" r="30" fill="rgba(37,99,235,.16)" stroke="rgba(96,165,250,.50)" stroke-width="1.5"/>
+            <circle cx="150" cy="175" r="17" fill="rgba(37,99,235,.14)" stroke="#60A5FA" stroke-width="2"/>
+            <!-- Vertex accents -->
+            <circle cx="150" cy="40"  r="4"   fill="#60A5FA" opacity=".70"/>
+            <circle cx="56"  cy="86"  r="3"   fill="#60A5FA" opacity=".50"/>
+            <circle cx="244" cy="86"  r="3"   fill="#60A5FA" opacity=".50"/>
+          </svg>
+        </div>
+        <div class="bc-inner">
+          <span class="label">Philosophy</span>
+          <h3 class="bc-h">Capital preservation. Always first.</h3>
+          <p class="bc-p">Yield is a consequence of discipline — not the objective.</p>
+        </div>
+      </div>
+
+      <!-- GRAD — Win-Win -->
+      <div class="bc bc-grad">
+        <div class="bc-art">
+          <svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="glVL" cx="40%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity=".12"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="glVR" cx="60%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#E51A00" stop-opacity=".22"/>
+                <stop offset="100%" stop-color="#E51A00" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="glVX" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#FF4D00" stop-opacity=".38"/>
+                <stop offset="100%" stop-color="#E51A00" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FF9100"/>
+                <stop offset="100%" stop-color="#E51A00"/>
+              </linearGradient>
+            </defs>
+            <!-- Soft glow behind each circle -->
+            <ellipse cx="118" cy="100" rx="92" ry="88" fill="url(#glVL)"/>
+            <ellipse cx="182" cy="100" rx="92" ry="88" fill="url(#glVR)"/>
+            <!-- Intersection glow -->
+            <ellipse cx="150" cy="100" rx="36" ry="70" fill="url(#glVX)"/>
+            <!-- Left circle — white (user) -->
+            <circle cx="118" cy="100" r="76" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/>
+            <!-- Right circle — brand gradient (G12) -->
+            <circle cx="182" cy="100" r="76" fill="rgba(229,26,0,.04)" stroke="url(#ringGrad)" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="bc-inner">
+          <span class="label">Skin in the game</span>
+          <h3 class="bc-h">We only win when you do.</h3>
+          <p class="bc-p">Performance fees on net profits only. The team invests in its own vaults.</p>
+        </div>
+      </div>
+
+      <!-- B — Vault wheel: Curation (white, now wide) -->
+      <div class="bc bc-b">
+        <div class="bc-art">
+          <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="glC" cx="50%" cy="50%" r="48%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity=".10"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="90" cy="90" r="90" fill="url(#glC)"/>
+            <circle cx="90" cy="90" r="74" stroke="rgba(255,255,255,.08)" stroke-width="1" fill="none" stroke-dasharray="5 4"/>
+            <circle cx="90" cy="90" r="58" stroke="rgba(255,255,255,.12)" stroke-width="1" fill="none"/>
+            <circle cx="90" cy="90" r="42" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.50)" stroke-width="1.5"/>
+            <!-- Spokes -->
+            <line x1="90" y1="48" x2="90" y2="32" stroke="rgba(255,255,255,.50)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="132" y1="90" x2="148" y2="90" stroke="rgba(255,255,255,.32)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="48" y1="90" x2="32" y2="90" stroke="rgba(255,255,255,.32)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="118" y1="62" x2="130" y2="50" stroke="rgba(255,255,255,.20)" stroke-width="1" stroke-linecap="round"/>
+            <line x1="62" y1="118" x2="50" y2="130" stroke="rgba(255,255,255,.20)" stroke-width="1" stroke-linecap="round"/>
+            <!-- Center check -->
+            <circle cx="90" cy="90" r="22" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.65)" stroke-width="1.5"/>
+            <path d="M79 90 L87 99 L103 78" stroke="#4ADE80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="bc-inner">
+          <span class="label">Curation</span>
+          <h3 class="bc-h">We open vaults when we believe in them.</h3>
+          <p class="bc-p">Not when it's convenient.</p>
+        </div>
+      </div>
+
+      <!-- C — Lock: Security (white, now small) -->
+      <div class="bc bc-c">
+        <div class="bc-art">
+          <svg viewBox="0 0 160 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="glB" cx="50%" cy="70%" r="55%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity=".10"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="glKey" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#4ADE80" stop-opacity=".25"/>
+                <stop offset="100%" stop-color="#4ADE80" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <ellipse cx="80" cy="200" rx="100" ry="90" fill="url(#glB)"/>
+            <!-- Shackle ring (fill-rule evenodd = hollow horseshoe) -->
+            <path fill-rule="evenodd"
+              d="M 28,158 L 28,58 Q 28,8 80,8 Q 132,8 132,58 L 132,158 L 108,158 L 108,64 Q 108,32 80,32 Q 52,32 52,64 L 52,158 Z"
+              fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.68)" stroke-width="1.5" stroke-linejoin="round"/>
+            <!-- Lock body -->
+            <rect x="6"  y="148" width="148" height="126" rx="22"
+              fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.68)" stroke-width="1.5"/>
+            <!-- Inner panel recess -->
+            <rect x="18" y="162" width="124" height="98" rx="15"
+              fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.16)" stroke-width="1"/>
+            <!-- Horizontal panel divider -->
+            <line x1="18" y1="192" x2="142" y2="192" stroke="rgba(255,255,255,.10)" stroke-width="1"/>
+            <!-- Rivet dots at inner panel corners -->
+            <circle cx="26"  cy="170" r="3" fill="rgba(255,255,255,.22)"/>
+            <circle cx="134" cy="170" r="3" fill="rgba(255,255,255,.22)"/>
+            <circle cx="26"  cy="252" r="3" fill="rgba(255,255,255,.22)"/>
+            <circle cx="134" cy="252" r="3" fill="rgba(255,255,255,.22)"/>
+            <!-- Shackle entry slots -->
+            <rect x="21"  y="146" width="24" height="10" rx="5" fill="rgba(0,0,0,.35)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+            <rect x="115" y="146" width="24" height="10" rx="5" fill="rgba(0,0,0,.35)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+            <!-- Keyhole glow -->
+            <ellipse cx="80" cy="216" rx="24" ry="22" fill="url(#glKey)"/>
+            <!-- Keyhole circle -->
+            <circle cx="80" cy="210" r="18" fill="rgba(74,222,128,.06)" stroke="rgba(74,222,128,.75)" stroke-width="1.5"/>
+            <!-- Keyhole slot -->
+            <rect x="75" y="222" width="10" height="22" rx="4" fill="rgba(74,222,128,.42)"/>
+          </svg>
+        </div>
+        <div class="bc-inner">
+          <span class="label">Security</span>
+          <h3 class="bc-h">Your keys. Your funds. Always.</h3>
+          <p class="bc-p">Only you can withdraw. Anytime.</p>
+        </div>
+      </div>
+
+      <!-- D — Radar: Transparency -->
+      <div class="bc bc-d">
+        <div class="bc-art">
+          <svg viewBox="0 0 180 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Row 1 — highlighted tx -->
+            <rect x="10" y="14" width="160" height="22" rx="4" fill="rgba(255,255,255,.06)"/>
+            <text x="18" y="28" font-size="7.5" fill="rgba(255,255,255,.70)" font-family="JetBrains Mono,monospace">0x4f2a…c81e</text>
+            <text x="88" y="28" font-size="7" fill="rgba(255,145,0,.70)" font-family="JetBrains Mono,monospace">→</text>
+            <text x="98" y="28" font-size="7.5" fill="rgba(255,255,255,.70)" font-family="JetBrains Mono,monospace">0xb93d…07af</text>
+            <!-- Row 2 -->
+            <text x="18" y="52" font-size="7.5" fill="rgba(255,255,255,.38)" font-family="JetBrains Mono,monospace">0x7e1c…3bd2</text>
+            <text x="88" y="52" font-size="7" fill="rgba(255,255,255,.18)" font-family="JetBrains Mono,monospace">→</text>
+            <text x="98" y="52" font-size="7.5" fill="rgba(255,255,255,.38)" font-family="JetBrains Mono,monospace">0x2a8f…e54c</text>
+            <!-- Separator -->
+            <line x1="10" y1="60" x2="170" y2="60" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+            <!-- Row 3 -->
+            <text x="18" y="76" font-size="7.5" fill="rgba(255,255,255,.38)" font-family="JetBrains Mono,monospace">0xd04b…9a13</text>
+            <text x="88" y="76" font-size="7" fill="rgba(255,255,255,.18)" font-family="JetBrains Mono,monospace">→</text>
+            <text x="98" y="76" font-size="7.5" fill="rgba(255,255,255,.38)" font-family="JetBrains Mono,monospace">0x61fe…c290</text>
+            <!-- Separator -->
+            <line x1="10" y1="84" x2="170" y2="84" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+            <!-- Row 4 -->
+            <text x="18" y="100" font-size="7.5" fill="rgba(255,255,255,.22)" font-family="JetBrains Mono,monospace">0x3c7a…11d8</text>
+            <text x="88" y="100" font-size="7" fill="rgba(255,255,255,.12)" font-family="JetBrains Mono,monospace">→</text>
+            <text x="98" y="100" font-size="7.5" fill="rgba(255,255,255,.22)" font-family="JetBrains Mono,monospace">0xaa52…8e3f</text>
+            <!-- Row 5 — fading -->
+            <text x="18" y="120" font-size="7.5" fill="rgba(255,255,255,.10)" font-family="JetBrains Mono,monospace">0x9b1e…4cf7</text>
+            <text x="88" y="120" font-size="7" fill="rgba(255,255,255,.06)" font-family="JetBrains Mono,monospace">→</text>
+            <text x="98" y="120" font-size="7.5" fill="rgba(255,255,255,.10)" font-family="JetBrains Mono,monospace">0x5d30…b17a</text>
+          </svg>
+        </div>
+        <div class="bc-inner">
+          <span class="label">Transparency</span>
+          <h3 class="bc-h">Nothing hidden.</h3>
+          <p class="bc-p">Every position, every drawdown — live.</p>
+        </div>
+      </div>
+
+      <!-- E — Nodes: Access (white) -->
+      <div class="bc bc-e">
+        <div class="bc-art">
+          <svg viewBox="0 0 180 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="glE1" cx="16%" cy="21%" r="25%"><stop offset="0%" stop-color="#A855F7" stop-opacity=".22"/><stop offset="100%" stop-color="#A855F7" stop-opacity="0"/></radialGradient>
+              <radialGradient id="glE2" cx="84%" cy="21%" r="25%"><stop offset="0%" stop-color="#60A5FA" stop-opacity=".22"/><stop offset="100%" stop-color="#60A5FA" stop-opacity="0"/></radialGradient>
+              <radialGradient id="glE3" cx="12%" cy="76%" r="25%"><stop offset="0%" stop-color="#4ADE80" stop-opacity=".22"/><stop offset="100%" stop-color="#4ADE80" stop-opacity="0"/></radialGradient>
+              <radialGradient id="glE4" cx="88%" cy="76%" r="25%"><stop offset="0%" stop-color="#FF9100" stop-opacity=".22"/><stop offset="100%" stop-color="#FF9100" stop-opacity="0"/></radialGradient>
+              <radialGradient id="glE5" cx="50%" cy="93%" r="20%"><stop offset="0%" stop-color="#F472B6" stop-opacity=".22"/><stop offset="100%" stop-color="#F472B6" stop-opacity="0"/></radialGradient>
+            </defs>
+            <!-- Node glows -->
+            <ellipse cx="28"  cy="32"  rx="28" ry="28" fill="url(#glE1)"/>
+            <ellipse cx="152" cy="32"  rx="28" ry="28" fill="url(#glE2)"/>
+            <ellipse cx="22"  cy="118" rx="24" ry="24" fill="url(#glE3)"/>
+            <ellipse cx="158" cy="118" rx="24" ry="24" fill="url(#glE4)"/>
+            <ellipse cx="90"  cy="144" rx="22" ry="22" fill="url(#glE5)"/>
+            <!-- Connection lines — colored per node -->
+            <line x1="90" y1="78" x2="28"  y2="32"  stroke="rgba(168,85,247,.35)"  stroke-width="1"/>
+            <line x1="90" y1="78" x2="152" y2="32"  stroke="rgba(96,165,250,.35)"  stroke-width="1"/>
+            <line x1="90" y1="78" x2="22"  y2="118" stroke="rgba(74,222,128,.30)"  stroke-width="1"/>
+            <line x1="90" y1="78" x2="158" y2="118" stroke="rgba(255,145,0,.30)"   stroke-width="1"/>
+            <line x1="90" y1="78" x2="90"  y2="144" stroke="rgba(244,114,182,.28)" stroke-width="1"/>
+            <!-- Outer nodes — each with its own color -->
+            <circle cx="28"  cy="32"  r="11" fill="rgba(168,85,247,.10)"  stroke="#A855F7" stroke-width="1.5"/>
+            <circle cx="152" cy="32"  r="11" fill="rgba(96,165,250,.10)"  stroke="#60A5FA" stroke-width="1.5"/>
+            <circle cx="22"  cy="118" r="9"  fill="rgba(74,222,128,.10)"  stroke="#4ADE80" stroke-width="1.5"/>
+            <circle cx="158" cy="118" r="9"  fill="rgba(255,145,0,.10)"   stroke="#FF9100" stroke-width="1.5"/>
+            <circle cx="90"  cy="144" r="9"  fill="rgba(244,114,182,.10)" stroke="#F472B6" stroke-width="1.5"/>
+            <!-- Center dot inside each node -->
+            <circle cx="28"  cy="32"  r="3.5" fill="#A855F7" opacity=".80"/>
+            <circle cx="152" cy="32"  r="3.5" fill="#60A5FA" opacity=".80"/>
+            <circle cx="22"  cy="118" r="3"   fill="#4ADE80" opacity=".80"/>
+            <circle cx="158" cy="118" r="3"   fill="#FF9100" opacity=".80"/>
+            <circle cx="90"  cy="144" r="3"   fill="#F472B6" opacity=".80"/>
+            <!-- Central node -->
+            <circle cx="90" cy="78" r="26" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+            <circle cx="90" cy="78" r="15" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/>
+            <circle cx="90" cy="78" r="5"  fill="rgba(255,255,255,.90)"/>
+          </svg>
+        </div>
+        <div class="bc-inner">
+          <span class="label">Access</span>
+          <h3 class="bc-h">Built for everyone.</h3>
+          <p class="bc-p">No DeFi expertise required.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div><!-- /bento -->
+</section><!-- /vaults+bento -->
+
+<!-- ═══ STEPS — DARK, zigzag ═════════════════════════════ -->
+<section class="steps" id="steps">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="label r" style="margin-bottom:12px;display:block;">Simple by design</span>
+      <h2 class="sec-h r d1">Up and running in minutes.</h2>
+      <p class="sec-sub r d2">No DeFi knowledge required. We handle everything complex.</p>
+    </div>
+
+    <div class="step-list">
+
+      <!-- Step 1 — Connect wallet -->
+      <div class="step-row" data-step>
+        <div class="step-txt r">
+          <span class="label step-tag">Step 01</span>
+          <h3 class="step-h">Connect your wallet</h3>
+          <p class="step-p">MetaMask, Coinbase Wallet, WalletConnect, or sign in with your email. Takes under a minute, no technical setup needed.</p>
+        </div>
+        <div class="step-spine"><div class="step-n">01</div></div>
+        <div class="step-vis r d1">
+          <div class="step-card">
+            <div class="sc-top"><span class="sc-top-l">Connect Wallet</span><span class="sc-top-r">1 of 4</span></div>
+            <div class="sc-body">
+              <svg viewBox="0 0 280 150" fill="none" style="width:100%">
+                <defs><linearGradient id="s1g" x1="0" y1="0" x2="280" y2="150" gradientUnits="userSpaceOnUse"><stop stop-color="#FF9100" stop-opacity=".6"/><stop offset="1" stop-color="#E51A00" stop-opacity=".4"/></linearGradient></defs>
+                <rect x="24" y="24" width="232" height="110" rx="10" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+                <rect x="24" y="42" width="232" height="2" fill="rgba(255,255,255,0.04)"/>
+                <rect x="160" y="56" width="80" height="48" rx="8" stroke="url(#s1g)" stroke-width="1.5" fill="rgba(229,26,0,0.04)"/>
+                <circle cx="200" cy="80" r="9" stroke="url(#s1g)" stroke-width="1.5" fill="none"/>
+                <circle cx="200" cy="80" r="3" fill="url(#s1g)"/>
+                <circle cx="200" cy="80" r="9" stroke="url(#s1g)" stroke-width="1" fill="none" opacity=".3"><animate attributeName="r" values="9;16;9" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".3;0;.3" dur="2s" repeatCount="indefinite"/></circle>
+                <rect x="36" y="52" width="110" height="10" rx="5" fill="rgba(255,255,255,0.16)"/>
+                <rect x="36" y="68" width="80" height="8" rx="4" fill="rgba(255,255,255,0.05)"/>
+                <rect x="36" y="82" width="95" height="8" rx="4" fill="rgba(255,255,255,0.04)"/>
+                <rect x="36" y="96" width="70" height="8" rx="4" fill="rgba(255,255,255,0.04)"/>
+                <circle cx="250" cy="34" r="12" fill="rgba(34,197,94,0.12)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+                <path d="M244 34 L249 39 L257 29" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 — Choose vault -->
+      <div class="step-row" data-step>
+        <div class="step-vis r">
+          <div class="step-card">
+            <div class="sc-top"><span class="sc-top-l">Choose a Vault</span><span class="sc-top-r">2 of 4</span></div>
+            <div class="sc-body">
+              <svg viewBox="0 0 280 150" fill="none" style="width:100%">
+                <defs><linearGradient id="s2g" x1="0" y1="0" x2="280" y2="150" gradientUnits="userSpaceOnUse"><stop stop-color="#FF9100" stop-opacity=".7"/><stop offset="1" stop-color="#E51A00" stop-opacity=".5"/></linearGradient></defs>
+                <rect x="16" y="16" width="248" height="52" rx="8" fill="rgba(229,26,0,0.06)" stroke="url(#s2g)" stroke-width="1.5"/>
+                <circle cx="42" cy="42" r="14" fill="rgba(247,147,26,0.12)" stroke="rgba(247,147,26,0.2)" stroke-width="1"/>
+                <text x="36" y="47" font-size="13" fill="#F7931A" font-weight="600">₿</text>
+                <rect x="64" y="30" width="90" height="8" rx="4" fill="rgba(255,255,255,0.18)"/>
+                <rect x="64" y="43" width="60" height="6" rx="3" fill="rgba(255,255,255,0.09)"/>
+                <rect x="188" y="32" width="60" height="20" rx="6" fill="rgba(34,197,94,0.1)" stroke="rgba(34,197,94,0.2)" stroke-width="1"/>
+                <text x="209" y="46" font-size="10" fill="#22C55E" font-weight="600" text-anchor="middle">Active</text>
+                <path d="M252 38 L258 42 L252 46" stroke="url(#s2g)" stroke-width="1.5" stroke-linecap="round"/>
+                <rect x="16" y="80" width="248" height="52" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <circle cx="42" cy="106" r="14" fill="rgba(98,126,234,0.1)" stroke="rgba(98,126,234,0.15)" stroke-width="1"/>
+                <text x="37" y="111" font-size="13" fill="#627EEA" font-weight="600">Ξ</text>
+                <rect x="64" y="94" width="78" height="7" rx="3.5" fill="rgba(255,255,255,0.09)"/>
+                <rect x="64" y="107" width="54" height="5" rx="2.5" fill="rgba(255,255,255,0.05)"/>
+                <rect x="188" y="96" width="60" height="18" rx="5" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                <text x="209" y="109" font-size="10" fill="rgba(255,255,255,0.25)" font-weight="500" text-anchor="middle">Active</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="step-spine"><div class="step-n">02</div></div>
+        <div class="step-txt r d1">
+          <span class="label step-tag">Step 02</span>
+          <h3 class="step-h">Choose a vault</h3>
+          <p class="step-p">Browse our curated selection. Each vault has a plain-language description, risk profile, and strategy overview. No jargon, no confusion.</p>
+        </div>
+      </div>
+
+      <!-- Step 3 — Deposit -->
+      <div class="step-row" data-step>
+        <div class="step-txt r">
+          <span class="label step-tag">Step 03</span>
+          <h3 class="step-h">Deposit your capital</h3>
+          <p class="step-p">Send ETH or USDC from your wallet directly into the vault. No intermediary. Your funds stay on-chain and only you can withdraw them.</p>
+        </div>
+        <div class="step-spine"><div class="step-n">03</div></div>
+        <div class="step-vis r d1">
+          <div class="step-card">
+            <div class="sc-top"><span class="sc-top-l">Deposit</span><span class="sc-top-r">3 of 4</span></div>
+            <div class="sc-body">
+              <svg viewBox="0 0 280 150" fill="none" style="width:100%">
+                <defs><linearGradient id="s3g" x1="0" y1="0" x2="280" y2="150" gradientUnits="userSpaceOnUse"><stop stop-color="#FF9100" stop-opacity=".7"/><stop offset="1" stop-color="#E51A00" stop-opacity=".5"/></linearGradient></defs>
+                <rect x="24" y="16" width="232" height="44" rx="8" stroke="url(#s3g)" stroke-width="1.5" fill="rgba(229,26,0,0.03)"/>
+                <text x="38" y="44" font-size="24" fill="white" font-weight="600" font-family="JetBrains Mono, monospace">1,000</text>
+                <rect x="206" y="28" width="40" height="18" rx="5" fill="rgba(255,255,255,0.18)"/>
+                <text x="226" y="40" font-size="10" fill="rgba(255,255,255,0.4)" font-weight="500" text-anchor="middle">USDC</text>
+                <g>
+                  <path d="M140 68 L140 92" stroke="url(#s3g)" stroke-width="2" stroke-linecap="round">
+                    <animate attributeName="stroke-dasharray" values="0,30;30,0;0,30" dur="1.6s" repeatCount="indefinite"/>
+                  </path>
+                  <path d="M132 86 L140 94 L148 86" stroke="url(#s3g)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/>
+                  </path>
+                </g>
+                <rect x="24" y="102" width="232" height="36" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <rect x="36" y="112" width="72" height="7" rx="3.5" fill="rgba(255,255,255,0.1)"/>
+                <rect x="36" y="124" width="50" height="5" rx="2.5" fill="rgba(255,255,255,0.05)"/>
+                <circle cx="228" cy="120" r="11" fill="rgba(34,197,94,0.1)" stroke="rgba(34,197,94,0.25)" stroke-width="1"/>
+                <path d="M222 120 L227 125 L234 115" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 — Watch it grow -->
+      <div class="step-row" data-step>
+        <div class="step-vis r">
+          <div class="step-card">
+            <div class="sc-top"><span class="sc-top-l">Portfolio</span><span class="sc-top-r" style="color:var(--green)">● Growing</span></div>
+            <div class="sc-body">
+              <svg viewBox="0 0 280 150" fill="none" style="width:100%">
+                <defs>
+                  <linearGradient id="s4fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22C55E" stop-opacity=".22"/><stop offset="100%" stop-color="#22C55E" stop-opacity="0"/></linearGradient>
+                </defs>
+                <text x="24" y="38" font-size="26" fill="white" font-weight="600" font-family="JetBrains Mono, monospace">$1,148</text>
+                <rect x="162" y="18" width="68" height="22" rx="6" fill="rgba(34,197,94,0.1)" stroke="rgba(34,197,94,0.2)" stroke-width="1"/>
+                <text x="196" y="33" font-size="12" fill="#22C55E" font-weight="600" text-anchor="middle">+14.8%</text>
+                <path d="M24,128 L52,120 L80,124 L108,108 L136,92 L164,74 L192,54 L220,38 L248,26 L276,16" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round">
+                  <animate attributeName="stroke-dasharray" values="0,600;600,0" dur="2s" fill="freeze" begin="0s"/>
+                </path>
+                <path d="M24,128 L52,120 L80,124 L108,108 L136,92 L164,74 L192,54 L220,38 L248,26 L276,16 L276,148 L24,148 Z" fill="url(#s4fill)"/>
+                <circle cx="276" cy="16" r="4" fill="#22C55E"><animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/></circle>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="step-spine"><div class="step-n">04</div></div>
+        <div class="step-txt r d1">
+          <span class="label step-tag">Step 04</span>
+          <h3 class="step-h">Watch it grow</h3>
+          <p class="step-p">Track your portfolio in real time. Our team actively manages your position. Withdraw whenever — no lock-in periods, no penalties.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ROADMAP — LIGHT ═══════════════════════════════════ -->
+<section class="road" id="roadmap">
+  <div class="wrap">
+    <div class="road-layout">
+      <div class="road-sticky r">
+        <span class="label label--light" style="margin-bottom:14px;display:block;">The plan</span>
+        <h2 class="road-h">Built in phases.<br><span style="color:var(--l-t2);font-weight:400;">Growing with trust.</span></h2>
+        <p class="road-p">We don't rush. Each phase validates the approach before we expand. Deliberate constraints are how we protect your capital.</p>
+        <a href="/docs" class="btn-line--dark btn-line">View documentation <i class="ph-bold ph-arrow-right"></i></a>
+      </div>
+      <div class="tl r d1">
+        <div class="tl-item done">
+          <div class="tl-dot"></div>
+          <span class="tl-tag">Phase 1 — Completed</span>
+          <div class="tl-title">Foundations & Research</div>
+          <p class="tl-desc">Built the strategy framework, risk models, and validated our approach against three years of market data across multiple regimes.</p>
+        </div>
+        <div class="tl-item done">
+          <div class="tl-dot"></div>
+          <span class="tl-tag">Phase 2 — Completed</span>
+          <div class="tl-title">Infrastructure Build-out</div>
+          <p class="tl-desc">Developed vault infrastructure, monitoring systems, and smart contract integrations. Twelve months of internal testing before going live.</p>
+        </div>
+        <div class="tl-item now">
+          <div class="tl-dot"></div>
+          <span class="tl-tag">Phase 3 — Now</span>
+          <div class="tl-title">Live Launch</div>
+          <p class="tl-desc">Two vaults live in real conditions. Actively monitored, continuously refined. This is where we prove the model works.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <span class="tl-tag">Phase 4 — Planned</span>
+          <div class="tl-title">Curated Expansion</div>
+          <p class="tl-desc">Open capacity, add new G12 vaults, and selectively introduce third-party vaults that meet our quality standards. More options, same rigor.</p>
+        </div>
+      </div>
+    </div>
+    <div class="road-footer"></div>
+  </div>
+
+  <!-- FAQ — inside road section, background transitions to dark -->
+  <div class="faq" id="faq">
+  <div class="wrap">
+    <div class="faq-layout">
+      <div class="faq-left r">
+        <span class="label" style="margin-bottom:12px;display:block;">FAQ</span>
+        <h2 class="sec-h d1">Questions we get asked.</h2>
+      </div>
+      <div class="faq-list">
+      <div class="faq-item r"><button class="faq-btn"><span class="faq-q">What exactly is G12 Labs?</span><span class="faq-ico"><i class="ph-bold ph-plus"></i></span></button><div class="faq-body"><div class="faq-a"><p>G12 Labs is a DeFi vault platform managed by a team of financial experts. We identify high-quality opportunities in Web3, build the infrastructure to access them safely, and actively manage the capital you entrust to us.</p><p>We handle all the complexity — smart contracts, protocol monitoring, risk management — so you only need to decide how much to invest.</p></div></div></div>
+      <div class="faq-item r d1"><button class="faq-btn"><span class="faq-q">Who decides where my capital goes?</span><span class="faq-ico"><i class="ph-bold ph-plus"></i></span></button><div class="faq-body"><div class="faq-a"><p>Our team. We track market conditions and use various tools to stay informed, but every allocation decision is made by people — not automated rules. We take full responsibility for those decisions, and we report on them transparently in the dashboard.</p></div></div></div>
+      <div class="faq-item r d2"><button class="faq-btn"><span class="faq-q">Is my capital safe?</span><span class="faq-ico"><i class="ph-bold ph-plus"></i></span></button><div class="faq-body"><div class="faq-a"><p>All investments carry risk — capital can go down as well as up. What we can tell you is that protecting capital is our first priority. Every vault has strict drawdown limits and is continuously monitored.</p><p>On the technical side, your funds are held in audited smart contracts on Ethereum mainnet. We never have direct access to your assets — only you can withdraw.</p></div></div></div>
+      <div class="faq-item r"><button class="faq-btn"><span class="faq-q">Can I withdraw at any time?</span><span class="faq-ico"><i class="ph-bold ph-plus"></i></span></button><div class="faq-body"><div class="faq-a"><p>Yes. No lock-up periods, no withdrawal penalties. You can request a full or partial withdrawal at any time directly from the dashboard. The funds go back to your wallet — we're never an intermediary.</p></div></div></div>
+      <div class="faq-item r d1"><button class="faq-btn"><span class="faq-q">Do I need to understand crypto to use G12 Labs?</span><span class="faq-ico"><i class="ph-bold ph-plus"></i></span></button><div class="faq-body"><div class="faq-a"><p>No. You need a wallet (MetaMask, Coinbase Wallet, WalletConnect, or email login) and ETH or USDC to deposit. That's it. We built G12 Labs specifically for investors from traditional finance who want access to Web3 returns without needing to understand how it works.</p></div></div></div>
+      </div>
+    </div><!-- /faq-layout -->
+  </div>
+  </div><!-- /faq -->
+
+  <!-- CTA — inside road section, shares same background -->
+  <div class="cta">
+    <div class="wrap">
+      <div class="cta-inner r">
+        <span class="label" style="justify-content:center;margin-bottom:20px;display:inline-flex;">Start today</span>
+        <h2 class="cta-h">Your capital deserves<br>expert management.</h2>
+        <p class="cta-p">Join investors already using G12 Labs to access professional DeFi yields — without the complexity, without the noise.</p>
+        <div class="cta-btns">
+          <a href="https://app.g12labs.com" class="btn-main"><i class="ph-bold ph-rocket-launch"></i> Get Started</a>
+          <a href="/strategies" class="btn-line">Browse strategies</a>
+        </div>
+      </div>
+    </div>
+  </div><!-- /cta -->
+
+</section><!-- /road+faq+cta -->
+
+<!-- ═══ FOOTER ════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <img src="/logo_g12.svg" alt="G12 Labs" class="footer-logo" />
+        <p class="footer-tagline">Expert-managed DeFi vaults. Non-custodial, transparent, built to last.</p>
+      </div>
+      <div>
+        <p class="footer-col-h">Platform</p>
+        <ul class="footer-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/strategies">Strategies</a></li>
+          <li><a href="#vaults">Active Vaults</a></li>
+          <li><a href="#roadmap">Roadmap</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-h">Resources</p>
+        <ul class="footer-links">
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/docs">Lite paper</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="https://app.g12labs.com">Dashboard</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-h">Contact</p>
+        <ul class="footer-links">
+          <li><a href="mailto:info@g12labs.com">info@g12labs.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span class="footer-copy">© 2026 G12 Labs. All rights reserved.</span>
+      <div class="footer-leg">
+        <a href="/legal">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Top</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── HASH JUMP (cross-page anchor navigation) ─────────── */
+if (location.hash) {
+  const el = document.querySelector(location.hash);
+  if (el) el.scrollIntoView({ behavior: 'instant' });
+}
+
+/* ── NAV ───────────────────────────────────────────────── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('s', window.scrollY > 10), {passive:true});
+
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('navMob');
+burger.addEventListener('click', () => {
+  const open = burger.getAttribute('aria-expanded') === 'true';
+  burger.setAttribute('aria-expanded', String(!open));
+  mob.classList.toggle('open', !open);
+  document.body.style.overflow = open ? '' : 'hidden';
+});
+mob.querySelectorAll('a').forEach(a => a.addEventListener('click', (e) => {
+  if (a.classList.contains('active')) e.preventDefault();
+  burger.setAttribute('aria-expanded','false'); mob.classList.remove('open'); document.body.style.overflow = '';
+}));
+
+/* ── HERO — DOTTED GLOW CANVAS ─────────────────────────── */
+(function () {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H;
+
+  const GAP = 14;   // dot grid gap (px)
+  const R   = 1.5;  // base dot radius
+  const N   = 8;    // number of glow orbs
+
+  // Glow orbs
+  const orbs = Array.from({length: N}, () => ({
+    x: 0, y: 0, vx: 0, vy: 0,
+    r2: 0,        // squared radius
+    phase: 0,
+    phaseSpd: 0
+  }));
+
+  function spawnOrbs() {
+    orbs.forEach(o => {
+      const angle = Math.random() * Math.PI * 2;
+      const spd   = 0.22 + Math.random() * 0.90;
+      const r     = 100 + Math.random() * 100;
+      o.x        = W * 0.05 + Math.random() * W * 0.90;
+      o.y        = H * 0.05 + Math.random() * H * 0.90;
+      o.vx       = Math.cos(angle) * spd;
+      o.vy       = Math.sin(angle) * spd;
+      o.r2       = r * r;
+      o.phase    = Math.random() * Math.PI * 2;
+      o.phaseSpd = 0.008 + Math.random() * 0.012;
+    });
+  }
+
+  function resize() {
+    const dpr = devicePixelRatio || 1;
+    W = canvas.offsetWidth;
+    H = canvas.offsetHeight;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
+    spawnOrbs();
+  }
+
+  let raf;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Update orb positions
+    for (const o of orbs) {
+      o.x += o.vx;
+      o.y += o.vy;
+      o.phase += o.phaseSpd;
+      // wrap around
+      if (o.x < -160) o.x = W + 160;
+      else if (o.x > W + 160) o.x = -160;
+      if (o.y < -160) o.y = H + 160;
+      else if (o.y > H + 160) o.y = -160;
+    }
+
+    // Draw dot grid — compute per-dot glow influence
+    const cols = Math.ceil(W / GAP) + 1;
+    const rows = Math.ceil(H / GAP) + 1;
+
+    for (let gy = 0; gy <= rows; gy++) {
+      for (let gx = 0; gx <= cols; gx++) {
+        const x = gx * GAP;
+        const y = gy * GAP;
+
+        // Find max influence from any orb (squared-distance, no sqrt)
+        let maxInf = 0;
+        for (const o of orbs) {
+          const dx = x - o.x, dy = y - o.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < o.r2) {
+            const inf = (1 - d2 / o.r2) * (0.60 + 0.40 * Math.sin(o.phase));
+            if (inf > maxInf) maxInf = inf;
+          }
+        }
+
+        ctx.beginPath();
+        if (maxInf > 0.04) {
+          const t = Math.min(1, maxInf * 1.7);
+          // Brand gradient: warm orange → red
+          const g = Math.round(145 * (1 - t));   // 145 → 0
+          ctx.arc(x, y, R + t * 0.8, 0, 6.2832);
+          ctx.fillStyle = `rgba(255,${g},0,${0.10 + t * 0.78})`;
         } else {
-          header.classList.remove('scrolled');
+          ctx.arc(x, y, R, 0, 6.2832);
+          ctx.fillStyle = 'rgba(255,255,255,0.08)';
         }
+        ctx.fill();
       }
+    }
 
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
+    raf = requestAnimationFrame(draw);
+  }
 
-      function closeMenu() {
-        navToggle.setAttribute('aria-expanded', 'false');
-        navMenu.classList.remove('open');
-        document.body.classList.remove('menu-open');
-      }
+  resize();
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(raf);
+    resize();
+    draw();
+  }, {passive:true});
+  draw();
+})();
 
-      function openMenu() {
-        navToggle.setAttribute('aria-expanded', 'true');
-        navMenu.classList.add('open');
-        document.body.classList.add('menu-open');
-      }
+/* ── SCROLL REVEAL ─────────────────────────────────────── */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
+}, {threshold:.1, rootMargin:'0px 0px -44px 0px'});
+document.querySelectorAll('.r').forEach(el => ro.observe(el));
 
-      navToggle.addEventListener('click', () => {
-        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-        if (expanded) closeMenu();
-        else openMenu();
-      });
+/* ── STEPS — scroll-activated (not hover) ──────────────── */
+const stepObs = new IntersectionObserver(entries => {
+  entries.forEach(e => e.target.classList.toggle('step-active', e.isIntersecting));
+}, {threshold:.45});
+document.querySelectorAll('[data-step]').forEach(el => stepObs.observe(el));
 
-      // Close menu on link click
-      navMenu.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', closeMenu);
-      });
+/* ── FAQ ───────────────────────────────────────────────── */
+document.querySelectorAll('.faq-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement, body = item.querySelector('.faq-body'), open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-body').style.maxHeight = null; });
+    if (!open) { item.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+  });
+});
 
-      // Close menu on resize
-      window.addEventListener('resize', () => {
-        if (window.innerWidth >= 1024) closeMenu();
-      });
-    })();
+/* ── SMOOTH ANCHORS ─────────────────────────────────────── */
+document.querySelectorAll('a[href*="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').split('#')[1];
+    if (!id) return;
+    const t = document.getElementById(id);
+    if (!t) return;
+    e.preventDefault();
+    window.scrollTo({top: t.getBoundingClientRect().top + window.scrollY - 80, behavior:'smooth'});
+  });
+});
+</script>
 
-    // FAQ ACCORDION LOGIC
-    document.querySelectorAll('.faq-toggle').forEach(button => {
-        button.addEventListener('click', () => {
-            const faqItem = button.parentElement;
-            const content = faqItem.querySelector('.faq-content');
-            
-            // Fermer les autres (optionnel, si tu veux qu'un seul soit ouvert à la fois)
-            document.querySelectorAll('.faq-item').forEach(item => {
-                if (item !== faqItem) {
-                    item.classList.remove('active');
-                    item.querySelector('.faq-content').style.maxHeight = null;
-                }
-            });
+<!-- Lenis smooth scroll -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<!-- GSAP + ScrollTrigger — vault→bento background transition -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
 
-            // Toggle celui cliqué
-            faqItem.classList.toggle('active');
-            
-            if (faqItem.classList.contains('active')) {
-                // On définit la hauteur max sur la hauteur réelle du contenu (scrollHeight)
-                content.style.maxHeight = content.scrollHeight + "px";
-            } else {
-                content.style.maxHeight = null;
-            }
-        });
-    });
-  </script>
- <script>
-    (function() {
-      const SUPABASE_URL = 'https://ucrvaqztvfnphhoqcbpo.supabase.co';
-      const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVjcnZhcXp0dmZucGhob3FjYnBvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczNTY2MzQsImV4cCI6MjA4MjkzMjYzNH0.l_983umaG_ojeDjXJ4DqWhPNEw9RotNApGLpl_ASkZk';
+/* ── LENIS — smooth scroll + ScrollTrigger sync ────────── */
+const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+gsap.ticker.lagSmoothing(0);
 
-      const form = document.querySelector('.newsletter-form');
-      const emailInput = form?.querySelector('.n-input');
-      const submitBtn = form?.querySelector('.n-btn');
-      const checkbox = document.getElementById('n-check');
+/* Transition : vaults blanc → bento sombre */
+const bentoCrossfadeTrigger = {
+  trigger:    '.vaults-footer',
+  start:      'bottom 20%',
+  endTrigger: '.bento',
+  end:        'top 60%',
+  scrub: 2,
+};
+const st = { ease: 'none', scrollTrigger: bentoCrossfadeTrigger };
+gsap.to('.vaults',         { backgroundColor: '#111111',              ...st });
+/* Cartes bento : transparent → fond dark */
+gsap.to('.bc',             { backgroundColor: '#181818', borderColor: 'rgba(255,255,255,.07)', ...st });
+gsap.to('.bc-grad',        { backgroundColor: '#181818', borderColor: 'rgba(255,255,255,.07)', ...st });
+/* Textes intérieurs des cartes */
+gsap.to('.bc-inner',       { opacity: 1,                              ...st });
+gsap.to('.bc-art',         { opacity: 1,                              ...st });
+gsap.to('.bc-h',           { color: '#ffffff',                        ...st });
+gsap.to('.bc-p',           { color: '#959593',                        ...st });
+gsap.to('.bc .label',      { color: '#555553',                        ...st });
+/* Titre / sous-titre du bento */
+gsap.to('.bento .sec-h',   { color: '#ffffff',                        ...st });
+gsap.to('.bento .sec-sub', { color: '#959593',                        ...st });
+gsap.to('.bento .sec-hd .label', { color: '#959593',                  ...st });
 
-      if (!form || !emailInput || !submitBtn) return;
+/* Transition : roadmap clair → faq sombre */
+gsap.to('.road', {
+  backgroundColor: '#111111',
+  ease: 'none',
+  scrollTrigger: {
+    trigger:    '.road-footer',
+    start:      'bottom 20%',
+    endTrigger: '.faq',
+    end:        'top 60%',
+    scrub: 2,
+  }
+});
+</script>
 
-      // Créer le message de feedback
-      const feedback = document.createElement('div');
-      feedback.style.cssText = 'margin-top: 16px; padding: 12px 16px; border-radius: 8px; font-size: 14px; display: none;';
-      form.parentElement.appendChild(feedback);
-
-      function showFeedback(message, isError = false) {
-        feedback.textContent = message;
-        feedback.style.display = 'block';
-        feedback.style.background = isError ? 'rgba(239, 68, 68, 0.1)' : 'rgba(16, 185, 129, 0.1)';
-        feedback.style.color = isError ? '#EF4444' : '#10B981';
-        feedback.style.border = `1px solid ${isError ? 'rgba(239, 68, 68, 0.2)' : 'rgba(16, 185, 129, 0.2)'}`;
-      }
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const email = emailInput.value.trim();
-        
-        // Validation
-        if (!email || !email.includes('@')) {
-          showFeedback('Please enter a valid email address.', true);
-          return;
-        }
-
-        if (checkbox && !checkbox.checked) {
-          showFeedback('Please accept the terms and conditions.', true);
-          return;
-        }
-
-        // Désactiver le bouton
-        const originalText = submitBtn.textContent;
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Subscribing...';
-        submitBtn.style.opacity = '0.7';
-
-        try {
-          const response = await fetch(`${SUPABASE_URL}/rest/v1/newsletter_subscribers`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'apikey': SUPABASE_ANON_KEY,
-              'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-              'Prefer': 'return=minimal'
-            },
-            body: JSON.stringify({ 
-              email: email,
-              source: 'website'
-            })
-          });
-
-          if (response.ok || response.status === 201) {
-            showFeedback('✓ Welcome to the Lab! Check your inbox soon.', false);
-            emailInput.value = '';
-            if (checkbox) checkbox.checked = false;
-          } else if (response.status === 409) {
-            // Email déjà existant (duplicate)
-            showFeedback('This email is already subscribed!', true);
-          } else {
-            const error = await response.json();
-            console.error('Newsletter error:', error);
-            
-            if (error?.code === '23505') {
-              showFeedback('This email is already subscribed!', true);
-            } else {
-              showFeedback('Something went wrong. Please try again.', true);
-            }
-          }
-        } catch (err) {
-          console.error('Newsletter error:', err);
-          showFeedback('Connection error. Please try again.', true);
-        }
-
-        // Réactiver le bouton
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        submitBtn.style.opacity = '1';
-      });
-    })();
-  </script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      
-      // 1. GESTION DES CLICS SUR LA MÊME PAGE
-      // On sélectionne tous les liens qui contiennent un #
-      const anchors = document.querySelectorAll('a[href*="#"]');
-      
-      anchors.forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          // On récupère l'URL du lien et l'ID de la cible
-          const href = this.getAttribute('href');
-          // On extrait juste l'ID (ce qu'il y a après le #)
-          const targetId = href.includes('#') ? href.split('#')[1] : null;
-          
-          if (!targetId) return;
-
-          // On cherche l'élément cible sur la page actuelle
-          const targetElement = document.getElementById(targetId);
-
-          // SI l'élément existe sur cette page (on est donc sur l'index)
-          if (targetElement) {
-            e.preventDefault(); // On bloque l'ajout du # dans l'URL par défaut
-            
-            // Calcul de la position pour scroller (en prenant en compte la Navbar fixe)
-            const headerOffset = 80; // Taille de votre navbar (5rem)
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            // Scroll fluide manuel
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: "smooth"
-            });
-            
-            // On s'assure que l'URL reste propre
-            history.replaceState(null, null, ' ');
-          }
-          // SINON (si on est sur Strategies et qu'on clique vers l'Index),
-          // on laisse le lien faire son travail normal.
-        });
-      });
-
-      // 2. GESTION DE L'ARRIVÉE DEPUIS UNE AUTRE PAGE
-      // Si on arrive sur la page avec un # dans l'URL (ex: g12labs.com/#faq)
-      if (window.location.hash) {
-        // On laisse le navigateur scroller vers la section...
-        // Puis après une petite fraction de seconde, on efface le # de la barre d'adresse
-        setTimeout(() => {
-          history.replaceState(null, null, ' ');
-        }, 50); 
-      }
-      
-    });
-  </script>
 </body>
 </html>
