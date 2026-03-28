@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact — G12 Labs</title>
-  <meta name="description" content="Get in touch with the G12 Labs team. Questions about our vaults, partnerships, or press inquiries — we read everything.">
-  <link rel="canonical" href="https://g12labs.com/contact/" />
+  <meta name="description" content="Contactez l'équipe G12 Labs. Questions sur nos vaults, partenariats ou demandes presse — nous lisons tout.">
+  <link rel="canonical" href="https://g12labs.com/fr/contact/" />
+  <link rel="alternate" hreflang="fr" href="https://g12labs.com/fr/contact/" />
   <link rel="alternate" hreflang="en" href="https://g12labs.com/contact/" />
   <link rel="alternate" hreflang="x-default" href="https://g12labs.com/contact/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="G12 Labs" />
-  <meta property="og:url" content="https://g12labs.com/contact/" />
+  <meta property="og:url" content="https://g12labs.com/fr/contact/" />
   <meta property="og:title" content="Contact — G12 Labs" />
-  <meta property="og:description" content="Get in touch with the G12 Labs team. Questions about our vaults, partnerships, or press inquiries — we read everything." />
+  <meta property="og:description" content="Contactez l'équipe G12 Labs. Questions sur nos vaults, partenariats ou demandes presse — nous lisons tout." />
   <meta property="og:image" content="https://g12labs.com/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@G12Labs" />
   <meta name="twitter:title" content="Contact — G12 Labs" />
-  <meta name="twitter:description" content="Get in touch with the G12 Labs team. Questions about our vaults, partnerships, or press inquiries — we read everything." />
+  <meta name="twitter:description" content="Contactez l'équipe G12 Labs. Questions sur nos vaults, partenariats ou demandes presse — nous lisons tout." />
   <meta name="twitter:image" content="https://g12labs.com/og-image.png" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,12 +110,10 @@
     .nav-burger span:nth-child(1) { top:0; }
     .nav-burger span:nth-child(2) { top:7px; }
     .nav-burger span:nth-child(3) { top:14px; }
-    /* open state */
     .nav-burger[aria-expanded="true"] span:nth-child(1) { transform:translate3d(0,7px,0) rotate(45deg); }
     .nav-burger[aria-expanded="true"] span:nth-child(2) { opacity:0; width:0; }
     .nav-burger[aria-expanded="true"] span:nth-child(3) { transform:translate3d(0,-7px,0) rotate(-45deg); }
 
-    /* Burger gets more room on mobile */
     @media(max-width:1024px){ .nav-pill { padding-right:16px; } }
     @media(max-width:1024px){ :root { --nav-h:104px; } }
 
@@ -145,8 +144,7 @@
     .nav-mob-links a:hover::after { opacity:1; }
     .nav-mob-links a.active { color:var(--tw); }
     .nav-mob-links a.active::after { opacity:.35; }
-    /* Launch App link — différencié */
-        .nav-mob-links a.mob-launch {
+    .nav-mob-links a.mob-launch {
       margin-top:8px; border-top:none; border-bottom:none;
       background:var(--grad);
       -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
@@ -176,7 +174,6 @@
     }
     @media(max-width:900px){ .contact-grid{ grid-template-columns:1fr; } }
 
-    /* ── LEFT ── */
     .contact-left {
       position:sticky; top:calc(var(--nav-h) + 40px);
       display:flex; flex-direction:column; gap:32px;
@@ -200,7 +197,6 @@
     .meta-row a { color:var(--brand-orange); font-weight:500; transition:opacity .2s; }
     .meta-row a:hover { opacity:.75; }
 
-    /* ── RIGHT — FORM ── */
     .contact-form-wrap {
       background:var(--d2); border:1px solid var(--bd-dark);
       border-radius:var(--r-xl); padding:clamp(28px,3.5vw,48px);
@@ -255,7 +251,6 @@
     @keyframes spin { to { transform:rotate(360deg); } }
     .spin { animation:spin .8s linear infinite; }
 
-    /* Success */
     .form-success { display:none; text-align:center; padding:clamp(40px,6vw,64px) 24px; }
     .form-success.show { display:flex; flex-direction:column; align-items:center; gap:14px; }
     .success-icon { width:52px; height:52px; border-radius:50%; background:rgba(34,197,94,.1); border:1px solid rgba(34,197,94,.22); display:flex; align-items:center; justify-content:center; font-size:22px; color:#22C55E; }
@@ -263,7 +258,7 @@
     .success-sub { font-size:13.5px; color:var(--t2); max-width:260px; line-height:1.65; }
 
     /* ══════════════════════════════════════════
-       SUNRISE (déco, pas de CTA)
+       SUNRISE
     ══════════════════════════════════════════ */
     .sunrise {
       position:relative; overflow:hidden;
@@ -303,17 +298,17 @@
 <header class="nav" id="nav">
   <div class="nav-shell">
     <div class="nav-pill">
-      <a href="/"><img src="/logo_g12.svg" alt="G12 Labs" class="nav-logo"/></a>
+      <a href="/fr/"><img src="/logo_g12.svg" alt="G12 Labs" class="nav-logo"/></a>
       <nav class="nav-links">
-        <a href="https://app.g12labs.com/strategies" target="_blank" rel="noopener">Strategies</a>
-        <a href="/#steps">How it works</a>
-        <a href="/blog">Blog</a>
-        <a href="/docs">Docs</a>
-        <a href="/contact" class="active">Contact</a>
+        <a href="https://app.g12labs.com/strategies?lang=fr" target="_blank" rel="noopener">Stratégies</a>
+        <a href="/fr/#steps">Investir</a>
+        <a href="/fr/blog/">Blog</a>
+        <a href="/fr/docs/">Docs</a>
+        <a href="/fr/contact/" class="active">Contact</a>
       </nav>
       <div class="nav-right">
-        <div class="lang-sw"><i class="ph ph-globe lang-globe"></i><div class="lang-drop"><a href="/contact/" class="lang-active" hreflang="en"><span class="fi fi-gb"></span> EN</a><a href="/fr/contact/" hreflang="fr"><span class="fi fi-fr"></span> FR</a></div></div>
-        <a href="https://app.g12labs.com" class="btn-nav-cta">Launch App</a>
+        <div class="lang-sw"><i class="ph ph-globe lang-globe"></i><div class="lang-drop"><a href="/contact/" hreflang="en"><span class="fi fi-gb"></span> EN</a><a href="/fr/contact/" class="lang-active" hreflang="fr"><span class="fi fi-fr"></span> FR</a></div></div>
+        <a href="https://app.g12labs.com?lang=fr" class="btn-nav-cta">Lancer l'App</a>
       </div>
       <button class="nav-burger" id="navBurger" aria-expanded="false" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -323,13 +318,13 @@
 </header>
 <div class="nav-mob" id="navMob">
   <nav class="nav-mob-links">
-    <a href="https://app.g12labs.com/strategies" target="_blank" rel="noopener">Strategies</a>
-    <a href="/#steps">How it works</a>
-    <a href="/blog">Blog</a>
-    <a href="/docs">Docs</a>
-    <a href="/contact" class="active">Contact</a>
-    <a href="https://app.g12labs.com" class="mob-launch" target="_blank" rel="noopener">Launch App <i class="ph ph-arrow-up-right" style="font-size:.85em;opacity:.85;"></i></a>
-    <div class="lang-sw mob-lang"><i class="ph ph-globe lang-globe"></i><div class="lang-drop"><a href="/contact/" class="lang-active" hreflang="en"><span class="fi fi-gb"></span> EN</a><a href="/fr/contact/" hreflang="fr"><span class="fi fi-fr"></span> FR</a></div></div>
+    <a href="https://app.g12labs.com/strategies?lang=fr" target="_blank" rel="noopener">Stratégies</a>
+    <a href="/fr/#steps">Investir</a>
+    <a href="/fr/blog/">Blog</a>
+    <a href="/fr/docs/">Docs</a>
+    <a href="/fr/contact/" class="active">Contact</a>
+    <a href="https://app.g12labs.com?lang=fr" class="mob-launch" target="_blank" rel="noopener">Lancer l'App <i class="ph ph-arrow-up-right" style="font-size:.85em;opacity:.85;"></i></a>
+    <div class="lang-sw mob-lang"><i class="ph ph-globe lang-globe"></i><div class="lang-drop"><a href="/contact/" hreflang="en"><span class="fi fi-gb"></span> EN</a><a href="/fr/contact/" class="lang-active" hreflang="fr"><span class="fi fi-fr"></span> FR</a></div></div>
   </nav>
 </div>
 
@@ -341,11 +336,11 @@
       <!-- LEFT -->
       <div class="contact-left">
         <div>
-          <span class="label r">Get in touch</span>
-          <h1 class="contact-title r d1">We read<br><em>every message.</em></h1>
+          <span class="label r">Nous contacter</span>
+          <h1 class="contact-title r d1">On lit<br><em>chaque message.</em></h1>
         </div>
 
-        <p class="contact-sub r d2">Whether you're curious about our vaults, looking to partner, or just want to understand how G12 Labs works — we're here.</p>
+        <p class="contact-sub r d2">Vous avez une question sur nos vaults, une idée de partenariat, ou vous voulez simplement comprendre comment G12 Labs fonctionne — on est là.</p>
 
         <div class="contact-meta r d3">
           <div class="meta-row">
@@ -354,65 +349,65 @@
           </div>
           <div class="meta-row">
             <i class="ph ph-clock"></i>
-            <span>Replies within <strong style="color:var(--t1);font-weight:500;">48 hours</strong></span>
+            <span>Réponse sous <strong style="color:var(--t1);font-weight:500;">48 heures</strong></span>
           </div>
         </div>
       </div>
 
       <!-- RIGHT — form -->
       <div class="contact-form-wrap r d1">
-        <p class="form-title">Send us a message</p>
+        <p class="form-title">Envoyez-nous un message</p>
 
         <form id="contactForm" novalidate>
           <div class="form-row">
             <div class="field">
-              <label class="field-label" for="firstName">First name</label>
-              <input type="text" id="firstName" name="firstName" placeholder="John" required autocomplete="given-name">
+              <label class="field-label" for="firstName">Prénom</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Jean" required autocomplete="given-name">
             </div>
             <div class="field">
-              <label class="field-label" for="lastName">Last name</label>
-              <input type="text" id="lastName" name="lastName" placeholder="Doe" required autocomplete="family-name">
+              <label class="field-label" for="lastName">Nom</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Dupont" required autocomplete="family-name">
             </div>
           </div>
 
           <div class="field">
-            <label class="field-label" for="email">Email address</label>
-            <input type="email" id="email" name="email" placeholder="john@example.com" required autocomplete="email">
+            <label class="field-label" for="email">Adresse e-mail</label>
+            <input type="email" id="email" name="email" placeholder="jean@exemple.com" required autocomplete="email">
           </div>
 
           <div class="field">
-            <label class="field-label" for="topic">Topic</label>
+            <label class="field-label" for="topic">Sujet</label>
             <select id="topic" name="topic" required>
-              <option value="" disabled selected>Select a topic…</option>
-              <option value="general">General inquiry</option>
-              <option value="vaults">Vaults &amp; strategies</option>
-              <option value="partnership">Partnership</option>
-              <option value="investor">Investor relations</option>
-              <option value="press">Press &amp; media</option>
-              <option value="technical">Technical support</option>
+              <option value="" disabled selected>Choisissez un sujet…</option>
+              <option value="general">Renseignement général</option>
+              <option value="vaults">Vaults &amp; stratégies</option>
+              <option value="partnership">Partenariat</option>
+              <option value="investor">Relations investisseurs</option>
+              <option value="press">Presse &amp; médias</option>
+              <option value="technical">Support technique</option>
             </select>
           </div>
 
           <div class="field">
             <label class="field-label" for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Tell us what's on your mind…" required></textarea>
+            <textarea id="message" name="message" placeholder="Dites-nous ce que vous avez en tête…" required></textarea>
           </div>
 
           <div class="form-footer">
             <p class="form-note">
               <i class="ph ph-lock-simple"></i>
-              Your information is never shared with third parties.
+              Vos informations ne sont jamais partagées avec des tiers.
             </p>
             <button type="submit" class="btn-submit" id="submitBtn">
-              <i class="ph ph-paper-plane-tilt"></i> Send message
+              <i class="ph ph-paper-plane-tilt"></i> Envoyer
             </button>
           </div>
         </form>
 
         <div class="form-success" id="formSuccess">
           <div class="success-icon"><i class="ph ph-check"></i></div>
-          <p class="success-title">Message sent.</p>
-          <p class="success-sub">Thanks for reaching out — we'll get back to you within 48 hours.</p>
+          <p class="success-title">Message envoyé.</p>
+          <p class="success-sub">Merci de nous avoir contactés — nous vous répondrons dans les 48 heures.</p>
         </div>
       </div>
 
@@ -429,24 +424,24 @@
     <div class="footer-top">
       <div>
         <img src="/logo_g12.svg" alt="G12 Labs" class="footer-logo"/>
-        <p class="footer-tagline">Expert-managed DeFi vaults. Non-custodial, transparent, built to last.</p>
+        <p class="footer-tagline">Vaults DeFi gérés par des experts. Non-custodial, transparent, conçu pour durer.</p>
       </div>
       <div>
-        <p class="footer-col-h">Platform</p>
+        <p class="footer-col-h">Plateforme</p>
         <ul class="footer-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="https://app.g12labs.com/strategies" target="_blank" rel="noopener">Strategies</a></li>
-          <li><a href="/#vaults">Active Vaults</a></li>
-          <li><a href="/#roadmap">Roadmap</a></li>
+          <li><a href="/fr/">Accueil</a></li>
+          <li><a href="https://app.g12labs.com/strategies?lang=fr" target="_blank" rel="noopener">Stratégies</a></li>
+          <li><a href="/fr/#vaults">Vaults actifs</a></li>
+          <li><a href="/fr/#roadmap">Roadmap</a></li>
         </ul>
       </div>
       <div>
-        <p class="footer-col-h">Resources</p>
+        <p class="footer-col-h">Ressources</p>
         <ul class="footer-links">
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/docs">Lite paper</a></li>
-          <li><a href="/#faq">FAQ</a></li>
-          <li><a href="https://app.g12labs.com">Dashboard</a></li>
+          <li><a href="/fr/blog/">Blog</a></li>
+          <li><a href="/fr/docs/">Litepaper</a></li>
+          <li><a href="/fr/#faq">FAQ</a></li>
+          <li><a href="https://app.g12labs.com?lang=fr">Dashboard</a></li>
         </ul>
       </div>
       <div>
@@ -457,9 +452,9 @@
       </div>
     </div>
     <div class="footer-bot">
-      <span class="footer-copy">© 2026 G12 Labs. All rights reserved.</span>
+      <span class="footer-copy">© 2026 G12 Labs. Tous droits réservés.</span>
       <div class="footer-leg">
-        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Top</a>
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Haut</a>
       </div>
     </div>
   </div>
@@ -497,11 +492,16 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault();
   if (!form.checkValidity()) { form.reportValidity(); return; }
   submitBtn.classList.add('loading');
-  submitBtn.innerHTML = '<i class="ph ph-circle-notch spin"></i> Sending…';
+  submitBtn.innerHTML = '<i class="ph ph-circle-notch spin"></i> Envoi…';
   await new Promise(r => setTimeout(r, 1400));
   form.style.display = 'none';
   successEl.classList.add('show');
 });
+
+/* ── MOB LANG ────────────────────────────────────────────── */
+const mobLang = document.querySelector('.mob-lang');
+const mobGlobe = mobLang && mobLang.querySelector('.lang-globe');
+if (mobGlobe) { mobGlobe.addEventListener('click', () => mobLang.classList.toggle('open')); }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>

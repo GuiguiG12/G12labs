@@ -11,6 +11,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
 
   <style>
    /* =========================================================
@@ -94,8 +95,8 @@
       
       /* NAVBAR HARMONISÉE */
       --nav-height: 5rem;           /* 80px FIXE POUR TOUT LE MONDE */
-      --nav-bg: rgba(5, 7, 11, 0.8);
-      --nav-bg-scrolled: rgba(36, 36, 37, 0.811);
+      --nav-bg: rgba(22, 22, 24, 0.52);
+      --nav-bg-scrolled: rgba(20, 20, 22, 0.82);
 
       /* =========================================
          8. COMPONENT SPECS
@@ -216,6 +217,7 @@
       height: 2rem;
       width: auto;
     }
+    .nav-inner > a:first-child { display:flex; align-items:center; line-height:0; }
 
     .nav-links {
       display: none;
@@ -337,6 +339,7 @@
 
     /* Burger gets more room on mobile */
     @media(max-width:1024px){ .nav-inner { padding-right:16px; } }
+    @media(max-width:1024px){ :root { --nav-height:6.5rem; } }
 
     /* ── Mobile menu ── */
     .nav-menu {
@@ -366,16 +369,17 @@
     .nav-mob-links a.active { color:#fff; }
     .nav-mob-links a.active::after { opacity:.35; }
     /* Launch App link — différencié */
-    .nav-mob-links a.mob-launch {
+        .nav-mob-links a.mob-launch {
       margin-top:8px; border-top:none; border-bottom:none;
-      background:linear-gradient(135deg,#FF9100,#E51A00);
+      background:var(--grad);
       -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-      font-weight:700;
+      font-weight:700; gap:8px;
     }
     .nav-mob-links a.mob-launch::before { display:none; }
-    .nav-mob-links a.mob-launch::after { content:'↗'; -webkit-text-fill-color:#FF9100; opacity:.6; }
+    .nav-mob-links a.mob-launch::after { display:none; }
+    .nav-mob-links a.mob-launch i { -webkit-text-fill-color:var(--brand-orange); color:var(--brand-orange); opacity:.7; transition:opacity .2s; }
     .nav-mob-links a.mob-launch:hover { padding-left:6px; }
-    .nav-mob-links a.mob-launch:hover::after { opacity:1; }
+    .nav-mob-links a.mob-launch:hover i { opacity:1; }
     body.menu-open { overflow: hidden; }
     @media (min-width: 64rem) { .nav-menu { display: none !important; } }
 
@@ -625,7 +629,7 @@
         <a href="/blog">Blog</a>
         <a href="/docs">Docs</a>
         <a href="/contact">Contact</a>
-        <a href="https://app.g12labs.com" class="mob-launch" target="_blank" rel="noopener">Launch App</a>
+        <a href="https://app.g12labs.com" class="mob-launch" target="_blank" rel="noopener">Launch App <i class="ph ph-arrow-up-right" style="font-size:.85em;opacity:.85;"></i></a>
       </nav>
     </div>
   </header>
